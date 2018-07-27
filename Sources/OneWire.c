@@ -146,11 +146,10 @@ char Display_Temperature(Pic_IO_Ports enm_Channel, int Resolution_Var){
         tempL = DS_Read(enm_Channel);
         tempH = DS_Read(enm_Channel);
         
-        DS_Read(enm_Channel);
-        DS_Read(enm_Channel);
-        DS_Read(enm_Channel);
-        DS_Read(enm_Channel);
-        
+        for(int x=0;x<3;x++){
+			DS_Read(enm_Channel);
+		}
+		    
         remain = DS_Read(enm_Channel);
         C = DS_Read(enm_Channel);
         temp = 0;
