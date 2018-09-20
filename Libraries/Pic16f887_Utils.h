@@ -35,6 +35,7 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 #include <xc.h>
+#include <pic16f887.h>
 
 typedef signed char     sint8_t;
 typedef unsigned char   uint8_t;
