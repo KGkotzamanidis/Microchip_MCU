@@ -22,7 +22,6 @@
  #ifndef _ADC_H
  #define _ADC_H
  
- #include <pic16f887.h>
  #include "Pic16f887_Utils.h"
  
  void ADC_Init();

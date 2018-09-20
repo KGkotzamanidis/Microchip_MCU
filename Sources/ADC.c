@@ -43,6 +43,7 @@
 	 Delay_us(10);
 	 GO = 1;
 	 while(GO_DONE == 1){
-		 return ((ADRESH<<8)+ADRESL);
+		 //Loop until GO_DONE = 1
 	 }
+	 return ((ADRESH<<8)+ADRESL);
  }
