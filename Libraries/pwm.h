@@ -17,33 +17,19 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
+ * 
+ * File: pwm.h  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
- 
- #include "ADC.h"
- #include "Delay.h"
- 
- /*
-  * Initiallize Analog to Digital Convert
-  * ADCON0 = 0x00 -> Set the sampling freq in osc_freq/2.
-  * ADCON1 = 0x80 -> Set all analog port as Input with 10bit resolution.
-  */
- void ADC_Init(){
-	 ADCON0 = 0x00;
-	 ADCON1 = 0x80;
- }
- 
- /*
-  * Create method like Arduino "Analog_read"
-  * for more info about how it works read the
-  * data sheet for Pic16f887 in ADC chapter
-  */
- uint16_t Analog_Read(uint8_t InputChannel){
-	 ADCON0 = (InputChannel<<3);
-	 ADON = 1;
-	 Delay_us(10);
-	 GO = 1;
-	 while(GO_DONE == 1){
-		 //Loop until GO_DONE = 1
-	 }
-	 return ((ADRESH<<8)+ADRESL);
- }
+#ifndef _PWM_H
+#define _PWM_H
+
+#include "macros.h"
+
+void pwm_Init(uint8_t var_Channel);
+void pwm_setDutyCycle(uint8_t var_Channel, uint8_t DutyCycle);
+void pwm_Start();
+void pwm_Stop(uint8_t var_Channel);
+#endif

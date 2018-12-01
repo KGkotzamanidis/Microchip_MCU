@@ -16,53 +16,43 @@
  * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS.
+ * TERMS. 
+ *
+ * File: onewire.h   
+ * Author: konstantinos gkotzamanidis 
+ * Comments:
+ * Revision history: 
  */
-
-#ifndef _ONE_WIRE_H
-#define _ONE_WIRE_H
+#ifndef _ONEWIRE_H
+#define _ONEWIRE_H
 
 #include <stdio.h>
-#include <xc.h>
-#include "Pic16f887_Utils.h"
-#include "Pic_IO.h"
-#include "Delay.h"
+#include "delay.h"
+#include "io.h"
+#include "macros.h"
 
-/*
- * Dallas 18B20 ROM Commands.
- */
-#define Search_ROM      0xF0
-#define Read_ROM        0x33
-#define Match_ROM       0x55
-#define Skip_ROM        0xCC
-#define Search_Alarm    0xEC
+#define SEARCH_ROM 0xF0
+#define READ_ROM 0x33
+#define MATCH_ROM 0x55
+#define SKIP_ROM 0xCC
+#define SEARCH_ALARM 0xEC
 
-/*
- * Dallas 18B20 Function Commands
- */
-#define Convert_T           0x44
-#define Write_Scartchpad    0x4E
-#define Read_Scartchpad     0xBE
-#define Copy_Scartchpad     0x48
-#define Recall_E            0xB8
-#define ReadPowerSupply     0xB4
+#define CONVERT_T 0x44
+#define WRITE_SCARTCHPAD 0x4E
+#define READ_SCARTCHPAD 0xBE
+#define COPY_SCARTCHPAD 0x48
+#define RECALL_E 0xB8
+#define READPOWERSUPLY 0xB4
 
-/*
- * Resolution Variables
- */
-double resolutionTime;
-uint8_t cmd_resolution;
-/*
- *________________________________________________________
- *| 8 bit CRC | 48 bit Serial Number | 8 bit Family Code |
- *MSB      LSB MSB               LSB  MSB               LSB
- * 
- */
-char sensor_ROM[64];
+uint8_t Sensor_Resolution_CMD;
+double Sensor_Resolution_Time;
+char Sensor_Data[64];
+int Sensor_Pin;
 
-unsigned short DS_Reset(Pic_IO_Ports enm_Channel);
-unsigned short DS_Read(Pic_IO_Ports enm_Channel);
-unsigned short DS_Write(Pic_IO_Ports enm_Channel, unsigned short value);
-char Display_Temperature(Pic_IO_Ports enm_Channel, int Resolution_Var);
-
+void DS_Resolution(int resolution);
+unsigned char DS_Reset(IO_PORT Sensor_Pin);
+unsigned char DS_Read(IO_PORT Sensor_Pin);
+unsigned char DS_Read_bit(IO_PORT Sensor_Pin);
+void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD);
+void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD);
 #endif

@@ -17,12 +17,17 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
+ * 
+ * File: io.h  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
 
-#ifndef _PIC_IO_H
-#define _PIC_IO_H
+#ifndef _IO_H
+#define _IO_H
 
-#include "Pic16f887_Utils.h"
+#include "macros.h"
 
 typedef enum{
     RA_0,RA_1,RA_2,RA_3,RA_4,RA_5,RA_6,RA_7,
@@ -30,11 +35,11 @@ typedef enum{
     RC_0,RC_1,RC_2,RC_3,RC_4,RC_5,RC_6,RC_7,
     RD_0,RD_1,RD_2,RD_3,RD_4,RD_5,RD_6,RD_7,
     RE_0,RE_1,RE_2,RE_3,RE_4,RE_5,RE_6,RE_7,
-    R_NC = 0xff
-}Pic_IO_Ports;
+    R_NULL = 0xff   
+}IO_PORT;
 
-void Pic_IO_Mode(Pic_IO_Ports enum_pinNumber,uint8_t var_pinDir);
-void Pic_IO_Write(Pic_IO_Ports enum_pinNumber,uint8_t var_pinValue);
-uint8_t Pic_IO_Read(Pic_IO_Ports enum_pinNumber);
+void pin_Derection(IO_PORT var_pin, uint8_t var_derection);
+void write_Digital(IO_PORT var_pin, uint8_t value);
+uint8_t read_Digital(IO_PORT var_pin);
 
 #endif

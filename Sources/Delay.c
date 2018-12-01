@@ -17,24 +17,29 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
+ * 
+ * File: delay.c  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
-#include "Delay.h"
+#include "delay.h"
 
 void Delay_us(uint16_t us_count){
-    while(us_count != 0){
+    while(us_count !=0){
         us_count--;
     }
 }
 
 void Delay_ms(uint16_t ms_count){
-    while(ms_count != 0){
-        Delay_us(PIC_CountForOneMS);
+    while(ms_count !=0){
+        Delay_us(countForsec);
         ms_count--;
     }
 }
 
 void Delay_sec(uint16_t sec_count){
-    while(sec_count != 0){
+    while(sec_count !=0){
         Delay_ms(1000);
         sec_count--;
     }

@@ -16,59 +16,63 @@
  * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS.
+ * TERMS. 
+ *
+ * File: onewire.h   
+ * Author: konstantinos gkotzamanidis 
+ * Comments:
+ * Revision history: 
  */
-
-#include "OneWire.h"
+#include "onewire.h"
+#include "lcd.h"
 
 /*
- * Temperature Conversion Time:
- * 9bit     resolution:93.75    ms
- * 10bit    resolution:187.5    ms
- * 11bit    resolution:375      ms
- * 12bit    resolution:750      ms
- * More info in Datasheet note 12.
+ * void DS_Resolution(int resolution)
+ * Input args: (9-10-11-12)
+ * For more information about how to set up the resolution Configurations
+ * see the Table 2 at page 9.
  */
-void selectResolution(int val_Resolution){
-    if(val_Resolution<=12 && val_Resolution >= 9){
-        switch(val_Resolution){
-            //9bit - Resolution
+void DS_Resolution(int resolution){
+    if(resolution < 9 || resolution > 12){
+        Sensor_Resolution_Time = 750;
+        Sensor_Resolution_CMD = 0x7F;
+    }
+    else{
+        switch(resolution){
             case 9:
-                resolutionTime = 93.75;
-                cmd_resolution = 0x1F;
+                Sensor_Resolution_Time = 93.75;
+                Sensor_Resolution_CMD = 0x1F;
                 break;
-                //10bit - Resolution
             case 10:
-                resolutionTime = 187.5;
-                cmd_resolution = 0x3F;
+                Sensor_Resolution_Time = 157.5;
+                Sensor_Resolution_CMD = 0x3F;
                 break;
-                //11bit - Resolution
             case 11:
-                resolutionTime = 375;
-                cmd_resolution = 0x5F;
+                Sensor_Resolution_Time = 375;
+                Sensor_Resolution_CMD = 0x5F;
                 break;
-                //12bit - Resolution
             case 12:
-                resolutionTime = 750;
-                cmd_resolution = 0x7F;
+                Sensor_Resolution_Time = 750;
+                Sensor_Resolution_CMD = 0x7F;
                 break;
         }
     }
 }
 
 /*
- * Start Initialization Timing and check if the
- * 1-wire is in presence or NOT presence
+ * unsigned char DS_Reset(IO_PORT Sensor_Pin)
+ * Input args: Sensor digital pin.
+ * For more information about how the DS_Reset method work read in
+ * page 15. Figure 15
  */
-unsigned short DS_Reset(Pic_IO_Ports enm_Channel){
-    
-    Pic_IO_Mode(enm_Channel,OUTPUT);
-    Pic_IO_Write(enm_Channel,LOW);
+unsigned char DS_Reset(IO_PORT Sensor_Pin){
+    pin_Derection(Sensor_Pin, OUTPUT);
+    write_Digital(Sensor_Pin, LOW);
     Delay_us(480);
-    Pic_IO_Mode(enm_Channel,INPUT);
-    Delay_us(60);
+    pin_Derection(Sensor_Pin, INPUT);
+    Delay_us(30);
     
-    if(Pic_IO_Read(enm_Channel) == LOW){
+    if(read_Digital(Sensor_Pin) == LOW){
         Delay_us(480);
         return 0;
     }
@@ -79,87 +83,88 @@ unsigned short DS_Reset(Pic_IO_Ports enm_Channel){
 }
 
 /*
- * One Wire Write data for sensor
+ * unsigned char DS_Read(IO_PORT Sensor_Pin)
+ * Input args: Sensor digital pin.
+ * For more information about how the DS_Read method work read in
+ * page 16. Figure 16
  */
-unsigned short DS_Write(Pic_IO_Ports enm_Channel, unsigned short value){
-    short i,CMD;
-    Pic_IO_Mode(enm_Channel,OUTPUT);
-    CMD = value;
+unsigned char DS_Read(IO_PORT Sensor_Pin){
+    char i, result = 0;
+    pin_Derection(Sensor_Pin, INPUT);
     
-    for(i=0;i<8;i++){
-        if((CMD & (1<<i)) !=0){
-            Pic_IO_Mode(enm_Channel,OUTPUT);
-            Pic_IO_Write(enm_Channel,LOW);
-            Delay_us(1);
-            Pic_IO_Mode(enm_Channel,INPUT);
-            Delay_us(60);
-        }
-        else{
-            Pic_IO_Mode(enm_Channel,OUTPUT);
-            Pic_IO_Write(enm_Channel,LOW);
-            Delay_us(60);
-            Pic_IO_Mode(enm_Channel,INPUT);
-        }
-    }
-}
-
-/*
- * One Wire Read data form sensor
- */
-unsigned short DS_Read(Pic_IO_Ports enm_Channel){
-    short i,result = 0;
-    Pic_IO_Mode(enm_Channel,INPUT);
-    
-    for(i=0;i<8;i++){
-        Pic_IO_Mode(enm_Channel,OUTPUT);
+    for(i=0; i<8; i++){
+        pin_Derection(Sensor_Pin, OUTPUT);
+        write_Digital(Sensor_Pin, LOW);
         Delay_us(2);
-        Pic_IO_Mode(enm_Channel,INPUT);
+        pin_Derection(Sensor_Pin, INPUT);
         
-        if(Pic_IO_Read(enm_Channel) != LOW){
+        if(read_Digital(Sensor_Pin) != LOW){
             result |= 1<<i;
-            Delay_us(60);
         }
+        Delay_us(60);
     }
     return result;
 }
 
 /*
- * One Wire Convert the 16bit into Temperature
+ * unsigned char DS_Read_bit(IO_PORT Sensor_Pin)
+ * Input args: Sensor digital pin.
+ * For more information about how the DS_Read method work read in
+ * page 16. Figure 16
  */
-char Display_Temperature(Pic_IO_Ports enm_Channel, int Resolution_Var){
-    char Sensor_Tem[16];
-    unsigned char tempL,tempH;
-    float C,remain,temp;
-    unsigned char degr = 223;
-    
-    selectResolution(Resolution_Var);
-    
-    if(!DS_Reset(enm_Channel)){
-        DS_Write(enm_Channel,Skip_ROM);
-        DS_Write(enm_Channel,Convert_T);
-        Delay_ms(resolutionTime);
-        
-        DS_Reset(enm_Channel);
-        DS_Write(enm_Channel,Skip_ROM);
-        DS_Write(enm_Channel,Read_Scartchpad);
-        
-        tempL = DS_Read(enm_Channel);
-        tempH = DS_Read(enm_Channel);
-        
-        for(int x=0;x<3;x++){
-			DS_Read(enm_Channel);
-		}
-		    
-        remain = DS_Read(enm_Channel);
-        C = DS_Read(enm_Channel);
-        temp = 0;
-        temp += tempL >>1;
-        if(tempH & 128){
-            temp = - (128 - temp);
-        }
-        temp = temp + (0.25 + (C - remain) / C);
-        
-        sprintf(Sensor_Tem,"Temp:%5.2f%c",temp,degr);
+unsigned char DS_Read_bit(IO_PORT Sensor_Pin){
+    unsigned char i;
+    pin_Derection(Sensor_Pin, INPUT);
+    write_Digital(Sensor_Pin, LOW);
+    pin_Derection(Sensor_Pin, INPUT);
+    write_Digital(Sensor_Pin, HIGH);
+    for(i=0; i<3; i++){
+        //empty loop for delay
     }
-    return Sensor_Tem;
+    return read_Digital(Sensor_Pin);
+}
+
+/*
+ * void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD)
+ * Input args: Sensor digital pin and Command
+ * For more information about how the DS_Read method work read in
+ * page 16. Figure 16
+ */
+void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD){
+    uint8_t i;
+    pin_Derection(Sensor_Pin, INPUT);
+    
+    for(i=0; i<8; i++){
+        if((CMD & (1<<i)) !=0){
+            pin_Derection(Sensor_Pin, OUTPUT);
+            write_Digital(Sensor_Pin, LOW);
+            Delay_us(1);
+            write_Digital(Sensor_Pin, HIGH);
+            Delay_us(60);
+        }
+        else{
+            pin_Derection(Sensor_Pin, OUTPUT);
+            write_Digital(Sensor_Pin, LOW);
+            Delay_us(60);
+            pin_Derection(Sensor_Pin, INPUT);
+        }
+    }
+}
+
+/*
+ * void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD)
+ * Input args: Sensor digital pin and Command
+ * For more information about how the DS_Read method work read in
+ * page 16. Figure 16
+ */
+void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD){
+    pin_Derection(Sensor_Pin, OUTPUT);
+    write_Digital(Sensor_Pin, LOW);
+    
+    if(CMD == 1){
+        write_Digital(Sensor_Pin, HIGH);
+    }
+    Delay_us(5);
+    pin_Derection(Sensor_Pin, INPUT);
+    write_Digital(Sensor_Pin, HIGH);
 }

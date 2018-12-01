@@ -1,274 +1,290 @@
-#include <stdarg.h>
-#include "Delay.h"
-#include "Lcd.h"
-#include "Pic16f887_Utils.h"
-#include "Pic_IO.h"
-
-/*
- * Global 
+/* Microchip Technology Inc. and its subsidiaries.  You may use this software 
+ * and any derivatives exclusively with Microchip products. 
+ * 
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES, WHETHER 
+ * EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED 
+ * WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A 
+ * PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION 
+ * WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION. 
+ *
+ * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+ * INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+ * WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS 
+ * BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE 
+ * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS 
+ * IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF 
+ * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+ *
+ * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
+ * TERMS. 
+ * 
+ * File: lcd.c  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
-uint8_t LcdTrackLineNumber;
-uint8_t LcdTrackLineCursorPos;
-Lcd_IO_Ports_enm LCD_ports;
-uint8_t Lcd_address[] = {
-    0x80,0xC0,0x90,0xd0
+#include <stdarg.h>
+#include "delay.h"
+#include "io.h"
+#include "lcd.h"
+#include "macros.h"
+
+uint8_t LcdTrackLineNum;
+uint8_t LcdTrackCursorPos;
+LCD_IO_PORT lcd_io_port;
+uint8_t Array_LineNumberAddress[]={
+    0x80,0xc0,0x90,0xd0
 };
 
-/*
- * Local Functions
- */
 static void lcd_DataWrite(uint8_t data);
 static void lcd_BusyCheck(void);
 static void lcd_Reset(void);
-static void lcd_SendCmdSignals(void);
-static void lcd_SendDataSignals(void);
+static void lcd_SendCmdSignlas(void);
+static void lcd_SendDataSignlas(void);
 static void lcd_SendHigherNibble(uint8_t dataByte);
 static void lcd_SendLowerNibble(uint8_t dataByte);
 
-/*
- * LCD_SetUp Function
- */
-void LCD_SetUp(Pic_IO_Ports RS, Pic_IO_Ports RW, Pic_IO_Ports EN, Pic_IO_Ports D0, 
-                Pic_IO_Ports D1, Pic_IO_Ports D2, Pic_IO_Ports D3, Pic_IO_Ports D4, 
-                Pic_IO_Ports D5, Pic_IO_Ports D6, Pic_IO_Ports D7){
-    LCD_ports.RS = RS;
-    LCD_ports.RW = RW;
-    LCD_ports.EN = EN;
-    LCD_ports.D0 = D0;
-    LCD_ports.D0 = D1;
-    LCD_ports.D0 = D2;
-    LCD_ports.D0 = D3;
-    LCD_ports.D0 = D4;
-    LCD_ports.D0 = D5;
-    LCD_ports.D0 = D6;
-    LCD_ports.D0 = D7;
+void LCD_SetUp(IO_PORT RS, IO_PORT RW, IO_PORT EN, IO_PORT D0, IO_PORT D1, IO_PORT D2, IO_PORT D3, IO_PORT D4, IO_PORT D5, IO_PORT D6, IO_PORT D7){
+    lcd_io_port.RS = RS;
+    lcd_io_port.RW = RW;
+    lcd_io_port.EN = EN;
+    lcd_io_port.D0 = D0;
+    lcd_io_port.D1 = D1;
+    lcd_io_port.D2 = D2;
+    lcd_io_port.D3 = D3;
+    lcd_io_port.D4 = D4;
+    lcd_io_port.D5 = D5;
+    lcd_io_port.D6 = D6;
+    lcd_io_port.D7 = D7;
     
-    if((D0 == R_NC) || (D1 == R_NC) || (D2 == R_NC) || (D3 == R_NC)){
-        LCD_ports.LcdMode = 4;
+    if((D0 == R_NULL) || (D1 == R_NULL) || (D2 == R_NULL) || (D3 == R_NULL)){
+        lcd_io_port.LcdMode = 4;
     }
     else{
-        LCD_ports.LcdMode = 8;
-        Pic_IO_Mode(D0,OUTPUT);
-        Pic_IO_Mode(D1,OUTPUT);
-        Pic_IO_Mode(D2,OUTPUT);
-        Pic_IO_Mode(D3,OUTPUT);
+        lcd_io_port.LcdMode = 8;
+        pin_Derection(D0, OUTPUT);
+        pin_Derection(D1, OUTPUT);
+        pin_Derection(D2, OUTPUT);
+        pin_Derection(D3, OUTPUT);
     }
     
-    Pic_IO_Mode(RS,OUTPUT);
-    Pic_IO_Mode(RW,OUTPUT);
-    Pic_IO_Mode(EN,OUTPUT);
+    pin_Derection(RS, OUTPUT);
+    pin_Derection(RW, OUTPUT);
+    pin_Derection(EN, OUTPUT);
     
-    Pic_IO_Mode(D4,OUTPUT);
-    Pic_IO_Mode(D5,OUTPUT);
-    Pic_IO_Mode(D6,OUTPUT);
-    Pic_IO_Mode(D7,OUTPUT);
+    pin_Derection(D4, OUTPUT);
+    pin_Derection(D5, OUTPUT);
+    pin_Derection(D6, OUTPUT);
+    pin_Derection(D7, OUTPUT);
 }
 
-/*
- * LCD_Init Function
- */
-void LCD_Init(uint8_t number_of_lines, uint8_t number_of_characters){
-    LCD_ports.MaxSupportedChars = number_of_characters;
-    LCD_ports.MaxSupportedLines = number_of_lines;
+void LCD_Init(uint8_t NumbersOfLines, uint8_t MaxCharsPerLines){
+    lcd_io_port.MaxSupportedChars = MaxCharsPerLines;
+    lcd_io_port.MaxSupportedLines = NumbersOfLines;
     
-    if(number_of_lines > C_LcdLineTwo){
-        Lcd_address[C_LcdLineTwo] = 0x90 + (number_of_characters & 0x0fu);
-        Lcd_address[C_LcdLineThree] = 0xd0 + (number_of_characters & 0x0fu);
+    if(NumbersOfLines > LcdLineTwo){
+        Array_LineNumberAddress[LcdLineTwo] = 0x90 + (MaxCharsPerLines & 0x0f);
+        Array_LineNumberAddress[LcdLineThree] = 0xd0 + (MaxCharsPerLines & 0x0f);
     }
     
     Delay_ms(100);
     
-    if(LCD_ports.LcdMode == C_EightBitMode){
-        LCD_CmdWrite(CMD_LCD_EIGHT_BIT_MODE);
+    if(lcd_io_port.LcdMode == EightBitMode){
+        LCD_CmdWrite(CMD_EIGHT_BIT_MODE);    
     }
-    else if(LCD_ports.LcdMode == C_FourBitMode){
-        LCD_Reset();
-        LCD_CmdWrite(CMD_LCD_FOUR_BIT_MODE);
+    else if(lcd_io_port.LcdMode == FourBitMode){
+        lcd_Reset();
+        LCD_CmdWrite(CMD_FOUR_BIT_MODE);
     }
     
     LCD_CmdWrite(CMD_DISPLAY_ON_CURSOR_ON);
     LCD_Clear();
 }
 
-/*
- * LCD_Clear Function
- */
 void LCD_Clear(){
-    LCD_CmdWrite(CMD_LCD_CLEAR);
-    LCD_GoToLine(C_LcdLineZero);
+    LCD_CmdWrite(CMD_CLEAR);
+    LCD_GoToLine(LcdLineZero);
 }
 
-/*
- * LCD_GoToLine Function
- */
-void LCD_GoToLine(uint8_t line_number){
-    if(line_number < LCD_ports.MaxSupportedLines){
-        LcdTrackLineCursorPos = 0x00;
-        LcdTrackLineNumber = line_number;
-        LCD_CmdWrite(Lcd_address[line_number]);
+void LCD_GoToLine(uint8_t lineNumber){
+    if(lineNumber < lcd_io_port.MaxSupportedLines){
+        LcdTrackCursorPos = 0x00;
+        LcdTrackLineNum = lineNumber;
+        LCD_CmdWrite(Array_LineNumberAddress[lineNumber]);
     }
 }
 
-/*
- * LCD_CmdWrite Function
- */
-void LCD_CmdWrite(uint8_t lcd_commnad){
+void LCD_GoToNextLine(void){
+    LcdTrackLineNum++;
+    LcdTrackCursorPos = 0x00;
+    
+    if(LcdTrackLineNum >= lcd_io_port.MaxSupportedLines){
+        LcdTrackLineNum = LcdLineZero;
+    }
+    LCD_CmdWrite(Array_LineNumberAddress[LcdTrackLineNum]);
+}
+
+void LCD_CmdWrite(uint8_t lcd_CMD){
     lcd_BusyCheck();
     
-    if(LCD_ports.LcdMode == C_EightBitMode){
-        lcd_SendLowerNibble(lcd_commnad);
+    if(lcd_io_port.LcdMode == EightBitMode){
+        lcd_SendLowerNibble(lcd_CMD);
     }
     else{
-        lcd_SendHigherNibble(lcd_commnad);
-        lcd_SendCmdSignals();
-        lcd_commnad = lcd_commnad << 4;
+        lcd_SendHigherNibble(lcd_CMD);
+        lcd_SendCmdSignlas();
+        lcd_CMD = lcd_CMD << 4;
     }
     
-    lcd_SendHigherNibble(lcd_commnad);
-    lcd_SendCmdSignals();
+    lcd_SendHigherNibble(lcd_CMD);
+    lcd_SendCmdSignlas();
 }
 
-/*
- * LCD_GoToNecxLine Function
- */
-void LCD_GoToNextLine(void){
-    LcdTrackLineNumber++;
-    LcdTrackLineCursorPos = 0x00;
-    
-    if(LcdTrackLineNumber >= LCD_ports.MaxSupportedLines){
-        LcdTrackLineNumber = C_LcdLineZero;
-    }
-    LCD_CmdWrite(Lcd_address[LcdTrackLineNumber]);
-}
-
-/*
- * LCD_DisplayChar Function
- */
-void LCD_DisplayChar(char lcd_data){
-    if((LcdTrackLineCursorPos >= LCD_ports.MaxSupportedChars) || (lcd_data == '\n')){
+void LCD_DisplayChar(char lcd_Char){
+    if((LcdTrackCursorPos >= lcd_io_port.MaxSupportedChars) || (lcd_Char == '\n')){
         LCD_GoToNextLine();
     }
-    if(lcd_data='\n'){
-        lcd_DataWrite(lcd_data);
-        LcdTrackLineCursorPos++;
+    if(lcd_Char != '\n'){
+        lcd_DataWrite(lcd_Char);
+        LcdTrackCursorPos++;
     }
 }
 
-/*
- * LDC_DisplayString Function
- */
-void LCD_DisplayString(const char *StringPointer){
-    while((*StringPointer) !=0){
-        LCD_DisplayChar(*StringPointer++);
+void LCD_DisplayString(const char *lcd_StringPointer){
+    while((*lcd_StringPointer) !=0){
+        LCD_DisplayChar(*lcd_StringPointer++);
     }
 }
 
-/*
- * lcd_DataWrite Local Function
- */
+void LCD_Printf(const char* argList, ...){
+    const char *pointer;
+    va_list argp;
+    char *str;
+    char ch;
+    uint8_t numberOfDigitsToDisplay;
+    va_start(argp,argList);
+    
+    for(pointer = argList; *pointer != '\0'; pointer++){
+        ch = *pointer;
+        
+        if(ch == '%'){
+            if((ch >= 0x30) && (ch <= 0x39)){
+                numberOfDigitsToDisplay = (numberOfDigitsToDisplay * 10) + (ch-0x30);
+                pointer++;
+                ch = *pointer;
+            }
+            else{
+                numberOfDigitsToDisplay = MaxDigitsToDisplayUsingPrintf;
+            }
+            
+            switch(ch){
+                case 'C':
+                case 'c':
+                    ch = va_arg(argp, int);
+                    LCD_DisplayChar(ch);
+                    break;
+                case 'S':
+                case 's':
+                    str = va_arg(argp, char *);
+                    LCD_DisplayString(str);
+                    break;
+                case '%':
+                    LCD_DisplayChar('%');
+                    break;
+            }
+        }
+        else{
+            LCD_DisplayChar(ch);
+        }
+    }
+    va_end(argp);
+}
+
 static void lcd_DataWrite(uint8_t data){
     lcd_BusyCheck();
-    if(LCD_ports.LcdMode == C_EightBitMode){
+    if(lcd_io_port.LcdMode == EightBitMode){
         lcd_SendLowerNibble(data);
     }
     else{
         lcd_SendHigherNibble(data);
-        lcd_SendDataSignals();
+        lcd_SendDataSignlas();
         data = data << 4;
     }
     
     lcd_SendHigherNibble(data);
-    lcd_SendDataSignals();
+    lcd_SendDataSignlas();
 }
 
-/*
- * lcd_BusyCheck Local Function
- */
 static void lcd_BusyCheck(void){
     uint8_t busyflag;
     
-    if(LCD_ports.RW != R_NC){
-        Pic_IO_Mode(LCD_ports.D7,INPUT);
-        Pic_IO_Write(LCD_ports.RS,0);
-        Pic_IO_Write(LCD_ports.RW,1);
+    if(lcd_io_port.RW != R_NULL){
+        pin_Derection(lcd_io_port.D7,INPUT);
+        write_Digital(lcd_io_port.RS, LOW);
+        write_Digital(lcd_io_port.RW, HIGH);
         
         do{
-            Pic_IO_Write(LCD_ports.EN,0);
+            write_Digital(lcd_io_port.EN, LOW);
             Delay_us(10);
-            Pic_IO_Write(LCD_ports.EN,1);
+            write_Digital(lcd_io_port.EN, HIGH);
             Delay_us(10);
-            busyflag = Pic_IO_Read(LCD_ports.D7);
+            busyflag = read_Digital(lcd_io_port.D7);
             
-            if(LCD_ports.LcdMode == 4){
-                Pic_IO_Write(LCD_ports.EN,0);
+            if(lcd_io_port.LcdMode == 4){
+                write_Digital(lcd_io_port.EN, LOW);
                 Delay_us(10);
-                Pic_IO_Write(LCD_ports.EN,1);
+                write_Digital(lcd_io_port.EN, HIGH);
                 Delay_us(10);
             }
         }while(busyflag != 0);
-        Pic_IO_Mode(LCD_ports.D7,OUTPUT);
+        pin_Derection(lcd_io_port.D7, OUTPUT);
     }
     else{
         Delay_ms(1);
     }
 }
 
-/*
- * lcd_Reset Local Function
- */
 static void lcd_Reset(void){
     lcd_SendHigherNibble(0x30);
-    lcd_SendCmdSignals();
+    lcd_SendCmdSignlas();
     Delay_ms(100);
     lcd_SendHigherNibble(0x30);
-    lcd_SendCmdSignals();
+    lcd_SendCmdSignlas();
     Delay_us(200);
     lcd_SendHigherNibble(0x30);
-    lcd_SendCmdSignals();
+    lcd_SendCmdSignlas();
     Delay_us(200);
     lcd_SendHigherNibble(0x20);
-    lcd_SendCmdSignals();
+    lcd_SendCmdSignlas();
     Delay_us(200);
 }
 
-/*
- * lcd_SendHigherNibble Local Function
- */
 static void lcd_SendHigherNibble(uint8_t dataByte){
-    Pic_IO_Write(LCD_ports.D4,Pic_IsBitSet(dataByte,4));
-    Pic_IO_Write(LCD_ports.D5,Pic_IsBitSet(dataByte,5));
-    Pic_IO_Write(LCD_ports.D6,Pic_IsBitSet(dataByte,6));
-    Pic_IO_Write(LCD_ports.D7,Pic_IsBitSet(dataByte,7));
+    write_Digital(lcd_io_port.D4,x_IsBitSet(dataByte,4));
+    write_Digital(lcd_io_port.D5,x_IsBitSet(dataByte,5));
+    write_Digital(lcd_io_port.D6,x_IsBitSet(dataByte,6));
+    write_Digital(lcd_io_port.D7,x_IsBitSet(dataByte,7));
 }
 
-/*
- * lcd_SendLowerNibble Local Function
- */
 static void lcd_SendLowerNibble(uint8_t dataByte){
-    Pic_IO_Write(LCD_ports.D0,Pic_IsBitSet(dataByte,0));
-    Pic_IO_Write(LCD_ports.D1,Pic_IsBitSet(dataByte,1));
-    Pic_IO_Write(LCD_ports.D2,Pic_IsBitSet(dataByte,2));
-    Pic_IO_Write(LCD_ports.D3,Pic_IsBitSet(dataByte,3));
+    write_Digital(lcd_io_port.D0,x_IsBitSet(dataByte,0));
+    write_Digital(lcd_io_port.D1,x_IsBitSet(dataByte,1));
+    write_Digital(lcd_io_port.D2,x_IsBitSet(dataByte,2));
+    write_Digital(lcd_io_port.D3,x_IsBitSet(dataByte,3));
 }
 
-/*
- * lcd_SendCmdSignals Local Function
- */
-static void lcd_SendCmdSignals(void){
-    Pic_IO_Write(LCD_ports.RS,0);
-    Pic_IO_Write(LCD_ports.RW,0);
-    Pic_IO_Write(LCD_ports.EN,1);
+static void lcd_SendCmdSignlas(void){
+    write_Digital(lcd_io_port.RS, LOW);
+    write_Digital(lcd_io_port.RW, LOW);
+    write_Digital(lcd_io_port.EN, HIGH);
     Delay_us(10);
-    Pic_IO_Write(LCD_ports.EN,0);
+    write_Digital(lcd_io_port.EN, LOW);
 }
 
-/*
- * lcd_SendDataSignals Local Function
- */
-static void lcd_SendDataSignals(void){
-    Pic_IO_Write(LCD_ports.RS,1);
-    Pic_IO_Write(LCD_ports.RW,0);
-    Pic_IO_Write(LCD_ports.EN,1);
+static void lcd_SendDataSignlas(void){
+    write_Digital(lcd_io_port.RS, HIGH);
+    write_Digital(lcd_io_port.RW, LOW);
+    write_Digital(lcd_io_port.EN, HIGH);
     Delay_us(10);
-    Pic_IO_Write(LCD_ports.EN,0);
+    write_Digital(lcd_io_port.EN, LOW);
 }

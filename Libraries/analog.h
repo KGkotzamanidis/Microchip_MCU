@@ -17,13 +17,18 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
+ * 
+ * File: analog.h  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
- 
- #ifndef _ADC_H
- #define _ADC_H
- 
- #include "Pic16f887_Utils.h"
- 
- void ADC_Init();
- uint16_t Analog_Read(uint8_t InputChannel);
- #endif
+
+#ifndef _ANALOG_H
+#define _ANALOG_H
+
+#include "macros.h"
+
+void ADC_Init();
+uint16_t read_Analog(uint8_t var_Channel);
+#endif

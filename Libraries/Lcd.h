@@ -17,71 +17,67 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
+ * 
+ * File: lcd.h  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
 
-#ifndef _LCD_H_
-#define _LCD_H_
+#ifndef _LCD_H
+#define _LCD_H
 
-#include "Pic16f887_Utils.h"
-#include "Pic_IO.h"
+#include "io.h"
 
-/* 
- * LCD Command List
- */
-#define CMD_LCD_CLEAR   0x01u
-#define CMD_LCD_RETURN_HOME 0x02u
-#define CMD_DISPLAY_ON_CURSOR_OFF   0x0Cu
-#define CMD_DISPLAY_ON_CURSOR_ON    0x0Eu
-#define CMD_DISPLAY_ON_CURSOR_BLINK 0x0Fu
-#define CMD_LCD_FOUR_BIT_MODE   0x28u
-#define CMD_LCD_EIGHT_BIT_MODE  0x38u
+#define CMD_CLEAR 0x01
+#define CMD_RETURN_HOME 0x02
+#define CMD_DISPLAY_ON_CURSOR_OFF 0x0C
+#define CMD_DISPLAY_ON_CURSOR_ON 0x0E
+#define CMD_DISPLAY_ON_CURSOR_BLINK 0x0F
+#define CMD_FOUR_BIT_MODE 0x28
+#define CMD_EIGHT_BIT_MODE 0x38
 
-#define C_LcdLineZero 0x00
-#define C_LcdLineOne 0x01
-#define C_LcdLineTwo 0x02
-#define C_LcdLineThree 0x03
-#define C_LcdLineMaxLines 0x04
+#define FourBitMode 4
+#define EightBitMode 8
 
-#define C_EightBitMode 8u
-#define C_FourBitMode 4u
+#define ScrollDellayTime 200
+#define DisplayDefaultDigits 0xFF
+#define MaxDigitsToDisplay 10
+#define NumOfBinDigitsToDisplay 16
+#define MaxDigitsToDisplayUsingPrintf DisplayDefaultDigits
 
-#define C_DisplayDefaultDigits 0xffu
-#define C_MaxDigitsToDisplay 10u
-#define C_NumOfBinDigitsToDisplay 16u
-#define C_MaxDigitsToDisplayUsingPrintf C_DisplayDefaultDigits
+#define LcdLineZero 0x00
+#define LcdLineOne 0x01
+#define LcdLineTwo 0x02
+#define LcdLineThree 0x03
+#define LcdMaxLines 0x04
 
-/*
- * LCD IO PORTS List
- */
 typedef struct{
     uint8_t MaxSupportedLines;
     uint8_t MaxSupportedChars;
     uint8_t LcdMode;
-    Pic_IO_Ports RS;
-    Pic_IO_Ports RW;
-    Pic_IO_Ports EN;
-    Pic_IO_Ports D0;
-    Pic_IO_Ports D1;
-    Pic_IO_Ports D2;
-    Pic_IO_Ports D3;
-    Pic_IO_Ports D4;
-    Pic_IO_Ports D5;
-    Pic_IO_Ports D6;
-    Pic_IO_Ports D7;
-}Lcd_IO_Ports_enm;
+    IO_PORT RS;
+    IO_PORT RW;
+    IO_PORT EN;
+    IO_PORT D0;
+    IO_PORT D1;
+    IO_PORT D2;
+    IO_PORT D3;
+    IO_PORT D4;
+    IO_PORT D5;
+    IO_PORT D6;
+    IO_PORT D7;
+}LCD_IO_PORT;
 
-/*
- * LCD Basic Functions
- */
-void LCD_Init(uint8_t number_of_lines, uint8_t number_of_characters);
-void LCD_SetUp(Pic_IO_Ports RS, Pic_IO_Ports RW, Pic_IO_Ports EN, Pic_IO_Ports D0,
-                Pic_IO_Ports D1, Pic_IO_Ports D2, Pic_IO_Ports D3, Pic_IO_Ports D4,
-                Pic_IO_Ports D5, Pic_IO_Ports D6, Pic_IO_Ports D7);
+void LCD_SetUp(IO_PORT RS, IO_PORT RW, IO_PORT EN, IO_PORT D0,
+                IO_PORT D1, IO_PORT D2, IO_PORT D3, IO_PORT D4,
+                IO_PORT D5, IO_PORT D6, IO_PORT D7);
+void LCD_Init(uint8_t NumbersOfLines, uint8_t MaxCharsPerLines);
+void LCD_CmdWrite(uint8_t lcd_CMD);
+void LCD_DisplayChar(char lcd_Char);
 void LCD_Clear();
-void LCD_GoToLine(uint8_t line_number);
-void LCD_CmdWrite(uint8_t lcd_commnad);
-void LCD_DisplayChar(char lcd_data);
-void LCD_DisplayString(const char *StringPointer);
-void LCD_Reset();
+void LCD_GoToLine(uint8_t lineNumber);
 void LCD_GoToNextLine();
+void LCD_DisplayString(const char *lcd_StringPointer);
+void LCD_Printf(const char *argList, ...);
 #endif

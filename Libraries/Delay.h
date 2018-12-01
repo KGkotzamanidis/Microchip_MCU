@@ -16,17 +16,20 @@
  * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
- * TERMS.
+ * TERMS. 
+ * 
+ * File: delay.h  
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
  */
-
 #ifndef _DELAY_H
 #define _DELAY_H
 
-#include "Pic16f887_Utils.h"
-#define PIC_CountForOneMS 300u
+#include "macros.h"
+#define countForsec 300
 
 void Delay_us(uint16_t us_count);
 void Delay_ms(uint16_t ms_count);
 void Delay_sec(uint16_t sec_count);
-
 #endif
