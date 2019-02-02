@@ -27,23 +27,7 @@
 #ifndef _MACROS_H
 #define _MACROS_H
 
-#pragma config FOSC = HS
-#pragma config WDTE = ON
-#pragma config PWRTE = OFF
-#pragma config MCLRE = ON
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = ON
-#pragma config IESO = ON
-#pragma config FCMEN = ON
-#pragma config LVP = OFF
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-
-#include <pic16f887.h>
 #include <xc.h>
-
-#define _XTAL_FREQ 16000000
 
 typedef signed char sint8_t;
 typedef signed int sint16_t;
@@ -74,10 +58,14 @@ typedef unsigned long int uint32_t;
 #define FALSE 0x00
 #define TRUE 0x01
 
+#define x_BINARY 2u
+#define x_DECIMAL 10u
+#define x_HEX 16u
+
 typedef enum{
     x_FALSE,
     x_TRUE
-}Boolean_Enm;
+}boolean;
 
 #define  x_GetBitMask(bit)          (1<<(bit))
 #define  x_BitSet(x,bit)            ((x) |=  x_GetBitMask(bit))
@@ -89,4 +77,18 @@ typedef enum{
 #define  x_IsBitCleared(x,bit)      (((x)&(x_GetBitMask(bit)))==0u)
 #define  x_AreAllBitsSet(x,BitMask) (((x)&(BitMask))==BitMask)
 #define  x_AreAnyBitsSet(x,BitMask) (((x)&(BitMask))!=0x00u)
+
+#define MinBaudRate 2400
+#define MaxBaudRate 115200
+#define Frequency 20000000
+#define x_GetBaudRate(baudrate) (uint32_t)((Frequency / (64*(uint32_t)baudrate))-1)
+
+#define x_GetMod8(dividend,divisor)     (uint8_t) (dividend - (divisor * (uint8_t) (dividend/divisor)))
+#define x_GetMod16(dividend,divisor)    (uint16_t) (dividend - (divisor * (uint16_t) (dividend/divisor)))
+#define x_GetMod32(dividend,divisor)    (uint32_t) (dividend - (divisor * (uint32_t) (dividend/divisor)))
+
+#define x_Dec2Ascii(Dec)    ((Dec)+0x30)
+#define x_Ascii2Dec(Asc)    ((Asc)-0x30)
+#define x_Hex2Ascii(Hex)    (((Hex)>0x09)?((Hex)+0x37):((Hex)+0x30))
+#define x_Ascii2Hex(Asc)    (((Asc)>0x39)?((Asc)-0x37):((Asc)-0x30))
 #endif
