@@ -29,6 +29,10 @@
 #include "lcd.h"
 #include "macros.h"
 
+#pragma warning push
+#pragma warning disable 520
+#pragma warning disable 1518
+
 uint8_t LcdTrackLineNum;
 uint8_t LcdTrackCursorPos;
 LCD_IO_PORT lcd_io_port;
@@ -156,22 +160,75 @@ void LCD_DisplayString(const char *lcd_StringPointer){
     }
 }
 
+void LCD_DisplayNumber(uint8_t numberic_System, uint32_t number, uint8_t numberofdisplay){
+    uint8_t i=0, a[10];
+    
+    if(x_BINARY == numberic_System){
+        while(numberofdisplay !=0){
+            i = x_GetBitStatus(number, (numberofdisplay - 1));
+            LCD_DisplayChar(x_Dec2Ascii(i));
+            numberofdisplay--;
+        }
+    }
+    else if(number == 0){
+        LCD_DisplayChar('0');
+    }
+    else{
+        for(i=0; i<numberofdisplay; i++){
+            if(number !=0){
+                a[i]=x_GetMod32(number,numberic_System);
+                number = number/numberic_System;
+            }
+            else if((numberofdisplay == DisplayDefaultDigits) || (numberofdisplay > MaxDigitsToDisplay)){
+                break;
+            }
+            else{
+                a[i] = 0;
+            }
+        }
+        while(i!=0){
+            LCD_DisplayChar(x_Hex2Ascii(a[i-1]));
+            i--;
+        }
+    }
+}
+
+void LCD_DisplayFloat(double number){
+    uint32_t decNumber;
+    decNumber = (uint32_t) number;
+    LCD_DisplayNumber(x_DECIMAL, decNumber, DisplayDefaultDigits);
+    LCD_DisplayChar('.');
+    number = number - decNumber;
+    decNumber = number * 1000000;
+    LCD_DisplayNumber(x_DECIMAL, decNumber, DisplayDefaultDigits);
+}
+
 void LCD_Printf(const char* argList, ...){
     const char *pointer;
     va_list argp;
+    sint16_t v_num_s16;
+    sint32_t v_num_s32;
+    uint16_t v_num_u16;
+    uint32_t v_num_u32;
     char *str;
     char ch;
     uint8_t numberOfDigitsToDisplay;
+    double floatNumber;
     va_start(argp,argList);
     
     for(pointer = argList; *pointer != '\0'; pointer++){
         ch = *pointer;
         
         if(ch == '%'){
+            pointer++;
+            ch = *pointer;
             if((ch >= 0x30) && (ch <= 0x39)){
-                numberOfDigitsToDisplay = (numberOfDigitsToDisplay * 10) + (ch-0x30);
-                pointer++;
-                ch = *pointer;
+                numberOfDigitsToDisplay = 0;
+                while((ch>=0x30)&&(ch<=0x39)){
+                    numberOfDigitsToDisplay = (numberOfDigitsToDisplay * 10) + (ch-0x30);
+                    pointer++;
+                    ch = *pointer;
+                }
             }
             else{
                 numberOfDigitsToDisplay = MaxDigitsToDisplayUsingPrintf;
@@ -182,6 +239,57 @@ void LCD_Printf(const char* argList, ...){
                 case 'c':
                     ch = va_arg(argp, int);
                     LCD_DisplayChar(ch);
+                    break;
+                case 'd':
+                    v_num_s16 = va_arg(argp, int);
+                    if(v_num_s16 <0){
+                        v_num_s16 = -v_num_s16;
+                        LCD_DisplayChar('-');
+                    }
+                    LCD_DisplayNumber(x_DECIMAL, v_num_s16, numberOfDigitsToDisplay);
+                    break;
+                case 'D':
+                    v_num_s32 = va_arg(argp, sint32_t);
+                    if(v_num_s32 < 0){
+                        v_num_s32 = - v_num_s32;
+                        LCD_DisplayChar('-');
+                    }
+                    LCD_DisplayNumber(x_DECIMAL, v_num_s32, numberOfDigitsToDisplay);
+                    break;
+                case 'u':
+                    v_num_u16 = va_arg(argp, int);
+                    LCD_DisplayNumber(x_DECIMAL, v_num_u16, numberOfDigitsToDisplay);
+                    break;
+                case 'U':
+                    v_num_u32 = va_arg(argp, uint32_t);
+                    LCD_DisplayNumber(x_DECIMAL, v_num_u32, numberOfDigitsToDisplay);
+                    break;
+                case 'x':
+                    v_num_u16 = va_arg(argp, int);
+                    LCD_DisplayNumber(x_HEX, v_num_u16, numberOfDigitsToDisplay);
+                    break;
+                case 'X':
+                    v_num_u32 = va_arg(argp, uint32_t);
+                    LCD_DisplayNumber(x_HEX, v_num_u32, numberOfDigitsToDisplay);
+                    break;
+                case 'b':
+                    v_num_u16 = va_arg(argp, int);
+                    if(numberOfDigitsToDisplay == MaxDigitsToDisplayUsingPrintf){
+                        numberOfDigitsToDisplay = 16;
+                    }
+                    LCD_DisplayNumber(x_BINARY, v_num_u16, numberOfDigitsToDisplay);
+                    break;
+                case 'B':
+                    v_num_u32 = va_arg(argp, uint32_t);
+                    if(numberOfDigitsToDisplay == MaxDigitsToDisplayUsingPrintf){
+                        numberOfDigitsToDisplay = 16;
+                    }
+                    LCD_DisplayNumber(x_BINARY, v_num_u32, numberOfDigitsToDisplay);
+                    break;
+                case 'F':
+                case 'f':
+                    floatNumber = va_arg(argp, double);
+                    LCD_DisplayFloat(floatNumber);
                     break;
                 case 'S':
                 case 's':
@@ -288,3 +396,4 @@ static void lcd_SendDataSignlas(void){
     Delay_us(10);
     write_Digital(lcd_io_port.EN, LOW);
 }
+#pragma warning pop
