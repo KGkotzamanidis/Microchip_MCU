@@ -18,33 +18,25 @@
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
  * 
- * File: delay.c  
+ * File: uart.h  
  * Author: konstantinos gkotzamanidis
  * Comments:
  * Revision history: 
  */
-#include "delay.h"
+#ifndef _UART_H
+#define _UART_H
 
-#pragma warning push
-#pragma warning disable 520
+#include <stdarg.h>
 
-void Delay_us(uint16_t us_count){
-    while(us_count !=0){
-        us_count--;
-    }
-}
+#include "lcd.h"
+#include "io.h"
+#include "macros.h"
 
-void Delay_ms(uint16_t ms_count){
-    while(ms_count !=0){
-        Delay_us(countForsec);
-        ms_count--;
-    }
-}
-
-void Delay_sec(uint16_t sec_count){
-    while(sec_count !=0){
-        Delay_ms(1000);
-        sec_count--;
-    }
-}
-#pragma warning pop
+void UART_Init(uint32_t BaudRate);
+void UART_setBaudRate(uint32_t BaudRate);
+char UART_RxChar();
+void UART_TxChar(char Data);
+void UART_TxString(const char *Pointer_String);
+void UART_printf(const char *argList, ...);
+uint8_t UART_RxString(char *Pointer_String, uint8_t Max_Length);
+#endif

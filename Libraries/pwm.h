@@ -28,8 +28,9 @@
 
 #include "macros.h"
 
-void pwm_Init(uint8_t var_Channel);
-void pwm_setDutyCycle(uint8_t var_Channel, uint8_t DutyCycle);
-void pwm_Start();
-void pwm_Stop(uint8_t var_Channel);
+void Pwm_Init(uint8_t var_Channel);
+void Pwm_setDutyCycle(uint8_t var_Channel, uint8_t DutyCycle);
+void Pwm_Start();
+void Pwm_Stop(uint8_t var_Channel);
+
 #endif

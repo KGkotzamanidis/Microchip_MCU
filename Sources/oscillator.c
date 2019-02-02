@@ -17,72 +17,62 @@
  *
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
- * 
- * File: pwm.c  
- * Author: konstantinos gkotzamanidis
+ *
+ * File: oscillator.c   
+ * Author: konstantinos gkotzamanidis 
  * Comments:
  * Revision history: 
  */
+#include "oscillator.h"
 
 /*
- * CCP1CON Register BitMap.
- * --RW/0---RW/0---RW/0----RW/0-----RW/0-----RW/0-----RW/0-----RW/0---
- * | P1M1 | P1M0 | DC1B1 | DC1B0 | CCP1M3 | CCP1M2 | CCP1M1 | CCP1M0 |
- * -------------------------------------------------------------------
- * bit7                                                             bit0
- * For more informations about how to setup PWM go to 121 in DataSheet.
+ * init_InternalClock(int set_device_freq)
+ * Input args(8-4-2-1-500-250-125-31)
+ *          Mhz------->khz--------------->
+ * In this method you can select Device operation clock
+ * if you give wrong number then the clock speed start with
+ * default frequency.
+ * 
+ * For more info about device clock see in page 61.
  */
-#include "pwm.h"
-#include "io.h"
-
-#pragma warning push
-#pragma warning disable 520
-
-void Pwm_Init(uint8_t var_Channel){              
+void InternalClock_Init(int set_device_freq){
     
-    switch(var_Channel){
-        case 0:
-            CCP1CON = 0x0f;
-            PR2 = 100;
-            CCPR1L = 50;
-            x_BitClear(TRISC,2);
+    switch(set_device_freq){
+        case 8:
+            OSCCON = 0x77;
+            OSCTUNE = 0x1F;
+            break;
+        case 4:
+            OSCCON = 0x67;
+            OSCTUNE = 0x1F;
+            break;
+        case 2:
+            OSCCON = 0x57;
+            OSCTUNE = 0x1F;
             break;
         case 1:
-            CCP1CON = 0x0f;
-            PR2 = 100;
-            CCPR2L = 50;
-            x_BitClear(TRISC,1);
+            OSCCON = 0x47;
+            OSCTUNE = 0x1F;
+            break;
+        case 500:
+            OSCCON = 0x37;
+            OSCTUNE = 0x1F;
+            break;
+        case 250:
+            OSCCON = 0x27;
+            OSCTUNE = 0x1F;
+            break;
+        case 125:
+            OSCCON = 0x17;
+            OSCTUNE = 0x1F;
+            break;
+        case 31:
+            OSCCON = 0x07;
+            OSCTUNE = 0x1F;
+            break;
+        default:
+            OSCCON = 0x77;
+            OSCTUNE = 0x1F;
             break;
     }
 }
-
-void Pwm_setDutyCycle(uint8_t var_Channel, uint8_t DutyCycle){
-    if(DutyCycle > 100){
-        DutyCycle = 100;
-    }
-    
-    switch(var_Channel){
-        case 0:
-            CCPR1L = DutyCycle;
-            break;
-        case 1:
-            CCPR2L = DutyCycle;
-            break;
-    }
-}
-
-void Pwm_Start(){
-    TMR2ON = 1;
-}
-
-void Pwm_Stop(uint8_t var_Channel){
-    switch(var_Channel){
-        case 0:
-            CCP1CON = 0x00;
-            break;
-        case 1:
-            CCP2CON = 0x00;
-            break;
-    }
-}
-#pragma warning pop

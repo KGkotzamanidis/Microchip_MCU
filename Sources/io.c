@@ -26,6 +26,9 @@
 
 #include "io.h"
 
+#pragma warning push
+#pragma warning disable 520
+
 /*
  * Select a pin and set it as INPUT or OUTPUT
  */
@@ -109,5 +112,4 @@ uint8_t read_Digital(IO_PORT var_pin){
     }
     return returnStatus;
 }
-
-
+#pragma warning pop

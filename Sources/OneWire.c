@@ -26,6 +26,9 @@
 #include "onewire.h"
 #include "lcd.h"
 
+#pragma warning push
+#pragma warning disable 520
+
 /*
  * void DS_Resolution(int resolution)
  * Input args: (9-10-11-12)
@@ -70,7 +73,7 @@ unsigned char DS_Reset(IO_PORT Sensor_Pin){
     write_Digital(Sensor_Pin, LOW);
     Delay_us(480);
     pin_Derection(Sensor_Pin, INPUT);
-    Delay_us(30);
+    Delay_us(60);
     
     if(read_Digital(Sensor_Pin) == LOW){
         Delay_us(480);
@@ -92,7 +95,7 @@ unsigned char DS_Read(IO_PORT Sensor_Pin){
     char i, result = 0;
     pin_Derection(Sensor_Pin, INPUT);
     
-    for(i=0; i<8; i++){
+    for(i=0; i<7; i++){
         pin_Derection(Sensor_Pin, OUTPUT);
         write_Digital(Sensor_Pin, LOW);
         Delay_us(2);
@@ -134,7 +137,7 @@ void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD){
     uint8_t i;
     pin_Derection(Sensor_Pin, INPUT);
     
-    for(i=0; i<8; i++){
+    for(i=0; i<7; i++){
         if((CMD & (1<<i)) !=0){
             pin_Derection(Sensor_Pin, OUTPUT);
             write_Digital(Sensor_Pin, LOW);
@@ -168,3 +171,4 @@ void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD){
     pin_Derection(Sensor_Pin, INPUT);
     write_Digital(Sensor_Pin, HIGH);
 }
+#pragma warning pop

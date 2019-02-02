@@ -41,6 +41,9 @@
 #include "analog.h"
 #include "delay.h"
 
+#pragma warning push
+#pragma warning disable 520
+
 /*
  * Initiallize Analog to Digital Converter
  */
@@ -69,3 +72,4 @@ uint16_t read_Analog(uint8_t var_Channel){
     }
     return ((ADRESH<<8)+ADRESL);
 }
+#pragma warning pop
