@@ -111,8 +111,15 @@ int timer1_return(){
     return ((TMR1H<<16)+TMR1L);
 }
 
+void timer2_enable(bool choice){
+    if(choice){
+        T2CONbits.TMR2ON = 1;
+    }else{
+        T2CONbits.TMR2ON = 0;
+    }
+}
 /*
- * void timer1_mode_source(int comparator_value,int prescale,int postscale)
+ * void timer1_mode_source(int comparator_value,int prescale,int postscale,bool enable_Interrupt)
  * Input args1 : int : Set a value to Comparator with TMR2.
  * Input args2 : int 1  : 1-1
  *               int 4  : 1-4
@@ -133,58 +140,144 @@ int timer1_return(){
  *               int 14 :1-14
  *               int 15 :1-15
  *               int 16 :1-16
+ * Input args4 : bool True/False
+ * For more information about timer2 see @ page 84.
  */
-void timer2_mode_source(int comparator_value,int prescale,int postscale){
+void timer2_mode_source(int comparator_value,int prescale,int postscale,bool enable_Interrupt){
     if(comparator_value == 0){
        comparator_value = 0;
     }
     else{
         comparator_value = PR2;
     }
+    if(enable_Interrupt){
+        PIE1bits.TMR2IE = 1;
+        PIR1bits.TMR2IF = 1;
+    }
+    else{
+        PIE1bits.TMR2IE = 0;
+        PIR1bits.TMR2IF = 0;
+    }
     switch(prescale){
         case 1:
+            T2CONbits.T2CKPS0 = 0;
+            T2CONbits.T2CKPS1 = 0;
             break;
         case 4:
+            T2CONbits.T2CKPS0 = 1;
+            T2CONbits.T2CKPS1 = 0;
             break;
         case 16:
+            T2CONbits.T2CKPS0 = 0;
+            T2CONbits.T2CKPS1 = 1;
             break;
         default:
+            T2CONbits.T2CKPS0 = 0;
+            T2CONbits.T2CKPS1 = 0;
             break;
     }
     switch(postscale){
         case 1:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 2:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 3:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 4:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 5:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 6:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 7:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 8:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 0;
             break;
         case 9:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 10:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 11:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 12:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 13:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 14:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 15:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 1;
             break;
         case 16:
+            T2CONbits.TOUTPS0 = 1;
+            T2CONbits.TOUTPS1 = 1;
+            T2CONbits.TOUTPS2 = 1;
+            T2CONbits.TOUTPS3 = 1;
             break;
         default:
+            T2CONbits.TOUTPS0 = 0;
+            T2CONbits.TOUTPS1 = 0;
+            T2CONbits.TOUTPS2 = 0;
+            T2CONbits.TOUTPS3 = 0;
             break;
     }
 }
