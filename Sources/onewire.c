@@ -18,7 +18,7 @@
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
  *
- * File: onewire.h   
+ * File: onewire.c   
  * Author: konstantinos gkotzamanidis 
  * Comments:
  * Revision history: 

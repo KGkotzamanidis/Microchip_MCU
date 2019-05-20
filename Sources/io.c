@@ -18,7 +18,7 @@
  * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
  * TERMS. 
  *
- * File: io.h   
+ * File: io.c   
  * Author: konstantinos gkotzamanidis 
  * Comments:
  * Revision history: 
