@@ -30,9 +30,4 @@
 #include "macros.h"
 #include <stdbool.h>
 
-void enable_timer0(bool e_tmr0);
-void mode_timer0(char amode);
-void enable_timer1(bool e_tmr1);
-void enable_timer2(bool e_tmr2);
-void match_timer2(int value);
 #endif
