@@ -30,4 +30,10 @@
 #include "macros.h"
 #include <stdbool.h>
 
+void timer0_mode_source(char mode);
+int timer0_return();
+void timer1_mode_source(char mode,int prescale);
+int timer1_return();
+void timer2_mode_source(int comparator_value,int prescale,int postscale);
+int timer2_return();
 #endif
