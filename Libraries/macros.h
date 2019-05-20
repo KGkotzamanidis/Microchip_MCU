@@ -29,14 +29,6 @@
 
 #include <xc.h>
 
-typedef signed char sint8_t;
-typedef signed int sint16_t;
-typedef signed long int sint32_t;
-
-typedef unsigned char uint8_t;
-typedef unsigned int uint16_t;
-typedef unsigned long int uint32_t;
-
 #define x_PinOutput 0x00
 #define x_PinInput 0x01
 #define x_PortOutput 0x00
@@ -62,11 +54,6 @@ typedef unsigned long int uint32_t;
 #define x_DECIMAL 10u
 #define x_HEX 16u
 
-typedef enum{
-    x_FALSE,
-    x_TRUE
-}boolean;
-
 #define  x_GetBitMask(bit)          (1<<(bit))
 #define  x_BitSet(x,bit)            ((x) |=  x_GetBitMask(bit))
 #define  x_BitClear(x,bit)          ((x) &= ~x_GetBitMask(bit))
@@ -91,4 +78,13 @@ typedef enum{
 #define x_Ascii2Dec(Asc)    ((Asc)-0x30)
 #define x_Hex2Ascii(Hex)    (((Hex)>0x09)?((Hex)+0x37):((Hex)+0x30))
 #define x_Ascii2Hex(Asc)    (((Asc)>0x39)?((Asc)-0x37):((Asc)-0x30))
+
+typedef signed char sint8_t;
+typedef signed int sint16_t;
+typedef signed long int sint32_t;
+
+typedef unsigned char uint8_t;
+typedef unsigned int uint16_t;
+typedef unsigned long int uint32_t;
+
 #endif
