@@ -23,8 +23,6 @@
  * Comments:
  * Revision history: 
  */
-#include <pic16f887.h>
-
 #include "interrupts.h"
 
 /*
@@ -38,72 +36,3 @@
  * SSPEF: Master Synchronous Serial Port (MSSP) Interrupt flag
  * CCP1IF: CCP1 Interrupt flag
  */
-void __interrupt() noInterrupt(){
-    if(T0IF){
-        
-    }
-    else if(INTF){
-        
-    }
-    else if(RBIF){
-        
-    }
-    else if(ADIF){
-        
-    }
-    else if(RCIF){
-        
-    }
-    else if(TXIF){
-        
-    }
-    else if(SSPIF){
-        
-    }
-    else if(CCP1IF){
-        
-    }
-    else if(TMR2IF){
-        
-    }
-    else if(TMR1IF){
-        
-    }
-    else if(OSFIF){
-        
-    }
-    else if(C2IF){
-        
-    }
-    else if(C1IF){
-        
-    }
-    else if(EEIF){
-        
-    }
-    else if(BCLIF){
-        
-    }
-    else if(ULPWUIF){
-        
-    }
-    else if(CCP2IF){
-        
-    }
-    
-}
-
-void setInterrupt(int enable_register_interrupt){
-    if(T0IF){
-        
-    }
-    else if(INTF){
-        
-    }
-    else if(RBIF){
-        
-    }
-    else if(){
-        
-    }
-}
