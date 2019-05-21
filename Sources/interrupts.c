@@ -26,13 +26,80 @@
 #include "interrupts.h"
 
 /*
- * void __interrupt() noInterrupt()
- * T0IF: Timer0 overflow Interrupt flag
- * INTF: External Interrupt flag
- * RBIF: PortB change Interrupt flag
- * ADIF: A/D Converter Interrupt flag
- * RCIF: EUSART receive Interrupt flag
- * TXIF: EUSART transmit Interrupt flag
- * SSPEF: Master Synchronous Serial Port (MSSP) Interrupt flag
- * CCP1IF: CCP1 Interrupt flag
+ * __interrupt() void Interrupt_Service()
+ * INTCON Register
+ * T0IF     :   Timer0 Overflow Interrupt Flag
+ * INTF     :   External Interrupt Flag
+ * RBIF     :   PORTB Change Interrupt Flag
+ * PIR1 Register
+ * ADIF     :   A/D Convert Interrupt Flag
+ * RCIF     :   EUSART Receive Interrupt Flag
+ * TXIF     :   EUSART Transmit Interrupt Flag
+ * SSPIF    :   MSSP Interrupt Flag
+ * CCP1IF   :   Capture mode Interrupt Flag
+ * TMR2IF   :   Timer2 to PR2 Interrupt Flag
+ * TMR1IF   :   Timer1 Overflow Interrupt Flag
+ * PIR2 Register
+ * OSFIF    :   Oscillator Fail Interrupt Flag
+ * C2IF     :   Comparator C2 Interrupt Flag
+ * C1IF     :   Comparator C1 Interrupt Flag
+ * EEIF     :   EE Write Operation Interrupt Flag
+ * BCLIF    :   Bus Collision Interrupt Flag
+ * ULPWUIF  :   Ultra low power Wake-up Interrupt Flag
+ * CCP2IF   :   Capture mode Interrupt Flag
  */
+__interrupt() void Interrupt_Service(){
+    if(INTCONbits.T0IF){
+        //Insert the Interrupt rutine here
+        INTCONbits.T0IF = 0;
+    }else if(INTCONbits.INTF){
+        //Insert the Interrupt rutine here
+        INTCONbits.INTF = 0;
+    }else if(INTCONbits.RBIF){
+        //Insert the Interrupt rutine here
+        INTCONbits.RBIF = 0;
+    }else if(PIR1bits.ADIF){
+        //Insert the Interrupt rutine here
+        PIR1bits.ADIF = 0;
+    }else if(PIR1bits.RCIF){
+        //Insert the Interrupt rutine here
+        PIR1bits.RCIF = 0;
+    }else if(PIR1bits.TXIF){
+        //Insert the Interrupt rutine here
+        PIR1bits.TXIF = 0;
+    }else if(PIR1bits.SSPIF){
+        //Insert the Interrupt rutine here
+        PIR1bits.SSPIF = 0;
+    }else if(PIR1bits.CCP1IF){
+        //Insert the Interrupt rutine here
+        PIR1bits.CCP1IF = 0;
+    }else if(PIR1bits.TMR2IF){
+        //Insert the Interrupt rutine here
+        PIR1bits.TMR2IF = 0;
+    }else if(PIR1bits.TMR1IF){
+        //Insert the Interrupt rutine here
+        PIR1bits.TMR1IF = 0;
+    }else if(PIR2bits.OSFIF){
+        //Insert the Interrupt rutine here
+        PIR2bits.OSFIF = 0;
+    }else if(PIR2bits.C2IF){
+        //Insert the Interrupt rutine here
+        PIR2bits.C2IF = 0;
+    }else if(PIR2bits.C1IF){
+        //Insert the Interrupt rutine here
+        PIR2bits.C1IF = 0;
+    }else if(PIR2bits.EEIF){
+        //Insert the Interrupt rutine here
+        PIR2bits.EEIF = 0;
+    }else if(PIR2bits.BCLIF){
+        //Insert the Interrupt rutine here
+        PIR2bits.BCLIF = 0;
+    }else if(PIR2bits.ULPWUIF){
+        //Insert the Interrupt rutine here
+        PIR2bits.ULPWUIF = 0;
+    }else if(PIR2bits.CCP2IF){
+        //Insert the Interrupt rutine here
+        PIR2bits.CCP2IF = 0;
+    }
+    return;
+}
