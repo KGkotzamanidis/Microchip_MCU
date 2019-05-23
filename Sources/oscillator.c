@@ -76,3 +76,13 @@ void InternalClock_Init(int set_device_freq){
             break;
     }
 }
+
+/*
+ * void ExternalClock_Init(void)
+ * The system is running from External Cystall.
+ * You must change and prepare Config @ SSR.
+ */
+void ExternalClock_Init(void){
+    OSCCON = 0b01111111;
+    OSCTUNE = 0b00001111;
+}

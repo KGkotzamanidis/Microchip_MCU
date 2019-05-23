@@ -29,4 +29,5 @@
 #include "macros.h"
 
 void InternalClock_Init(int set_device_freq);
+void ExternalClock_Init(void);
 #endif
