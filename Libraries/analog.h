@@ -29,6 +29,6 @@
 
 #include "macros.h"
 
-void ADC_Init();
+void ADC_Init(bool a_negative_voltager, bool a_positive_voltag);
 uint16_t read_Analog(uint8_t var_Channel);
 #endif

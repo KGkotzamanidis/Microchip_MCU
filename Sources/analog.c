@@ -47,22 +47,123 @@
 /*
  * Initiallize Analog to Digital Converter
  */
-void ADC_Init(){
+void ADC_Init(bool a_negative_voltager, bool a_positive_voltag){
+    if(a_negative_voltager){
+        ADCON1bits.VCFG1 = 1;
+    }else{
+        ADCON1bits.VCFG1 = 0;
+    }
+    if(a_positive_voltag){
+        ADCON1bits.VCFG0 = 1;
+    }
+    else{
+        ADCON1bits.VCFG0 = 0;
+    }
     ADCON0 = 0x00; //->Set Freq/2,AN0 port as sampling,Complete Flag,Enable ADC.
-    ADCON1 = 0x80; //->Set Conversion Resualt Format,Voltager Ref 1, Voltage Ref 2.
+    ADCON1bits.ADFM = 1;
 }
 
 /*
- * Create method like Arduino "Analog Read" for more info about how it works
+ * Create method like Arduio "Analog Read" for more info about how it works
  * read the DataSheet for PIC16F887 in ADC chapter in DOC.
  * Input arg: 1 of 14 channel
  */
 uint16_t read_Analog(uint8_t var_Channel){
     if(var_Channel > 13){
-        return 0;
+        var_Channel = 0;
     }
-    
-    ADCON0 = (var_Channel<<3);
+    switch(var_Channel){
+        case 0:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 1:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 2:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 3:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 4:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 5:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 6:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 7:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 0;
+            break;
+        case 8:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 9:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 10:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 11:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 1;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 12:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+        case 13:
+            ADCON0bits.CHS0 = 1;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 1;
+            ADCON0bits.CHS3 = 1;
+            break;
+        default:
+            ADCON0bits.CHS0 = 0;
+            ADCON0bits.CHS1 = 0;
+            ADCON0bits.CHS2 = 0;
+            ADCON0bits.CHS3 = 0;
+            break;
+    }
     ADON = 1;
     Delay_us(10);
     GO = 1;
