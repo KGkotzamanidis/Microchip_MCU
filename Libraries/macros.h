@@ -38,7 +38,8 @@
 #define OUTPUT x_PinOutput
 #define LOW 0x00
 #define HIGH 0x01
-
+#define DIGITAL 0x00
+#define ANALOG 0x01
 #define x_ZERO 0x00
 #define x_NULL 0x00
 #define x_NULL_CHAR 0x00

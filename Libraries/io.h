@@ -39,6 +39,7 @@ typedef enum{
 }IO_PORT;
 
 void pin_Derection(IO_PORT var_pin, uint8_t var_derection);
+void pin_Mode(IO_PORT var_pin, uint8_t mode);
 void write_Digital(IO_PORT var_pin, uint8_t value);
 uint8_t read_Digital(IO_PORT var_pin);
 

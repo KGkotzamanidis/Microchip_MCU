@@ -57,6 +57,33 @@ void pin_Derection(IO_PORT var_pin, uint8_t var_derection){
 }
 
 /*
+ * void pin_Mode(IO_PORT var_pin, uint8_t mode)
+ * mode:Analog/Digital IO
+ */
+void pin_Mode(IO_PORT var_pin, uint8_t mode){
+    uint8_t var_PortNumber;
+    var_pin = (var_PortNumber>>3);
+    var_pin = var_pin & 0x07;
+    
+    switch(var_PortNumber){
+        case 0:
+            x_UpdateBit(ANSEL,var_pin,mode);
+            break;
+        case 1:
+            x_UpdateBit(ANSELH,var_pin,mode);
+            break;
+        case 2:
+            //Doesn't have Analog support.
+            break;
+        case 3:
+            //Doesn't have Analog support.
+            break;
+        case 4:
+            x_UpdateBit(ANSEL,var_pin,mode);
+            break;
+    }
+}
+/*
  * Write Digital HIGH or LOW at selected Pin.
  */
 void write_Digital(IO_PORT var_pin, uint8_t value){
