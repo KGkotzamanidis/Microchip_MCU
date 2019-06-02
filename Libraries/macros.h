@@ -28,6 +28,7 @@
 #define _MACROS_H
 
 #include <xc.h>
+#include <stdbool.h>
 
 #define x_PinOutput 0x00
 #define x_PinInput 0x01
@@ -88,4 +89,6 @@ typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 typedef unsigned long int uint32_t;
 
+void reset_register(void);
+void sleep(void);
 #endif
