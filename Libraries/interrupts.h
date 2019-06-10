@@ -26,5 +26,7 @@
 #ifndef _INTERRUPTS_H
 #define _INTERRUPTS_H
 #include "macros.h"
-void Interrupt_Service();
+
+bool do_intterupt();
+void do_interrupt(void);
 #endif

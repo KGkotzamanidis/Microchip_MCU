@@ -47,59 +47,77 @@
  * BCLIF    :   Bus Collision Interrupt Flag
  * ULPWUIF  :   Ultra low power Wake-up Interrupt Flag
  * CCP2IF   :   Capture mode Interrupt Flag
+ * 
+ * return True if we have an interrupt.
  */
-__interrupt() void Interrupt_Service(){
-    if(INTCONbits.T0IF){
-        //Insert the Interrupt rutine here
-        INTCONbits.T0IF = 0;
-    }else if(INTCONbits.INTF){
-        //Insert the Interrupt rutine here
-        INTCONbits.INTF = 0;
-    }else if(INTCONbits.RBIF){
-        //Insert the Interrupt rutine here
-        INTCONbits.RBIF = 0;
-    }else if(PIR1bits.ADIF){
-        //Insert the Interrupt rutine here
-        PIR1bits.ADIF = 0;
-    }else if(PIR1bits.RCIF){
-        //Insert the Interrupt rutine here
-        PIR1bits.RCIF = 0;
-    }else if(PIR1bits.TXIF){
-        //Insert the Interrupt rutine here
-        PIR1bits.TXIF = 0;
-    }else if(PIR1bits.SSPIF){
-        //Insert the Interrupt rutine here
-        PIR1bits.SSPIF = 0;
-    }else if(PIR1bits.CCP1IF){
-        //Insert the Interrupt rutine here
-        PIR1bits.CCP1IF = 0;
-    }else if(PIR1bits.TMR2IF){
-        //Insert the Interrupt rutine here
-        PIR1bits.TMR2IF = 0;
-    }else if(PIR1bits.TMR1IF){
-        //Insert the Interrupt rutine here
-        PIR1bits.TMR1IF = 0;
-    }else if(PIR2bits.OSFIF){
-        //Insert the Interrupt rutine here
-        PIR2bits.OSFIF = 0;
-    }else if(PIR2bits.C2IF){
-        //Insert the Interrupt rutine here
-        PIR2bits.C2IF = 0;
-    }else if(PIR2bits.C1IF){
-        //Insert the Interrupt rutine here
-        PIR2bits.C1IF = 0;
-    }else if(PIR2bits.EEIF){
-        //Insert the Interrupt rutine here
-        PIR2bits.EEIF = 0;
-    }else if(PIR2bits.BCLIF){
-        //Insert the Interrupt rutine here
-        PIR2bits.BCLIF = 0;
-    }else if(PIR2bits.ULPWUIF){
-        //Insert the Interrupt rutine here
-        PIR2bits.ULPWUIF = 0;
-    }else if(PIR2bits.CCP2IF){
-        //Insert the Interrupt rutine here
-        PIR2bits.CCP2IF = 0;
+bool do_intterupt(){
+    if(T0IF){
+        return TRUE;
     }
-    return;
+    else if(INTF){
+        return TRUE;
+    }
+    else if(RBIF){
+        return TRUE;
+    }
+    else if(ADIF){
+        return TRUE;
+    }
+    else if(RCIF){
+        return TRUE;
+    }
+    else if(TXIF){
+        return TRUE;
+    }
+    else if(SSPIF){
+        return TRUE;
+    }
+    else if(CCP1IF){
+        return TRUE;
+    }
+    else if(TMR0IF){
+        return TRUE;
+    }
+    else if(TMR2IF){
+        return TRUE;
+    }
+    else if(TMR1IF){
+        return TRUE;
+    }
+    else if(OSFIF){
+        return TRUE;
+    }
+    else if(C2IF){
+        return TRUE;
+    }
+    else if(C1IF){
+        return TRUE;
+    }
+    else if(EEIF){
+        return TRUE;
+    }
+    else if(BCLIF){
+        return TRUE;
+    }
+    else if(ULPWUIF){
+        return TRUE;
+    }
+    else if(CCP2IF){
+        return TRUE;
+    }
+    return FALSE;
+}
+
+/*
+ * void do_interrupt(void)
+ * args input: none.
+ *      return: none.
+ * Delay until we have an interrupt. 
+ */
+void do_interrupt(void){
+    do{
+       //Delay until we have an interrupt. 
+    }while(T0IF || T0IF || INTF || RBIF || ADIF || RCIF || TXIF || 
+            SSPIF || CCP1IF || TMR0IF || TMR1IF || TMR2IF || OSFIF || 
+            C2IF || C1IF || EEIF || BCLIF || ULPWUIF || CCP2IF);
 }
