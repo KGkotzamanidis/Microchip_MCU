@@ -25,11 +25,11 @@
  */
 #ifndef _ONEWIRE_H
 #define _ONEWIRE_H
-
-#include <stdio.h>
+#include <xc.h>
 #include "delay.h"
-#include "io.h"
-#include "macros.h"
+
+#define sensor PORTBbits.RB0
+#define direction TRISBbits.TRISB0
 
 #define SEARCH_ROM 0xF0
 #define READ_ROM 0x33
@@ -44,15 +44,13 @@
 #define RECALL_E 0xB8
 #define READPOWERSUPLY 0xB4
 
-uint8_t Sensor_Resolution_CMD;
-double Sensor_Resolution_Time;
-char Sensor_Data[64];
-int Sensor_Pin;
-
-void DS_Resolution(int resolution);
-unsigned char DS_Reset(IO_PORT Sensor_Pin);
-unsigned char DS_Read(IO_PORT Sensor_Pin);
-unsigned char DS_Read_bit(IO_PORT Sensor_Pin);
-void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD);
-void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD);
+void DS_Reset_pulse();
+void DS_Presence_pulse();
+void DS_Set_zero();
+void DS_Set_one();
+char DS_Read_bit();
+char DS_Read_byte();
+void DS_Write_command(char command);
+void DS_Set_resolution(char resolution);
+int DS_Rread_temperature();
 #endif

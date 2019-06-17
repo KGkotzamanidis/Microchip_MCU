@@ -24,151 +24,113 @@
  * Revision history: 
  */
 #include "onewire.h"
-#include "lcd.h"
 
-#pragma warning push
-#pragma warning disable 520
-
-/*
- * void DS_Resolution(int resolution)
- * Input args: (9-10-11-12)
- * For more information about how to set up the resolution Configurations
- * see the Table 2 at page 9.
- */
-void DS_Resolution(int resolution){
-    if(resolution < 9 || resolution > 12){
-        Sensor_Resolution_Time = 750;
-        Sensor_Resolution_CMD = 0x7F;
-    }
-    else{
-        switch(resolution){
-            case 9:
-                Sensor_Resolution_Time = 93.75;
-                Sensor_Resolution_CMD = 0x1F;
-                break;
-            case 10:
-                Sensor_Resolution_Time = 157.5;
-                Sensor_Resolution_CMD = 0x3F;
-                break;
-            case 11:
-                Sensor_Resolution_Time = 375;
-                Sensor_Resolution_CMD = 0x5F;
-                break;
-            case 12:
-                Sensor_Resolution_Time = 750;
-                Sensor_Resolution_CMD = 0x7F;
-                break;
-        }
-    }
+void DS_Reset_pulse(){
+    direction = 0;
+    sensor = 0;
+    __delay_us(500);
+    sensor = 1;
+    __delay_us(60);
 }
 
-/*
- * unsigned char DS_Reset(IO_PORT Sensor_Pin)
- * Input args: Sensor digital pin.
- * For more information about how the DS_Reset method work read in
- * page 15. Figure 15
- */
-unsigned char DS_Reset(IO_PORT Sensor_Pin){
-    pin_Derection(Sensor_Pin, OUTPUT);
-    write_Digital(Sensor_Pin, LOW);
-    Delay_us(480);
-    pin_Derection(Sensor_Pin, INPUT);
-    Delay_us(60);
-    
-    if(read_Digital(Sensor_Pin) == LOW){
-        Delay_us(480);
-        return 0;
-    }
-    else{
-        Delay_us(480);
-        return 1;
-    }
+void DS_Presence_pulse(){
+    direction = 1;
+    while(sensor == 1);
+    while(sensor == 0);
+    __delay_us(500);
 }
 
-/*
- * unsigned char DS_Read(IO_PORT Sensor_Pin)
- * Input args: Sensor digital pin.
- * For more information about how the DS_Read method work read in
- * page 16. Figure 16
- */
-unsigned char DS_Read(IO_PORT Sensor_Pin){
-    char i, result = 0;
-    pin_Derection(Sensor_Pin, INPUT);
-    
-    for(i=0; i<7; i++){
-        pin_Derection(Sensor_Pin, OUTPUT);
-        write_Digital(Sensor_Pin, LOW);
-        Delay_us(2);
-        pin_Derection(Sensor_Pin, INPUT);
-        
-        if(read_Digital(Sensor_Pin) != LOW){
-            result |= 1<<i;
-        }
-        Delay_us(60);
-    }
-    return result;
+void DS_Set_zero(){
+    direction = 0;
+    sensor = 0;
+    __delay_us(90);
+    sensor = 1;
+    __delay_us(10);
 }
 
-/*
- * unsigned char DS_Read_bit(IO_PORT Sensor_Pin)
- * Input args: Sensor digital pin.
- * For more information about how the DS_Read method work read in
- * page 16. Figure 16
- */
-unsigned char DS_Read_bit(IO_PORT Sensor_Pin){
-    unsigned char i;
-    pin_Derection(Sensor_Pin, INPUT);
-    write_Digital(Sensor_Pin, LOW);
-    pin_Derection(Sensor_Pin, INPUT);
-    write_Digital(Sensor_Pin, HIGH);
-    for(i=0; i<3; i++){
-        //empty loop for delay
-    }
-    return read_Digital(Sensor_Pin);
+void DS_Set_one(){
+    direction = 0;
+    sensor = 0;
+    __delay_us(5);
+    sensor = 1;
+    __delay_us(60);
 }
 
-/*
- * void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD)
- * Input args: Sensor digital pin and Command
- * For more information about how the DS_Read method work read in
- * page 16. Figure 16
- */
-void DS_Write(IO_PORT Sensor_Pin, uint8_t CMD){
-    uint8_t i;
-    pin_Derection(Sensor_Pin, INPUT);
-    
-    for(i=0; i<7; i++){
-        if((CMD & (1<<i)) !=0){
-            pin_Derection(Sensor_Pin, OUTPUT);
-            write_Digital(Sensor_Pin, LOW);
-            Delay_us(1);
-            write_Digital(Sensor_Pin, HIGH);
-            Delay_us(60);
+char DS_Read_bit(){
+    char _bit = 0;
+    direction = 0;
+    sensor = 0;
+    __delay_us(3);
+    direction = 1;
+    __delay_us(3);
+    _bit = sensor;
+    __delay_us(90);
+    return _bit;
+}
+
+char DS_Read_byte(){
+    char _byte = 0;
+    for(int i=0;i<8;i++){
+        _byte = _byte | (DS_Read_bit()<<i);
+    }
+    return _byte;
+}
+
+void DS_Write_command(char command){
+    for(int i =0; i<8;i++){
+        if(command & 0x01){
+            DS_Set_one();
         }
         else{
-            pin_Derection(Sensor_Pin, OUTPUT);
-            write_Digital(Sensor_Pin, LOW);
-            Delay_us(60);
-            pin_Derection(Sensor_Pin, INPUT);
+            DS_Set_zero();
         }
+        command = command >>1;
     }
+    __delay_us(10);
 }
 
-/*
- * void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD)
- * Input args: Sensor digital pin and Command
- * For more information about how the DS_Read method work read in
- * page 16. Figure 16
- */
-void DS_Write_bit(IO_PORT Sensor_Pin, uint8_t CMD){
-    pin_Derection(Sensor_Pin, OUTPUT);
-    write_Digital(Sensor_Pin, LOW);
-    
-    if(CMD == 1){
-        write_Digital(Sensor_Pin, HIGH);
+void DS_Set_resolution(char resolution){
+    char value = 0;
+    switch(resolution){
+        case 9:
+            value = 0;
+            break;
+        case 10:
+            value = 32;
+            break;
+        case 11:
+            value = 64;
+            break;
+        case 12:
+            value = 96;
+            break;
+        default:
+            value = 96;
     }
-    Delay_us(5);
-    pin_Derection(Sensor_Pin, INPUT);
-    write_Digital(Sensor_Pin, HIGH);
+    DS_Reset_pulse();
+    DS_Presence_pulse();
+    DS_Write_command(SKIP_ROM); 
+    DS_Write_command(WRITE_SCARTCHPAD); 
+    DS_Write_command(0x00); 
+    DS_Write_command(value); 
 }
-#pragma warning pop
+
+int DS_Read_temperature(){
+    int temperature = 0;
+    DS_Reset_pulse();
+    DS_Presence_pulse();
+    DS_Write_command(SKIP_ROM);
+    DS_Write_command(CONVERT_T);
+    __delay_us(800);
+    DS_Reset_pulse();
+    DS_Presence_pulse();
+    DS_Write_command(SKIP_ROM);
+    DS_Write_command(READ_SCARTCHPAD);
+    
+    temperature = DS_Read_byte();
+    temperature = temperature | (int)(DS_Read_byte() << 8);
+    
+    DS_Reset_pulse();
+    DS_Presence_pulse();
+    return temperature;
+}
