@@ -129,6 +129,7 @@ int DS_Read_temperature(){
     
     temperature = DS_Read_byte();
     temperature = temperature | (int)(DS_Read_byte() << 8);
+    temperature = temperature >> 4;
     
     DS_Reset_pulse();
     DS_Presence_pulse();
