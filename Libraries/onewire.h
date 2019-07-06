@@ -27,9 +27,10 @@
 #define _ONEWIRE_H
 #include <xc.h>
 #include "delay.h"
+#include "lcd.h"
 
-#define sensor PORTBbits.RB0
-#define direction TRISBbits.TRISB0
+#define sensor PORTDbits.RD0
+#define direction TRISDbits.TRISD0
 
 #define SEARCH_ROM 0xF0
 #define READ_ROM 0x33
@@ -53,4 +54,5 @@ char DS_Read_byte();
 void DS_Write_command(char command);
 void DS_Set_resolution(char resolution);
 int DS_Rread_temperature();
+void DS_Print_temperature();
 #endif
