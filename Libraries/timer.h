@@ -32,6 +32,7 @@
 
 void timer0_mode_source(char mode);
 int timer0_return();
+void timer1_enable(bool choice);
 void timer1_mode_source(char mode,int prescale);
 int timer1_return();
 void timer2_enable(bool choice);
