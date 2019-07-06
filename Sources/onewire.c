@@ -25,6 +25,10 @@
  */
 #include "onewire.h"
 
+/*
+ * void DS_Reset_pulse()
+ * In this void MCU send reset pulse to DS18B20.
+ */
 void DS_Reset_pulse(){
     direction = 0;
     sensor = 0;
@@ -33,6 +37,10 @@ void DS_Reset_pulse(){
     __delay_us(60);
 }
 
+/*
+ * void DS_Presence_pulse()
+ * In this void MCU wait until reset pulse read.
+ */
 void DS_Presence_pulse(){
     direction = 1;
     while(sensor == 1);
@@ -40,6 +48,10 @@ void DS_Presence_pulse(){
     __delay_us(500);
 }
 
+/*
+ * void DS_Set_zero()
+ * In this void MCU write 0.
+ */
 void DS_Set_zero(){
     direction = 0;
     sensor = 0;
@@ -48,6 +60,10 @@ void DS_Set_zero(){
     __delay_us(10);
 }
 
+/*
+ * void DS_Set_one()
+ * In this void MCU write 1.
+ */
 void DS_Set_one(){
     direction = 0;
     sensor = 0;
@@ -56,6 +72,10 @@ void DS_Set_one(){
     __delay_us(60);
 }
 
+/*
+ * char DS_Read_bit()
+ * In this char MCU read bit.
+ */
 char DS_Read_bit(){
     char _bit = 0;
     direction = 0;
@@ -68,6 +88,10 @@ char DS_Read_bit(){
     return _bit;
 }
 
+/*
+ * char DS_Read_byte
+ * In this char MCU read first 8 bytes.
+ */
 char DS_Read_byte(){
     char _byte = 0;
     for(int i=0;i<8;i++){
@@ -76,6 +100,10 @@ char DS_Read_byte(){
     return _byte;
 }
 
+/*
+ * void DS_Write_Command(char command)
+ * In this void MCU send an command to sensor.
+ */
 void DS_Write_command(char command){
     for(int i =0; i<8;i++){
         if(command & 0x01){
@@ -130,8 +158,11 @@ int DS_Read_temperature(){
     temperature = DS_Read_byte();
     temperature = temperature | (int)(DS_Read_byte() << 8);
     temperature = temperature >> 4;
-    
     DS_Reset_pulse();
     DS_Presence_pulse();
     return temperature;
+}
+
+void DS_Print_temperature(){
+    LCD_Printf("16F887 & DS18B20\nTemperature:%dC\n",DS_Read_temperature());
 }

@@ -67,6 +67,16 @@ void reset_register(void){
     SPBRGH = 0x00;
     PWM1CON = 0x00;
     ECCPAS = 0x00;
+    PSTRCON = 0x00;
+    ADCON1 = 0x00;
+    WDTCON = 0x00;
+    CM1CON0 = 0x00;
+    CM2CON0 = 0x00;
+    CM2CON1 = 0x00;
+    EEDAT = 0x00;
+    EEADR = 0x00;
+    EEDATH = 0x00;
+    EEADRH = 0x00;
 }
 
 /*

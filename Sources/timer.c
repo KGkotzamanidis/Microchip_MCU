@@ -51,9 +51,8 @@ int timer0_return(){
  */
 void timer1_enable(bool choice){
     if(choice){
-        T1CONbits.TMR1ON = 1;
+        T1CONbits.TMR1ON = 1; 
         T1CONbits.T1OSCEN = 0;
-        T1CONbits.TMR1GE = 0;
         T1CONbits.T1GINV = 1;
     }
     else{
@@ -108,7 +107,7 @@ void timer1_mode_source(char mode,int prescale){
 }
 
 int timer1_return(){
-    return ((TMR1H<<16)+TMR1L);
+    return (TMR1H+TMR1L);
 }
 
 void timer2_enable(bool choice){
@@ -151,10 +150,14 @@ void timer2_mode_source(int comparator_value,int prescale,int postscale,bool ena
         comparator_value = PR2;
     }
     if(enable_Interrupt){
+        INTCONbits.GIE = 1;
+        INTCONbits.PEIE = 1;
         PIE1bits.TMR2IE = 1;
         PIR1bits.TMR2IF = 1;
     }
     else{
+        INTCONbits.GIE = 0;
+        INTCONbits.PEIE = 0;
         PIE1bits.TMR2IE = 0;
         PIR1bits.TMR2IF = 0;
     }

@@ -52,60 +52,60 @@
  */
 bool do_intterupt(){
     if(T0IF){
-        return TRUE;
+        return true;
     }
     else if(INTF){
-        return TRUE;
+        return true;
     }
     else if(RBIF){
-        return TRUE;
+        return true;
     }
     else if(ADIF){
-        return TRUE;
+        return true;
     }
     else if(RCIF){
-        return TRUE;
+        return true;
     }
     else if(TXIF){
-        return TRUE;
+        return true;
     }
     else if(SSPIF){
-        return TRUE;
+        return true;
     }
     else if(CCP1IF){
-        return TRUE;
+        return true;
     }
     else if(TMR0IF){
-        return TRUE;
+        return true;
     }
     else if(TMR2IF){
-        return TRUE;
+        return true;
     }
     else if(TMR1IF){
-        return TRUE;
+        return true;
     }
     else if(OSFIF){
-        return TRUE;
+        return true;
     }
     else if(C2IF){
-        return TRUE;
+        return true;
     }
     else if(C1IF){
-        return TRUE;
+        return true;
     }
     else if(EEIF){
-        return TRUE;
+        return true;
     }
     else if(BCLIF){
-        return TRUE;
+        return true;
     }
     else if(ULPWUIF){
-        return TRUE;
+        return true;
     }
     else if(CCP2IF){
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 /*

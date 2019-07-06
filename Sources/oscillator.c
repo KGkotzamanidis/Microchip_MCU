@@ -36,7 +36,6 @@
  * For more info about device clock see in page 61.
  */
 void InternalClock_Init(int set_device_freq){
-    
     switch(set_device_freq){
         case 8:
             OSCCON = 0x77;
@@ -75,6 +74,7 @@ void InternalClock_Init(int set_device_freq){
             OSCTUNE = 0x1F;
             break;
     }
+    return;
 }
 
 /*
@@ -83,6 +83,5 @@ void InternalClock_Init(int set_device_freq){
  * You must change and prepare Config @ SSR.
  */
 void ExternalClock_Init(void){
-    OSCCON = 0b01111111;
-    OSCTUNE = 0b00001111;
+    OSCCON = 0b01111110;
 }
