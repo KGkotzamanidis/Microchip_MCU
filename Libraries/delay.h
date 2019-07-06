@@ -29,6 +29,9 @@
 #include "macros.h"
 #define countForsec 300
 
+#define __delay_us(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000000.0)))
+#define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+
 void Delay_us(uint16_t us_count);
 void Delay_ms(uint16_t ms_count);
 void Delay_sec(uint16_t sec_count);
