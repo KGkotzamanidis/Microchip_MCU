@@ -49,9 +49,6 @@
 #define NULL 0
 #endif
 
-#define FALSE 0x00
-#define TRUE 0x01
-
 #define x_BINARY 2u
 #define x_DECIMAL 10u
 #define x_HEX 16u
@@ -81,12 +78,20 @@
 #define x_Hex2Ascii(Hex)    (((Hex)>0x09)?((Hex)+0x37):((Hex)+0x30))
 #define x_Ascii2Hex(Asc)    (((Asc)>0x39)?((Asc)-0x37):((Asc)-0x30))
 
-typedef signed char sint8_t;
-typedef signed int sint16_t;
-typedef signed long int sint32_t;
+/*External Crystall Freq for Delay functions*/
+#define _XTAL_FREQ 20000000
 
+/*Singed char*/
+typedef signed char sint8_t;
+/*Singed int*/
+typedef signed int sint16_t;
+/*Singed long*/
+typedef signed long int sint32_t;
+/*Unsigned char*/
 typedef unsigned char uint8_t;
+/*Unsigned int*/
 typedef unsigned int uint16_t;
+/*Unsigned long*/
 typedef unsigned long int uint32_t;
 
 void reset_register(void);
