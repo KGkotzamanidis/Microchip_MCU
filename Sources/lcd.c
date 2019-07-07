@@ -339,21 +339,6 @@ static void lcd_DataWrite(uint8_t data){
     lcd_SendDataSignlas();
 }
 
-void LCD_Data(uint8_t data){
-    lcd_BusyCheck();
-    if(lcd_io_port.LcdMode == EightBitMode){
-        lcd_SendLowerNibble(data);
-    }
-    else{
-        lcd_SendHigherNibble(data);
-        lcd_SendDataSignlas();
-        data = data << 4;
-    }
-    
-    lcd_SendHigherNibble(data);
-    lcd_SendDataSignlas();
-}
-
 static void lcd_BusyCheck(void){
     uint8_t busyflag;
     
