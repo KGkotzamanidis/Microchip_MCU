@@ -144,6 +144,22 @@ void LCD_CmdWrite(uint8_t lcd_CMD){
     lcd_SendCmdSignlas();
 }
 
+void LCD_CreateCustomChar(uint8_t location, uint8_t *CustomChar){
+    uint8_t i;
+    if(location < 8){
+        LCD_CmdWrite(0x40+(location*8));
+        for(i=0;i<8;i++){
+            LCD_DisplayChar(CustomChar[i]);
+        }
+    }
+    //LCD_CmdWrite(0x80/*|(location*1)*/);
+    LCD_GoToLine(0);
+}
+
+void LCD_DisplayCustomChar(char location){
+    LCD_DisplayChar(location);
+}
+
 void LCD_DisplayChar(char lcd_Char){
     if((LcdTrackCursorPos >= lcd_io_port.MaxSupportedChars) || (lcd_Char == '\n')){
         LCD_GoToNextLine();
@@ -309,6 +325,21 @@ void LCD_Printf(const char* argList, ...){
 }
 
 static void lcd_DataWrite(uint8_t data){
+    lcd_BusyCheck();
+    if(lcd_io_port.LcdMode == EightBitMode){
+        lcd_SendLowerNibble(data);
+    }
+    else{
+        lcd_SendHigherNibble(data);
+        lcd_SendDataSignlas();
+        data = data << 4;
+    }
+    
+    lcd_SendHigherNibble(data);
+    lcd_SendDataSignlas();
+}
+
+void LCD_Data(uint8_t data){
     lcd_BusyCheck();
     if(lcd_io_port.LcdMode == EightBitMode){
         lcd_SendLowerNibble(data);

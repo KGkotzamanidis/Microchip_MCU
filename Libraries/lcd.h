@@ -82,4 +82,6 @@ void LCD_DisplayString(const char *lcd_StringPointer);
 void LCD_DisplayNumber(uint8_t numberic_System, uint32_t number, uint8_t numberofdisplay);
 void LCD_DisplayFloat(double number);
 void LCD_Printf(const char *argList, ...);
+void LCD_CreateCustomChar(uint8_t location, uint8_t *CustomChar);
+void LCD_DisplayCustomChar(char location);
 #endif
