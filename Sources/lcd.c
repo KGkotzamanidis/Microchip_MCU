@@ -66,20 +66,20 @@ void LCD_SetUp(IO_PORT RS, IO_PORT RW, IO_PORT EN, IO_PORT D0, IO_PORT D1, IO_PO
     }
     else{
         lcd_io_port.LcdMode = 8;
-        pin_Derection(D0, OUTPUT);
-        pin_Derection(D1, OUTPUT);
-        pin_Derection(D2, OUTPUT);
-        pin_Derection(D3, OUTPUT);
+        pin_Direction(D0, OUTPUT);
+        pin_Direction(D1, OUTPUT);
+        pin_Direction(D2, OUTPUT);
+        pin_Direction(D3, OUTPUT);
     }
     
-    pin_Derection(RS, OUTPUT);
-    pin_Derection(RW, OUTPUT);
-    pin_Derection(EN, OUTPUT);
+    pin_Direction(RS, OUTPUT);
+    pin_Direction(RW, OUTPUT);
+    pin_Direction(EN, OUTPUT);
     
-    pin_Derection(D4, OUTPUT);
-    pin_Derection(D5, OUTPUT);
-    pin_Derection(D6, OUTPUT);
-    pin_Derection(D7, OUTPUT);
+    pin_Direction(D4, OUTPUT);
+    pin_Direction(D5, OUTPUT);
+    pin_Direction(D6, OUTPUT);
+    pin_Direction(D7, OUTPUT);
 }
 
 void LCD_Init(uint8_t NumbersOfLines, uint8_t MaxCharsPerLines){
@@ -343,7 +343,7 @@ static void lcd_BusyCheck(void){
     uint8_t busyflag;
     
     if(lcd_io_port.RW != R_NULL){
-        pin_Derection(lcd_io_port.D7,INPUT);
+        pin_Direction(lcd_io_port.D7,INPUT);
         write_Digital(lcd_io_port.RS, LOW);
         write_Digital(lcd_io_port.RW, HIGH);
         
@@ -361,7 +361,7 @@ static void lcd_BusyCheck(void){
                 Delay_us(10);
             }
         }while(busyflag != 0);
-        pin_Derection(lcd_io_port.D7, OUTPUT);
+        pin_Direction(lcd_io_port.D7, OUTPUT);
     }
     else{
         Delay_ms(1);

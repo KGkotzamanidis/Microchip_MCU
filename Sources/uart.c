@@ -30,8 +30,8 @@
 #pragma warning disable 520
 
 void UART_Init(uint32_t BaudRate){
-    pin_Derection(RC_6, OUTPUT);
-    pin_Derection(RC_7, INPUT);
+    pin_Direction(RC_6, OUTPUT);
+    pin_Direction(RC_7, INPUT);
     TXSTA = 0x20;
     RCSTA = 0x90;
     

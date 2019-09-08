@@ -29,8 +29,8 @@
 #include "delay.h"
 #include "lcd.h"
 
-#define sensor PORTDbits.RD0
-#define direction TRISDbits.TRISD0
+#define sensor PORTAbits.RA0
+#define direction TRISAbits.TRISA0
 
 #define SEARCH_ROM 0xF0
 #define READ_ROM 0x33
@@ -45,14 +45,28 @@
 #define RECALL_E 0xB8
 #define READPOWERSUPLY 0xB4
 
+#define DS1820_B_Family 0x28
+#define DS1820_S_Family 0x10
+
+#define DS1820_ADDRESH_LENGH 8
+
+static bool DoneFlag;
+static uint8_t LastSensorFount;
+static uint8_t Sensor_Address[DS1820_ADDRESH_LENGH];
+
 void DS_Reset_pulse();
 void DS_Presence_pulse();
+bool DS_check();
 void DS_Set_zero();
 void DS_Set_one();
 char DS_Read_bit();
 char DS_Read_byte();
 void DS_Write_command(char command);
 void DS_Set_resolution(char resolution);
-int DS_Rread_temperature();
+float DS_Read_temperature();
 void DS_Print_temperature();
+void DS_Address(char command);
+bool Ds_FindNextSensor(void);
+bool DS_FindFirstSensor(void);
+void DS_Write_EEPROM(uint8_t tempH, uint8_t tempL);
 #endif

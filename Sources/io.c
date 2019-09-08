@@ -32,7 +32,7 @@
 /*
  * Select a pin and set it as INPUT or OUTPUT
  */
-void pin_Derection(IO_PORT var_pin, uint8_t var_derection){
+void pin_Direction(IO_PORT var_pin, uint8_t var_derection){
     uint8_t var_PortNumber;
     var_PortNumber = (var_pin>>3);
     var_pin = var_pin & 0x07;
@@ -138,5 +138,40 @@ uint8_t read_Digital(IO_PORT var_pin){
             break;
     }
     return returnStatus;
+}
+
+/*
+ * Read bit from a Digital Port.
+ */
+char read_bit(IO_PORT var_pin){
+    uint8_t _bit = 0;
+    _bit = read_Digital(var_pin);
+    return _bit;
+}
+
+/*
+ * Read byte from a Digital Port.
+ */
+char read_byte(IO_PORT var_pin){
+    uint8_t _byte  = 0;
+    for(int x=0;x<8;x++){
+        _byte = _byte | (read_bit(var_pin)<<x);
+    }
+    return _byte;
+}
+
+/*
+ * Write byte in Digital Port. 
+ */
+void write_byte(IO_PORT var_pin, uint8_t var_byte){
+    for(int x=0;x<8;x++){
+        if(var_byte&0x01){
+            write_Digital(var_pin,HIGH);
+        }
+        else{
+            write_Digital(var_pin,LOW);
+        }
+        var_byte = var_byte>>x;
+    }
 }
 #pragma warning pop

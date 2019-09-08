@@ -38,9 +38,12 @@ typedef enum{
     R_NULL = 0xff   
 }IO_PORT;
 
-void pin_Derection(IO_PORT var_pin, uint8_t var_derection);
+void pin_Direction(IO_PORT var_pin, uint8_t var_derection);
 void pin_Mode(IO_PORT var_pin, uint8_t mode);
 void write_Digital(IO_PORT var_pin, uint8_t value);
 uint8_t read_Digital(IO_PORT var_pin);
+char read_bit(IO_PORT var_pin);
+char read_byte(IO_PORT var_pin);
+void write_byte(IO_PORT var_pin, uint8_t var_byte);
 
 #endif
