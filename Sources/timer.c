@@ -23,268 +23,366 @@
  * Comments:
  * Revision history: 
  */
-#include "macros.h"
 #include "timer.h"
-#include "lcd.h"
 
-void timer0_mode_source(char mode){
-    switch (mode){
-        case 't':
+/*
+ * void enable_TMR0(bool enable,char select_Clock,bool enable_Prescaler,int set_Prescaler)
+ * input arg0: bool enable(true/false)
+ * input arg1: char select_edge(h/l)
+ * input arg2: char select_Clock(f/t)
+ *              f:Fosc/4
+ *              t:T0CKI pin
+ * input arg3: bool enable_Prescaler(true/false)
+ * input arg4: int set_Prescaler(2,4,8,16,32,64,128,256)
+ * For more info about Timer0 see @ page 75.
+ */
+void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Prescaler,int set_Prescaler){
+    if(enable){
+        INTCONbits.GIE = 1;
+        INTCONbits.PEIE = 1;
+        INTCONbits.T0IE = 1;
+        INTCONbits.T0IF = 0;
+        TMR0 = 0x00;
+        switch(select_edge){
+            case 'l':
+                OPTION_REGbits.T0SE = 1;
+                break;
+            case 'h':
+                OPTION_REGbits.T0SE = 0;
+                break;
+            default:
+                OPTION_REGbits.T0SE = 0;
+                break;
+        }
+        switch(select_clock){
+        case 'f':
             OPTION_REGbits.T0CS = 0;
             break;
-        case 'c':
+        case 't':
             OPTION_REGbits.T0CS = 1;
             break;
         default:
             OPTION_REGbits.T0CS = 0;
             break;
+        }
+        if(enable_Prescaler){
+            OPTION_REGbits.PSA = 0;
+            switch(set_Prescaler){
+                case 0:
+                    break;
+                case 2:
+                    OPTION_REGbits.PS0 = 0;
+                    OPTION_REGbits.PS1 = 0;
+                    OPTION_REGbits.PS2 = 0;
+                    break;
+                case 4:
+                    OPTION_REGbits.PS0 = 1;
+                    OPTION_REGbits.PS1 = 0;
+                    OPTION_REGbits.PS2 = 0;
+                    break;
+                case 8:
+                    OPTION_REGbits.PS0 = 0;
+                    OPTION_REGbits.PS1 = 1;
+                    OPTION_REGbits.PS2 = 0;
+                    break;
+                case 16:
+                    OPTION_REGbits.PS0 = 1;
+                    OPTION_REGbits.PS1 = 1;
+                    OPTION_REGbits.PS2 = 0;
+                    break;
+                case 32:
+                    OPTION_REGbits.PS0 = 0;
+                    OPTION_REGbits.PS1 = 0;
+                    OPTION_REGbits.PS2 = 1;
+                    break;
+                case 64:
+                    OPTION_REGbits.PS0 = 1;
+                    OPTION_REGbits.PS1 = 0;
+                    OPTION_REGbits.PS2 = 1;
+                    break;
+                case 128:
+                    OPTION_REGbits.PS0 = 0;
+                    OPTION_REGbits.PS1 = 1;
+                    OPTION_REGbits.PS2 = 1;
+                    break;
+                case 256:
+                    OPTION_REGbits.PS0 = 1;
+                    OPTION_REGbits.PS1 = 1;
+                    OPTION_REGbits.PS2 = 1;
+                    break;
+                default:
+                    OPTION_REGbits.PS0 = 0;
+                    OPTION_REGbits.PS1 = 0;
+                    OPTION_REGbits.PS2 = 0;
+                    break;
+            }
+        }else{
+            OPTION_REGbits.PSA = 1;
+        }
+    }else{
+        INTCONbits.GIE = 0;
+        INTCONbits.PEIE = 0;
+        INTCONbits.T0IE = 0;
+        INTCONbits.T0IF = 0;
     }
 }
 
-int timer0_return(){
+/*
+ * void set_TMR0(uint8_t timer)
+ * arg0: uint8_t timer
+ * Set the value of the timer0.
+ */
+void set_TMR0(uint8_t timer){
+    TMR0 = timer;
+}
+
+/*
+ * uint8_t get_TMR0
+ * return the value of the timer0.
+ */
+uint8_t get_TMR0(){
     return TMR0;
 }
 
 /*
- *void timer1_enable(bool choice)
- * Input args : bool True or False 
+ * void enable_TMR1(bool enable,char select_clock,int set_Prescaler,bool enable_sychronize)
+ * input arg0: bool enable(true/false)
+ * input arg1: char select_clock(e/f)
+ *              e:External clock
+ *              f:Fosc/4
+ * input arg2: int set_Prescaler(1,2,4,8)
+ * input arg3: bool enable_synchronize(true,false)
+ * For more info about Timer0 see @ page 78.
  */
-void timer1_enable(bool choice){
-    if(choice){
-        T1CONbits.TMR1ON = 1; 
-        T1CONbits.T1OSCEN = 0;
-        T1CONbits.T1GINV = 1;
-    }
-    else{
-        T1CONbits.TMR1ON = 0;
-    }
-}
-
-/*
- * void timer1_mode_source(char mode,int prescale)
- * Input args1 : char f: Fosc/4
- *               char t: T1CKIpin
- * Input args2 : int 1: Prescale 1-1
- *               int 2: Prescale 1-2
- *               int 4: Prescale 1-4
- *               int 8: Prescale 1-8
- * For more information about timer1 see @ Page 78.
- */
-void timer1_mode_source(char mode,int prescale){
-    switch(mode){
-        case 'f':
-            T1CONbits.TMR1CS = 0;
-            break;
-        case 't':
-            T1CONbits.TMR1CS = 1;
-            break;
-        default:
-            T1CONbits.TMR1CS = 0;
-            break;
-    }
-    switch(prescale){
-        case 1:
-            T1CONbits.T1CKPS0 = 0;
-            T1CONbits.T1CKPS1 = 0;
-            break;
-        case 2:
-            T1CONbits.T1CKPS0 = 0;
-            T1CONbits.T1CKPS1 = 1;
-            break;
-        case 4:
-            T1CONbits.T1CKPS0 = 1;
-            T1CONbits.T1CKPS1 = 0;
-            break;
-        case 8:
-            T1CONbits.T1CKPS0 = 1;
-            T1CONbits.T1CKPS1 = 1;
-            break;
-        default:
-            T1CONbits.T1CKPS0 = 0;
-            T1CONbits.T1CKPS1 = 0;
-            break;
-    }
-}
-
-int timer1_return(){
-    return (TMR1H+TMR1L);
-}
-
-void timer2_enable(bool choice){
-    if(choice){
-        T2CONbits.TMR2ON = 1;
-    }else{
-        T2CONbits.TMR2ON = 0;
-    }
-}
-/*
- * void timer1_mode_source(int comparator_value,int prescale,int postscale,bool enable_Interrupt)
- * Input args1 : int : Set a value to Comparator with TMR2.
- * Input args2 : int 1  : 1-1
- *               int 4  : 1-4
- *               int 16 : 1-16
- * Input args3 : int 1  :1-1
- *               int 2  :1-2
- *               int 3  :1-3
- *               int 4  :1-4
- *               int 5  :1-5
- *               int 6  :1-6
- *               int 7  :1-7
- *               int 8  :1-8
- *               int 9  :1-9
- *               int 10 :1-10
- *               int 11 :1-11
- *               int 12 :1-12
- *               int 13 :1-13
- *               int 14 :1-14
- *               int 15 :1-15
- *               int 16 :1-16
- * Input args4 : bool True/False
- * For more information about timer2 see @ page 84.
- */
-void timer2_mode_source(int comparator_value,int prescale,int postscale,bool enable_Interrupt){
-    if(comparator_value == 0){
-       comparator_value = 0;
-    }
-    else{
-        comparator_value = PR2;
-    }
-    if(enable_Interrupt){
+void enable_TMR1(bool enable,char select_clock,int set_Prescaler,bool enable_sychronize){
+    if(enable){
+        T1CONbits.TMR1ON = 1;
+        PIE1bits.TMR1IE = 1;
+        PIR1bits.TMR1IF = 0;
         INTCONbits.GIE = 1;
         INTCONbits.PEIE = 1;
-        PIE1bits.TMR2IE = 1;
-        PIR1bits.TMR2IF = 1;
-    }
-    else{
+        switch(select_clock){
+            case 'e':
+                T1CONbits.TMR1CS = 1;
+                break;
+            case 'f':
+                T1CONbits.TMR1CS = 0;
+                break;
+            default:
+                T1CONbits.TMR1CS = 0;
+                break;
+        }
+        switch(set_Prescaler){
+            case 1:
+                T1CONbits.T1CKPS0 = 0;
+                T1CONbits.T1CKPS1 = 0;
+                break;
+            case 2:
+                T1CONbits.T1CKPS0 = 1;
+                T1CONbits.T1CKPS1 = 0;
+                break;
+            case 4:
+                T1CONbits.T1CKPS0 = 0;
+                T1CONbits.T1CKPS1 = 1;
+                break;
+            case 8:
+                T1CONbits.T1CKPS0 = 1;
+                T1CONbits.T1CKPS1 = 1;
+                break;
+            default:
+                T1CONbits.T1CKPS0 = 0;
+                T1CONbits.T1CKPS1 = 0;
+                break;
+        }
+        if(enable_sychronize){
+            T1CONbits.T1SYNC = 0;
+        }
+        else{
+            T1CONbits.T1SYNC = 1;
+        }
+    }else{
+        T1CONbits.TMR1ON = 0;
+        PIE1bits.TMR1IE = 0;
+        PIR1bits.TMR1IF = 0;
         INTCONbits.GIE = 0;
         INTCONbits.PEIE = 0;
-        PIE1bits.TMR2IE = 0;
-        PIR1bits.TMR2IF = 0;
-    }
-    switch(prescale){
-        case 1:
-            T2CONbits.T2CKPS0 = 0;
-            T2CONbits.T2CKPS1 = 0;
-            break;
-        case 4:
-            T2CONbits.T2CKPS0 = 1;
-            T2CONbits.T2CKPS1 = 0;
-            break;
-        case 16:
-            T2CONbits.T2CKPS0 = 0;
-            T2CONbits.T2CKPS1 = 1;
-            break;
-        default:
-            T2CONbits.T2CKPS0 = 0;
-            T2CONbits.T2CKPS1 = 0;
-            break;
-    }
-    switch(postscale){
-        case 1:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 2:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 3:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 4:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 5:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 6:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 7:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 8:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 0;
-            break;
-        case 9:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 10:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 11:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 12:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 13:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 14:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 15:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        case 16:
-            T2CONbits.TOUTPS0 = 1;
-            T2CONbits.TOUTPS1 = 1;
-            T2CONbits.TOUTPS2 = 1;
-            T2CONbits.TOUTPS3 = 1;
-            break;
-        default:
-            T2CONbits.TOUTPS0 = 0;
-            T2CONbits.TOUTPS1 = 0;
-            T2CONbits.TOUTPS2 = 0;
-            T2CONbits.TOUTPS3 = 0;
-            break;
     }
 }
 
-int timer2_return(){
+/*
+ * void set_TMR1(int time)
+ * input arg0: int time
+ */
+void set_TMR1(int time){
+    TMR1L = (uint8_t)time & 0xFF;
+    TMR1H = (uint8_t)time >> 8;
+}
+
+/*
+ * uint16_t getTMR1()
+ * return the value of the timer1.
+ */
+uint16_t get_TMR1(){
+    return ((TMR1H << 8) + TMR1L);
+}
+
+/*
+ * void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler)
+ * input arg0: bool enable(true/false)
+ * input arg1: int set_Prescaler(1,4,16)
+ * input arg2: int set_Postscaler(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+ * For more info about Timer0 see @ page 83.
+ */
+void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler){
+    if(enable){
+        T2CONbits.TMR2ON = 1;
+        PIE1bits.TMR2IE = 1;
+        PIR1bits.TMR2IF = 0;
+        INTCONbits.GIE = 1;
+        INTCONbits.PEIE = 1;
+        switch(set_Prescaler){
+            case 1:
+                T2CONbits.T2CKPS0 = 0;
+                T2CONbits.T2CKPS1 = 0;
+                break;
+            case 4:
+                T2CONbits.T2CKPS0 = 1;
+                T2CONbits.T2CKPS1 = 0;
+                break;
+            case 16:
+                T2CONbits.T2CKPS0 = 0;
+                T2CONbits.T2CKPS1 = 1;
+                break;
+            default:
+                T2CONbits.T2CKPS0 = 0;
+                T2CONbits.T2CKPS1 = 0;
+                break;
+        }
+        switch(set_Postscaler){
+            case 1:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 2:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 3:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 4:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 5:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 6:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 7:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 8:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+            case 9:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 10:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 11:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 12:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 13:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 14:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 15:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            case 16:
+                T2CONbits.TOUTPS0 = 1;
+                T2CONbits.TOUTPS1 = 1;
+                T2CONbits.TOUTPS2 = 1;
+                T2CONbits.TOUTPS3 = 1;
+                break;
+            default:
+                T2CONbits.TOUTPS0 = 0;
+                T2CONbits.TOUTPS1 = 0;
+                T2CONbits.TOUTPS2 = 0;
+                T2CONbits.TOUTPS3 = 0;
+                break;
+        }
+    }else{
+        T2CONbits.TMR2ON = 0;
+        PIE1bits.TMR2IE = 0;
+        PIR1bits.TMR2IF = 0;
+        INTCONbits.GIE = 0;
+        INTCONbits.PEIE = 0;
+    }
+}
+
+/*
+ * void set_TMR2(uint8_t time)
+ * input arg0: uint8_t time
+ */
+void set_TMR2(uint8_t time){
+    PR2 = time;
+}
+
+/*
+ * uint8_t get_TMR2()
+ * return the value of the timer2
+ */
+uint8_t get_TMR2(){
     return TMR2;
 }

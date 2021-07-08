@@ -27,15 +27,16 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "macros.h"
 #include <stdbool.h>
+#include "macros.h"
 
-void timer0_mode_source(char mode);
-int timer0_return();
-void timer1_enable(bool choice);
-void timer1_mode_source(char mode,int prescale);
-int timer1_return();
-void timer2_enable(bool choice);
-void timer2_mode_source(int comparator_value,int prescale,int postscale,bool enable_Interrupt);
-int timer2_return();
+void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Prescaler,int set_Prescaler);
+void set_TMR0(uint8_t timer);
+uint8_t get_TMR0();
+void enable_TMR1(bool enable,char select_clock,int set_Prescaler,bool enable_sychronize);
+void set_TMR1(int time);
+uint16_t get_TMR1();
+void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler);
+void set_TMR2(uint8_t time);
+uint8_t get_TMR2();
 #endif
