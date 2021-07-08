@@ -132,7 +132,7 @@ void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Pres
  * arg0: uint8_t timer
  * Set the value of the timer0.
  */
-void set_TMR0(uint8_t timer){
+void set_TMR0(int timer){
     TMR0 = timer;
 }
 
@@ -375,7 +375,7 @@ void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler){
  * void set_TMR2(uint8_t time)
  * input arg0: uint8_t time
  */
-void set_TMR2(uint8_t time){
+void set_TMR2(int time){
     PR2 = time;
 }
 
