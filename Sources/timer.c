@@ -68,8 +68,6 @@ void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Pres
         if(enable_Prescaler){
             OPTION_REGbits.PSA = 0;
             switch(set_Prescaler){
-                case 0:
-                    break;
                 case 2:
                     OPTION_REGbits.PS0 = 0;
                     OPTION_REGbits.PS1 = 0;
@@ -132,7 +130,7 @@ void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Pres
  * arg0: uint8_t timer
  * Set the value of the timer0.
  */
-void set_TMR0(int timer){
+void set_TMR0(uint8_t timer){
     TMR0 = timer;
 }
 
@@ -210,12 +208,12 @@ void enable_TMR1(bool enable,char select_clock,int set_Prescaler,bool enable_syc
 }
 
 /*
- * void set_TMR1(int time)
+ * void set_TMR1(uint16_t time)
  * input arg0: int time
  */
-void set_TMR1(int time){
-    TMR1L = (uint8_t)time & 0xFF;
-    TMR1H = (uint8_t)time >> 8;
+void set_TMR1(uint16_t time){
+    TMR1H = time >> 8;
+    TMR1L = time & 0xFF;
 }
 
 /*
@@ -375,7 +373,7 @@ void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler){
  * void set_TMR2(uint8_t time)
  * input arg0: uint8_t time
  */
-void set_TMR2(int time){
+void set_TMR2(uint8_t time){
     PR2 = time;
 }
 
