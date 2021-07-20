@@ -61,25 +61,104 @@ void pin_Direction(IO_PORT var_pin, uint8_t var_derection){
  * mode:Analog/Digital IO
  */
 void pin_Mode(IO_PORT var_pin, uint8_t mode){
-    uint8_t var_PortNumber;
-    var_pin = (var_PortNumber>>3);
-    var_pin = var_pin & 0x07;
-    
-    switch(var_PortNumber){
-        case 0:
-            x_UpdateBit(ANSEL,var_pin,mode);
+    switch (var_pin){
+        case RA_0:
+            if(mode == ANALOG){
+                ANSELbits.ANS0 = 1;
+            }else{
+                ANSELbits.ANS0 = 0;
+            }
             break;
-        case 1:
-            x_UpdateBit(ANSELH,var_pin,mode);
+        case RA_1:
+           if(mode == ANALOG){
+                ANSELbits.ANS1 = 1;
+            }else{
+                ANSELbits.ANS1 = 0;
+            }
             break;
-        case 2:
-            //Doesn't have Analog support.
+        case RA_2:
+            if(mode == ANALOG){
+                ANSELbits.ANS2 = 1;
+            }else{
+                ANSELbits.ANS2 = 0;
+            }
             break;
-        case 3:
-            //Doesn't have Analog support.
+        case RA_3:
+            if(mode == ANALOG){
+                ANSELbits.ANS3 = 1;
+            }else{
+                ANSELbits.ANS3 = 0;
+            }
             break;
-        case 4:
-            x_UpdateBit(ANSEL,var_pin,mode);
+        case RA_5:
+            if(mode == ANALOG){
+                ANSELbits.ANS4 = 1;
+            }else{
+                ANSELbits.ANS4 = 0;
+            }
+            break;
+        case RE_0:
+            if(mode == ANALOG){
+                ANSELbits.ANS5 = 1;
+            }else{
+                ANSELbits.ANS5 = 0;
+            }
+            break;
+        case RE_1:
+            if(mode == ANALOG){
+                ANSELbits.ANS6 = 1;
+            }else{
+                ANSELbits.ANS6 = 0;
+            }
+            break;
+        case RE_2:
+            if(mode == ANALOG){
+                ANSELbits.ANS7 = 1;
+            }else{
+                ANSELbits.ANS7 = 0;
+            }
+            break;
+        case RB_2:
+            if(mode == ANALOG){
+                ANSELHbits.ANS8 = 1;
+            }else{
+                ANSELHbits.ANS8 = 0;
+            }
+            break;
+        case RB_3:
+            if(mode == ANALOG){
+                ANSELHbits.ANS9 = 1;
+            }else{
+                ANSELHbits.ANS9 = 0;
+            }
+            break;
+        case RB_1:
+            if(mode == ANALOG){
+                ANSELHbits.ANS10 = 1;
+            }else{
+                ANSELHbits.ANS10 = 0;
+            }
+            break;
+        case RB_4:
+            if(mode == ANALOG){
+                ANSELHbits.ANS11 = 1;
+            }else{
+                ANSELHbits.ANS11 = 0;
+            }
+            break;
+        case RB_0:
+            if(mode == ANALOG){
+                ANSELHbits.ANS12 = 1;
+            }else{
+                ANSELHbits.ANS12 = 0;
+            }
+            break;
+        case RB_5:
+            if(mode == ANALOG){
+                ANSELHbits.ANS13 = 1;
+            }else{
+                ANSELHbits.ANS13 = 0;
+            }
             break;
     }
 }
