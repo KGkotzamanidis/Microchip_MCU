@@ -27,6 +27,8 @@
 #define _INTERRUPTS_H
 #include "macros.h"
 
-bool do_intterupt();
+bool is_intterupt();
 void do_interrupt(void);
+void set_external_INT(char triger_edge);
+bool get_external_INT();
 #endif

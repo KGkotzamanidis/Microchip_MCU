@@ -24,6 +24,7 @@
  * Revision history: 
  */
 #include "interrupts.h"
+#include "io.h"
 
 /*
  * __interrupt() void Interrupt_Service()
@@ -50,7 +51,7 @@
  * 
  * return True if we have an interrupt.
  */
-bool do_intterupt(){
+bool is_intterupt(){
     if(T0IF){
         return true;
     }
@@ -120,4 +121,43 @@ void do_interrupt(void){
     }while(T0IF || T0IF || INTF || RBIF || ADIF || RCIF || TXIF || 
             SSPIF || CCP1IF || TMR0IF || TMR1IF || TMR2IF || OSFIF || 
             C2IF || C1IF || EEIF || BCLIF || ULPWUIF || CCP2IF);
+}
+
+/*
+ * void set_external_INT(char triger_edge).
+ * input arg1: char triger_edge(h/l)
+ * Set and enable the External Interrupt at RB0 pin.
+ */
+void set_external_INT(char triger_edge){
+    switch(triger_edge){
+        case 'h':
+            OPTION_REG = 0xc0;
+            INTCON = 0x90;
+            pin_Mode(RB_0,DIGITAL);
+            break;
+        case 'l':
+            OPTION_REG = 0x80;
+            INTCON = 0x90;
+            pin_Mode(RB_0,DIGITAL);
+            break;
+        default:
+            OPTION_REG = 0x40;
+            INTCON = 0x90;
+            pin_Mode(RB_0,DIGITAL);
+            break;
+    }
+}
+
+/*
+ * bool get_external_INT()
+ * Return true when the INTF flag is 1 and reset it.
+ */
+bool get_external_INT(){
+    if(INTF == 0){
+        return false;
+    }
+    else if(INTF == 1){
+        INTF = 0;
+        return true;
+    }
 }
