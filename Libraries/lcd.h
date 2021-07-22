@@ -27,25 +27,31 @@
 #ifndef _LCD_H
 #define _LCD_H
 
+#include <stdarg.h>
+#include "delay.h"
+#include "macros.h"
 #include "io.h"
 
-#define CMD_CLEAR 0x01
-#define CMD_RETURN_HOME 0x02
-#define CMD_DISPLAY_ON_CURSOR_OFF 0x0C
-#define CMD_DISPLAY_ON_CURSOR_ON 0x0E
-#define CMD_DISPLAY_ON_CURSOR_BLINK 0x0F
-#define CMD_FOUR_BIT_MODE 0x28
-#define CMD_EIGHT_BIT_MODE 0x38
+/* LCD Command List */
+#define CMD_LCD_CLEAR 0x01
+#define CMD_LCD_RETURN_HOME 0x02
+#define CMD_LCD_OFF 0x08
+#define CMD_LCD_CURSOR_OFF 0x0C
+#define CMD_LCD_CURSOR_ON 0x0E
+#define CMD_LCD_CURSOR_BLINK 0x0F
+#define CMD_LCD_FOUR_BIT_MODE 0x28
+#define CMD_LCD_EIGHT_BIT_MODE 0x38
 
+/* LCD Macros List */
 #define FourBitMode 4
-#define EightBitMode 8
-
-#define ScrollDellayTime 200
+#define EighBitMode 8
+#define ScrollDelayTime 200
 #define DisplayDefaultDigits 0xFF
 #define MaxDigitsToDisplay 10
 #define NumOfBinDigitsToDisplay 16
 #define MaxDigitsToDisplayUsingPrintf DisplayDefaultDigits
 
+/* LCD Struct and Enums */
 #define LcdLineZero 0x00
 #define LcdLineOne 0x01
 #define LcdLineTwo 0x02
@@ -67,21 +73,24 @@ typedef struct{
     IO_PORT D5;
     IO_PORT D6;
     IO_PORT D7;
-}LCD_IO_PORT;
+}LcdConfigs_struct;
 
-void LCD_SetUp(IO_PORT RS, IO_PORT RW, IO_PORT EN, IO_PORT D0,
-                IO_PORT D1, IO_PORT D2, IO_PORT D3, IO_PORT D4,
-                IO_PORT D5, IO_PORT D6, IO_PORT D7);
-void LCD_Init(uint8_t NumbersOfLines, uint8_t MaxCharsPerLines);
-void LCD_CmdWrite(uint8_t lcd_CMD);
-void LCD_DisplayChar(char lcd_Char);
+/* Main LCD Functions */
+void LCD_Setup(IO_PORT RS,IO_PORT RW,IO_PORT EN,IO_PORT D0,
+                IO_PORT D1,IO_PORT D2,IO_PORT D3,IO_PORT D4,
+                IO_PORT D5,IO_PORT D6,IO_PORT D7);
+void LCD_Init(uint8_t var_maxLCDLines,uint8_t var_maxLCDChars);
 void LCD_Clear();
-void LCD_GoToLine(uint8_t lineNumber);
-void LCD_GoToNextLine();
-void LCD_DisplayString(const char *lcd_StringPointer);
-void LCD_DisplayNumber(uint8_t numberic_System, uint32_t number, uint8_t numberofdisplay);
-void LCD_DisplayFloat(double number);
+void LCD_CMD_Write(uint8_t CMDFrame);
+void LCD_GoToLine(uint8_t var_LineNum);
+void LCD_GoToNextLine(void);
+void LCD_SetCursor(uint8_t var_LineNum,uint8_t var_CharNum);
+void LCD_DisplayChar(uint8_t dataFrame);
+void LCD_DisplayString(const char *ptr_MessagePointer);
+void LCD_ScrollMessage(uint8_t var_LineNum,char *ptr_MessagePointer);
+void LCD_DisplayNumber(uint8_t numberic_System,uint32_t var_number32,uint8_t var_numOfDigitsToDisplay);
+void LCD_DisplayFloatNumber(double var_number);
 void LCD_Printf(const char *argList, ...);
-void LCD_CreateCustomChar(uint8_t location, uint8_t *CustomChar);
+void LCD_CreateCustomChar(uint8_t location,uint8_t *CustomChar);
 void LCD_DisplayCustomChar(char location);
 #endif
