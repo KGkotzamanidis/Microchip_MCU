@@ -83,5 +83,5 @@ void InternalClock_Init(int set_device_freq){
  * You must change and prepare Config @ SSR.
  */
 void ExternalClock_Init(void){
-    OSCCON = 0b01111110;
+    OSCCON = 0x7E;
 }
