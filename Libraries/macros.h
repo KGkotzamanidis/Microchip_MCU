@@ -49,10 +49,12 @@
 #define NULL 0
 #endif
 
+/*System base*/
 #define x_BINARY 2u
 #define x_DECIMAL 10u
 #define x_HEX 16u
 
+/*Bit operations*/
 #define  x_GetBitMask(bit)          (1<<(bit))
 #define  x_BitSet(x,bit)            ((x) |=  x_GetBitMask(bit))
 #define  x_BitClear(x,bit)          ((x) &= ~x_GetBitMask(bit))
@@ -73,13 +75,14 @@
 #define x_GetMod16(dividend,divisor)    (uint16_t) (dividend - (divisor * (uint16_t) (dividend/divisor)))
 #define x_GetMod32(dividend,divisor)    (uint32_t) (dividend - (divisor * (uint32_t) (dividend/divisor)))
 
+/*Data base converters*/
 #define x_Dec2Ascii(Dec)    ((Dec)+0x30)
 #define x_Ascii2Dec(Asc)    ((Asc)-0x30)
 #define x_Hex2Ascii(Hex)    (((Hex)>0x09)?((Hex)+0x37):((Hex)+0x30))
 #define x_Ascii2Hex(Asc)    (((Asc)>0x39)?((Asc)-0x37):((Asc)-0x30))
 
 /*External Crystall Freq for Delay functions*/
-#define _XTAL_FREQ 20000000
+#define _XTAL_FREQ Frequency
 
 /*Singed char*/
 typedef signed char sint8_t;
@@ -93,6 +96,25 @@ typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 /*Unsigned long*/
 typedef unsigned long int uint32_t;
+/*bit*/
+typedef unsigned bit;
+
+/*Create an 8bit Data Frame @ bank0 in Address 20H*/
+#define DataFrame DataFrame
+extern volatile uint8_t DataFrame __at(0x020);
+typedef union{
+    struct{
+        bit _bit0 :1;
+        bit _bit1 :1;
+        bit _bit2 :1;
+        bit _bit3 :1;
+        bit _bit4 :1;
+        bit _bit5 :1;
+        bit _bit6 :1;
+        bit _bit7 :1;
+    };
+}DataFrame_bit_t;
+extern volatile DataFrame_bit_t DataFrame_bit __at(0x020);
 
 void reset_register(void);
 void sleep(void);
