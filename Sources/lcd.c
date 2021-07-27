@@ -308,9 +308,9 @@ void LCD_Printf(const char *argList, ...){
         if(ch == '%'){
             ptr++;
             ch=*ptr;
-            if((ch > 0x30) && (ch < 0x39)){
+            if((ch >= 0x30) && (ch <= 0x39)){
                 NumOfBinDigitsToDisplay_u8 = 0;
-                while((ch > 0x30) && (ch <= 0x39)){
+                while((ch >= 0x30) && (ch <= 0x39)){
                     NumOfBinDigitsToDisplay_u8 = ((NumOfBinDigitsToDisplay_u8 * 10) + (ch - 0x30));
                     ptr++;
                     ch = *ptr;
@@ -397,7 +397,7 @@ void LCD_CreateCustomChar(uint8_t location,uint8_t *CustomChar){
     uint8_t i;
     if(location <8){
         LCD_CMD_Write(0x40 + (location*8));
-        for(i=0;i<8;i++){
+        for(i=0;i<7;i++){
             LCD_DisplayChar(CustomChar[i]);
         }
     }
