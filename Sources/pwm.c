@@ -32,8 +32,8 @@
  * bit7                                                             bit0
  * For more informations about how to setup PWM go to 121 in DataSheet.
  */
-#include "pwm.h"
-#include "io.h"
+#include "../Libraries/pwm.h"
+#include "../Libraries/io.h"
 
 #pragma warning push
 #pragma warning disable 520

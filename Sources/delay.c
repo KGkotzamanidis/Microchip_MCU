@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "delay.h"
+#include "../Libraries/delay.h"
 
 #pragma warning push
 #pragma warning disable 520

@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "eeprom.h"
+#include "../Libraries/eeprom.h"
 
 /*
  * void EEPROM_WriteBytes(uint16_t addr,uint8_t data)

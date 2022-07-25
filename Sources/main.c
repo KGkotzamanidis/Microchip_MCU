@@ -13,9 +13,9 @@
 
 #include <xc.h>
 
-#include "delay.h"
-#include "io.h"
-#include "oscillator.h"
+#include "../Libraries/delay.h"
+#include "../Libraries/io.h"
+#include "../Libraries/oscillator.h"
 
 #define led RD_0
 #define in_cmd RD_3

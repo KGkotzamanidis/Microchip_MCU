@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "lcd.h"
+#include "../Libraries/lcd.h"
 #pragma waring push
 #pragma warning disable 356
 #pragma warning disable 520

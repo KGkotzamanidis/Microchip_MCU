@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "oscillator.h"
+#include "../Libraries/oscillator.h"
 
 /*
  * init_InternalClock(int set_device_freq)

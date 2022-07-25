@@ -23,8 +23,8 @@
  * Comments:
  * Revision history: 
  */
-#include "rtc.h"
-#include "i2c.h"
+#include "../Libraries/rtc.h"
+#include "../Libraries/i2c.h"
 
 /*
  * void rtc_Init(void)

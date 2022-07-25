@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "i2c.h"
+#include "../Libraries/i2c.h"
 
 static void i2c_Wait_for_idle();
 static void i2c_Acknowledge();

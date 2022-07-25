@@ -23,7 +23,7 @@
  * Comments:
  * Revision history: 
  */
-#include "onewire.h"
+#include "../Libraries/onewire.h"
 
 /*
  * void DS_Reset_pulse()

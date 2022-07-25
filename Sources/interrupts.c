@@ -23,8 +23,8 @@
  * Comments:
  * Revision history: 
  */
-#include "interrupts.h"
-#include "io.h"
+#include "../Libraries/interrupts.h"
+#include "../Libraries/io.h"
 
 /*
  * __interrupt() void Interrupt_Service()

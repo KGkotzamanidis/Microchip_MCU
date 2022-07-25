@@ -24,7 +24,7 @@
  * Revision history: 
  */
 #include <stdarg.h>
-#include "uart.h"
+#include "../Libraries/uart.h"
 
 #pragma warning push
 #pragma warning disable 520

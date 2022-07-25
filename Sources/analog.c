@@ -38,8 +38,8 @@
  * bit7                                                          bit0
  * For more information about ADC look at page 103/104 in DataSheet.
  */
-#include "analog.h"
-#include "delay.h"
+#include "../Libraries/analog.h"
+#include "../Libraries/delay.h"
 
 #pragma warning push
 #pragma warning disable 520
