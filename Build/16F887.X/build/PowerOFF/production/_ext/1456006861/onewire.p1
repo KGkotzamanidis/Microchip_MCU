@@ -1,0 +1,806 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"1423 C:/Users/Konst/.mchp_packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S53 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"1422
+[u S52 `S53 1 ]
+[n S52 . . ]
+"1434
+[v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
+"173
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"172
+[u S5 `S6 1 ]
+[n S5 . . ]
+"184
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
+[v F36 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Users/Konst/.mchp_packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
+[v __delay `JF36 ~T0 @X0 0 e ]
+[p i __delay ]
+"93 ../../Sources/16F887/./../../Libraries/16F887/lcd.h
+[v _LCD_Printf `(v ~T0 @X0 0 ev`*Cuc ]
+"55 C:/Users/Konst/.mchp_packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[; <" INDF equ 00h ;# ">
+"62
+[; <" TMR0 equ 01h ;# ">
+"69
+[; <" PCL equ 02h ;# ">
+"76
+[; <" STATUS equ 03h ;# ">
+"162
+[; <" FSR equ 04h ;# ">
+"169
+[; <" PORTA equ 05h ;# ">
+"231
+[; <" PORTB equ 06h ;# ">
+"293
+[; <" PORTC equ 07h ;# ">
+"355
+[; <" PORTD equ 08h ;# ">
+"417
+[; <" PORTE equ 09h ;# ">
+"455
+[; <" PCLATH equ 0Ah ;# ">
+"462
+[; <" INTCON equ 0Bh ;# ">
+"540
+[; <" PIR1 equ 0Ch ;# ">
+"596
+[; <" PIR2 equ 0Dh ;# ">
+"653
+[; <" TMR1 equ 0Eh ;# ">
+"660
+[; <" TMR1L equ 0Eh ;# ">
+"667
+[; <" TMR1H equ 0Fh ;# ">
+"674
+[; <" T1CON equ 010h ;# ">
+"768
+[; <" TMR2 equ 011h ;# ">
+"775
+[; <" T2CON equ 012h ;# ">
+"846
+[; <" SSPBUF equ 013h ;# ">
+"853
+[; <" SSPCON equ 014h ;# ">
+"923
+[; <" CCPR1 equ 015h ;# ">
+"930
+[; <" CCPR1L equ 015h ;# ">
+"937
+[; <" CCPR1H equ 016h ;# ">
+"944
+[; <" CCP1CON equ 017h ;# ">
+"1041
+[; <" RCSTA equ 018h ;# ">
+"1136
+[; <" TXREG equ 019h ;# ">
+"1143
+[; <" RCREG equ 01Ah ;# ">
+"1150
+[; <" CCPR2 equ 01Bh ;# ">
+"1157
+[; <" CCPR2L equ 01Bh ;# ">
+"1164
+[; <" CCPR2H equ 01Ch ;# ">
+"1171
+[; <" CCP2CON equ 01Dh ;# ">
+"1241
+[; <" ADRESH equ 01Eh ;# ">
+"1248
+[; <" ADCON0 equ 01Fh ;# ">
+"1349
+[; <" OPTION_REG equ 081h ;# ">
+"1419
+[; <" TRISA equ 085h ;# ">
+"1481
+[; <" TRISB equ 086h ;# ">
+"1543
+[; <" TRISC equ 087h ;# ">
+"1605
+[; <" TRISD equ 088h ;# ">
+"1667
+[; <" TRISE equ 089h ;# ">
+"1705
+[; <" PIE1 equ 08Ch ;# ">
+"1761
+[; <" PIE2 equ 08Dh ;# ">
+"1818
+[; <" PCON equ 08Eh ;# ">
+"1865
+[; <" OSCCON equ 08Fh ;# ">
+"1930
+[; <" OSCTUNE equ 090h ;# ">
+"1982
+[; <" SSPCON2 equ 091h ;# ">
+"2044
+[; <" PR2 equ 092h ;# ">
+"2051
+[; <" SSPADD equ 093h ;# ">
+"2058
+[; <" SSPMSK equ 093h ;# ">
+"2063
+[; <" MSK equ 093h ;# ">
+"2180
+[; <" SSPSTAT equ 094h ;# ">
+"2349
+[; <" WPUB equ 095h ;# ">
+"2419
+[; <" IOCB equ 096h ;# ">
+"2489
+[; <" VRCON equ 097h ;# ">
+"2559
+[; <" TXSTA equ 098h ;# ">
+"2645
+[; <" SPBRG equ 099h ;# ">
+"2707
+[; <" SPBRGH equ 09Ah ;# ">
+"2777
+[; <" PWM1CON equ 09Bh ;# ">
+"2847
+[; <" ECCPAS equ 09Ch ;# ">
+"2929
+[; <" PSTRCON equ 09Dh ;# ">
+"2973
+[; <" ADRESL equ 09Eh ;# ">
+"2980
+[; <" ADCON1 equ 09Fh ;# ">
+"3014
+[; <" WDTCON equ 0105h ;# ">
+"3067
+[; <" CM1CON0 equ 0107h ;# ">
+"3132
+[; <" CM2CON0 equ 0108h ;# ">
+"3197
+[; <" CM2CON1 equ 0109h ;# ">
+"3248
+[; <" EEDATA equ 010Ch ;# ">
+"3253
+[; <" EEDAT equ 010Ch ;# ">
+"3260
+[; <" EEADR equ 010Dh ;# ">
+"3267
+[; <" EEDATH equ 010Eh ;# ">
+"3274
+[; <" EEADRH equ 010Fh ;# ">
+"3281
+[; <" SRCON equ 0185h ;# ">
+"3338
+[; <" BAUDCTL equ 0187h ;# ">
+"3390
+[; <" ANSEL equ 0188h ;# ">
+"3452
+[; <" ANSELH equ 0189h ;# ">
+"3502
+[; <" EECON1 equ 018Ch ;# ">
+"3547
+[; <" EECON2 equ 018Dh ;# ">
+"54 ../../Sources/16F887/./../../Libraries/16F887/onewire.h
+[v _DoneFlag `a ~T0 @X0 1 s ]
+"55
+[v _LastSensorFount `uc ~T0 @X0 1 s ]
+"56
+[v _Sensor_Address `uc ~T0 @X0 -> 8 `i s ]
+"32 ../../Sources/16F887/onewire.c
+[v _DS_Reset_pulse `(v ~T0 @X0 1 ef ]
+{
+[e :U _DS_Reset_pulse ]
+[f ]
+"33
+[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
+"34
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"35
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"36
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+"37
+[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"38
+[e :UE 141 ]
+}
+"44
+[v _DS_Presence_pulse `(v ~T0 @X0 1 ef ]
+{
+[e :U _DS_Presence_pulse ]
+[f ]
+"45
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+"46
+[e $U 143  ]
+[e :U 144 ]
+[e :U 143 ]
+[e $ == -> . . _PORTAbits 0 0 `i -> 1 `i 144  ]
+[e :U 145 ]
+"47
+[e $U 146  ]
+[e :U 147 ]
+[e :U 146 ]
+[e $ == -> . . _PORTAbits 0 0 `i -> 0 `i 147  ]
+[e :U 148 ]
+"48
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"49
+[e :UE 142 ]
+}
+"55
+[v _DS_check `(a ~T0 @X0 1 ef ]
+{
+[e :U _DS_check ]
+[f ]
+"56
+[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
+"57
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"58
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"59
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+"60
+[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"62
+[e $ ! == -> . . _PORTAbits 0 0 `i -> 0 `i 150  ]
+{
+"63
+[e ) -> -> 1 `i `a ]
+[e $UE 149  ]
+"64
+}
+[e $U 151  ]
+"65
+[e :U 150 ]
+{
+"66
+[e ) -> -> 0 `i `a ]
+[e $UE 149  ]
+"67
+}
+[e :U 151 ]
+"68
+[e :UE 149 ]
+}
+"73
+[v _DS_Set_zero `(v ~T0 @X0 1 ef ]
+{
+[e :U _DS_Set_zero ]
+[f ]
+"74
+[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
+"75
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"76
+[e ( __delay (1 -> * -> -> 90 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"77
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+"78
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"79
+[e :UE 152 ]
+}
+"85
+[v _DS_Set_one `(v ~T0 @X0 1 ef ]
+{
+[e :U _DS_Set_one ]
+[f ]
+"86
+[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
+"87
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"88
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"89
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+"90
+[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"91
+[e :UE 153 ]
+}
+"97
+[v _DS_Read_bit `(uc ~T0 @X0 1 ef ]
+{
+[e :U _DS_Read_bit ]
+[f ]
+"98
+[v __bit `uc ~T0 @X0 1 a ]
+[e = __bit -> -> 0 `i `uc ]
+"99
+[e = . . _TRISAbits 0 0 -> -> 0 `i `uc ]
+"100
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"101
+[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"102
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+"103
+[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"104
+[e = __bit -> . . _PORTAbits 0 0 `uc ]
+"105
+[e ( __delay (1 -> * -> -> 90 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"106
+[e ) __bit ]
+[e $UE 154  ]
+"107
+[e :UE 154 ]
+}
+"113
+[v _DS_Read_byte `(uc ~T0 @X0 1 ef ]
+{
+[e :U _DS_Read_byte ]
+[f ]
+"114
+[v __byte `uc ~T0 @X0 1 a ]
+[e = __byte -> -> 0 `i `uc ]
+"115
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 8 `i 156  ]
+[e $U 157  ]
+[e :U 156 ]
+{
+"116
+[e = __byte -> | -> __byte `i << -> ( _DS_Read_bit ..  `i _i `uc ]
+"117
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 8 `i 156  ]
+[e :U 157 ]
+}
+"118
+[e ) __byte ]
+[e $UE 155  ]
+"119
+[e :UE 155 ]
+}
+"125
+[v _DS_Write_command `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _DS_Write_command ]
+[v _command `uc ~T0 @X0 1 r1 ]
+[f ]
+"126
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 8 `i 160  ]
+[e $U 161  ]
+[e :U 160 ]
+{
+"127
+[e $ ! != & -> _command `i -> 1 `i -> 0 `i 163  ]
+{
+"128
+[e ( _DS_Set_one ..  ]
+"129
+}
+[e $U 164  ]
+"130
+[e :U 163 ]
+{
+"131
+[e ( _DS_Set_zero ..  ]
+"132
+}
+[e :U 164 ]
+"133
+[e = _command -> >> -> _command `i -> 1 `i `uc ]
+"134
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 8 `i 160  ]
+[e :U 161 ]
+}
+"135
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"136
+[e :UE 159 ]
+}
+"138
+[v _DS_Set_resolution `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _DS_Set_resolution ]
+[v _resolution `uc ~T0 @X0 1 r1 ]
+[f ]
+"139
+[v _value `uc ~T0 @X0 1 a ]
+[e = _value -> -> 0 `i `uc ]
+"140
+[e $U 167  ]
+{
+"141
+[e :U 168 ]
+"142
+[e = _value -> -> 0 `i `uc ]
+"143
+[e $U 166  ]
+"144
+[e :U 169 ]
+"145
+[e = _value -> -> 32 `i `uc ]
+"146
+[e $U 166  ]
+"147
+[e :U 170 ]
+"148
+[e = _value -> -> 64 `i `uc ]
+"149
+[e $U 166  ]
+"150
+[e :U 171 ]
+"151
+[e = _value -> -> 96 `i `uc ]
+"152
+[e $U 166  ]
+"153
+[e :U 172 ]
+"154
+[e = _value -> -> 96 `i `uc ]
+"155
+}
+[e $U 166  ]
+[e :U 167 ]
+[e [\ -> _resolution `i , $ -> 9 `i 168
+ , $ -> 10 `i 169
+ , $ -> 11 `i 170
+ , $ -> 12 `i 171
+ 172 ]
+[e :U 166 ]
+"156
+[e ( _DS_Reset_pulse ..  ]
+"157
+[e ( _DS_Presence_pulse ..  ]
+"158
+[e ( _DS_Write_command (1 -> -> 204 `i `uc ]
+"159
+[e ( _DS_Write_command (1 -> -> 78 `i `uc ]
+"160
+[e ( _DS_Write_command (1 -> -> 0 `i `uc ]
+"161
+[e ( _DS_Write_command (1 _value ]
+"162
+[e :UE 165 ]
+}
+"164
+[v _DS_Read_temperature `(f ~T0 @X0 1 ef ]
+{
+[e :U _DS_Read_temperature ]
+[f ]
+"165
+[v _temperature `f ~T0 @X0 1 a ]
+"166
+[v _tempL `us ~T0 @X0 1 a ]
+[v _tempH `us ~T0 @X0 1 a ]
+"167
+[e ( _DS_Reset_pulse ..  ]
+"168
+[e ( _DS_Presence_pulse ..  ]
+"169
+[e ( _DS_Write_command (1 -> -> 204 `i `uc ]
+"170
+[e ( _DS_Write_command (1 -> -> 68 `i `uc ]
+"171
+[e ( __delay (1 -> * -> -> 800 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"172
+[e ( _DS_Reset_pulse ..  ]
+"173
+[e ( _DS_Presence_pulse ..  ]
+"174
+[e ( _DS_Write_command (1 -> -> 204 `i `uc ]
+"175
+[e ( _DS_Write_command (1 -> -> 190 `i `uc ]
+"184
+[e = _tempL -> ( _DS_Read_byte ..  `us ]
+"185
+[e = _tempH -> ( _DS_Read_byte ..  `us ]
+"187
+[e = _temperature -> + << -> _tempH `ui -> 8 `i -> _tempL `ui `f ]
+"188
+[e = _temperature -> * -> _temperature `d .6.25 `f ]
+"189
+[e = _temperature / _temperature -> -> 100 `i `f ]
+"191
+[e ( _DS_Reset_pulse ..  ]
+"192
+[e ( _DS_Presence_pulse ..  ]
+"194
+[e ) _temperature ]
+[e $UE 173  ]
+"195
+[e :UE 173 ]
+}
+"197
+[v _DS_Print_temperature `(v ~T0 @X0 1 ef ]
+{
+[e :U _DS_Print_temperature ]
+[f ]
+"198
+[e ( _LCD_Printf , (. :s 1C -> ( _DS_Read_temperature ..  `d ]
+"199
+[e :UE 174 ]
+}
+"201
+[v _DS_Address `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _DS_Address ]
+[v _command `uc ~T0 @X0 1 r1 ]
+[f ]
+"202
+[v _i `uc ~T0 @X0 1 a ]
+"203
+[e $ ! == -> _command `i -> 85 `i 176  ]
+{
+"204
+[e ( _DS_Write_command (1 -> -> 85 `i `uc ]
+"205
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 177  ]
+[e $U 178  ]
+[e :U 177 ]
+{
+"206
+[e ( _DS_Write_command (1 -> *U + &U _Sensor_Address * -> _i `ux -> -> # *U &U _Sensor_Address `ui `ux `uc ]
+"207
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 177  ]
+[e :U 178 ]
+}
+"208
+}
+[e $U 180  ]
+"209
+[e :U 176 ]
+{
+"210
+[e ( _DS_Write_command (1 -> -> 204 `i `uc ]
+"211
+}
+[e :U 180 ]
+"212
+[e :UE 175 ]
+}
+"214
+[v _Ds_FindNextSensor `(a ~T0 @X0 1 ef ]
+{
+[e :U _Ds_FindNextSensor ]
+[f ]
+"215
+[v _state `uc ~T0 @X0 1 a ]
+"216
+[v _byteid `uc ~T0 @X0 1 a ]
+"217
+[v _mask `uc ~T0 @X0 1 a ]
+"218
+[v _bitpos `uc ~T0 @X0 1 a ]
+"219
+[v _nDiscrepancyMarker `uc ~T0 @X0 1 a ]
+"221
+[v _bit_b `a ~T0 @X0 1 a ]
+"222
+[v _status `a ~T0 @X0 1 a ]
+"223
+[v _next `a ~T0 @X0 1 a ]
+[e = _next -> -> 0 `i `a ]
+"225
+{
+[e = _byteid -> -> 0 `i `uc ]
+[e $ < -> _byteid `i -> 8 `i 182  ]
+[e $U 183  ]
+[e :U 182 ]
+{
+"226
+[e = *U + &U _Sensor_Address * -> _byteid `ux -> -> # *U &U _Sensor_Address `ui `ux -> -> 0 `i `uc ]
+"227
+}
+[e ++ _byteid -> -> 1 `i `uc ]
+[e $ < -> _byteid `i -> 8 `i 182  ]
+[e :U 183 ]
+}
+"229
+[e = _status ( _DS_check ..  ]
+"231
+[e $ ! != | -> _status `i -> _DoneFlag `i -> 0 `i 185  ]
+{
+"232
+[e ) -> -> 0 `i `a ]
+[e $UE 181  ]
+"233
+}
+[e :U 185 ]
+"235
+[e ( _DS_Write_command (1 -> -> 240 `i `uc ]
+"236
+[e = _byteid -> -> 0 `i `uc ]
+"238
+[e :U 188 ]
+{
+"239
+[e = _state -> -> 0 `i `uc ]
+"240
+[e $ ! != -> ( _DS_Read_bit ..  `i -> 0 `i 189  ]
+{
+"241
+[e = _state -> -> 2 `i `uc ]
+"242
+}
+[e :U 189 ]
+"243
+[e ( __delay (1 -> * -> -> 120 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"244
+[e $ ! != -> ( _DS_Read_bit ..  `i -> 0 `i 190  ]
+{
+"245
+[e =| _state -> -> 1 `i `uc ]
+"246
+}
+[e :U 190 ]
+"247
+[e ( __delay (1 -> * -> -> 120 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"249
+[e $ ! == -> _state `i -> 3 `i 191  ]
+{
+"250
+[e $U 187  ]
+"251
+}
+[e $U 192  ]
+"252
+[e :U 191 ]
+{
+"253
+[e $ ! > -> _state `i -> 0 `i 193  ]
+{
+"254
+[e = _bit_b -> >> -> _state `i -> 1 `i `a ]
+"255
+}
+[e $U 194  ]
+"256
+[e :U 193 ]
+{
+"257
+[e $ ! < -> _bitpos `i -> _LastSensorFount `i 195  ]
+{
+"258
+[e = _bit_b -> -> > & -> *U + &U _Sensor_Address * -> _byteid `ux -> -> # *U &U _Sensor_Address `ui `ux `i -> _mask `i -> 0 `i `i `a ]
+"259
+}
+[e $U 196  ]
+"260
+[e :U 195 ]
+{
+"261
+[e = _bit_b -> -> == -> _bitpos `i -> _LastSensorFount `i `i `a ]
+"262
+}
+[e :U 196 ]
+"264
+[e $ ! == -> _bit_b `i -> 0 `i 197  ]
+{
+"265
+[e = _nDiscrepancyMarker _bitpos ]
+"266
+}
+[e :U 197 ]
+"267
+}
+[e :U 194 ]
+"268
+}
+[e :U 192 ]
+"269
+[e $ ! != -> _bit_b `i -> 0 `i 198  ]
+{
+"270
+[e =| *U + &U _Sensor_Address * -> _byteid `ux -> -> # *U &U _Sensor_Address `ui `ux -> _mask `uc ]
+"271
+}
+[e $U 199  ]
+"272
+[e :U 198 ]
+{
+"273
+[e =& *U + &U _Sensor_Address * -> _byteid `ux -> -> # *U &U _Sensor_Address `ui `ux -> ~ -> _mask `i `uc ]
+"274
+}
+[e :U 199 ]
+"275
+[e ( _DS_Write_command (1 -> _bit_b `uc ]
+"276
+[e ++ _bitpos -> -> 1 `i `uc ]
+"277
+[e = _mask -> << -> _mask `i -> 1 `i `uc ]
+"278
+[e $ ! == -> _mask `i -> 0 `i 200  ]
+{
+"279
+[e ++ _byteid -> -> 1 `i `uc ]
+"280
+[e = _mask -> -> 1 `i `uc ]
+"281
+}
+[e :U 200 ]
+"282
+}
+[e $ < -> _byteid `i -> 8 `i 188  ]
+[e :U 187 ]
+"284
+[e $ ! < -> _bitpos `i -> 65 `i 201  ]
+{
+"285
+[e = _LastSensorFount -> -> 0 `i `uc ]
+"286
+}
+[e $U 202  ]
+"287
+[e :U 201 ]
+{
+"288
+[e = _LastSensorFount _nDiscrepancyMarker ]
+"289
+[e = _DoneFlag -> -> == -> _LastSensorFount `i -> 0 `i `i `a ]
+"290
+[e = _next -> -> 1 `i `a ]
+"291
+}
+[e :U 202 ]
+"292
+[e ) _next ]
+[e $UE 181  ]
+"293
+[e :UE 181 ]
+}
+"295
+[v _DS_FindFirstSensor `(a ~T0 @X0 1 ef ]
+{
+[e :U _DS_FindFirstSensor ]
+[f ]
+"296
+[e = _LastSensorFount -> -> 0 `i `uc ]
+"297
+[e = _DoneFlag -> -> 0 `i `a ]
+"298
+[e ) ( _Ds_FindNextSensor ..  ]
+[e $UE 203  ]
+"299
+[e :UE 203 ]
+}
+"301
+[v _DS_Write_EEPROM `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _DS_Write_EEPROM ]
+[v _tempH `uc ~T0 @X0 1 r1 ]
+[v _tempL `uc ~T0 @X0 1 r2 ]
+[f ]
+"302
+[e ( _DS_Reset_pulse ..  ]
+"303
+[e ( _DS_Presence_pulse ..  ]
+"304
+[e ( _DS_Write_command (1 -> -> 85 `i `uc ]
+"305
+[e ( _DS_Write_command (1 -> -> 78 `i `uc ]
+"306
+[e ( _DS_Write_command (1 -> _tempH `uc ]
+"307
+[e ( _DS_Write_command (1 -> _tempL `uc ]
+"308
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+"309
+[e ( _DS_Reset_pulse ..  ]
+"310
+[e ( _DS_Presence_pulse ..  ]
+"311
+[e ( _DS_Address (1 -> -> 85 `i `uc ]
+"312
+[e ( _DS_Write_command (1 -> -> 72 `i `uc ]
+"313
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"314
+[e :UE 204 ]
+}
+[a 1C 49 54 70 56 56 55 32 38 32 68 83 49 56 66 50 48 10 84 101 109 112 101 114 97 116 117 114 101 58 37 102 67 10 0 ]

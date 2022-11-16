@@ -1,0 +1,39 @@
+/* Microchip Technology Inc. and its subsidiaries.  You may use this software 
+ * and any derivatives exclusively with Microchip products. 
+ * 
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS".  NO WARRANTIES, WHETHER 
+ * EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED 
+ * WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A 
+ * PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION 
+ * WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION. 
+ *
+ * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+ * INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+ * WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS 
+ * BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE 
+ * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS 
+ * IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF 
+ * ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+ *
+ * MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE 
+ * TERMS. 
+ * 
+ * File: eeprom.h
+ * Author: konstantinos gkotzamanidis
+ * Comments:
+ * Revision history: 
+ */
+#ifndef _EEPROM_H
+#define _EEPROM_H
+
+#include "macros.h"
+
+#define MaxEEPROMSize 256
+void EEPROM_WriteBytes(uint16_t addr,uint8_t data);
+uint8_t EEPROM_ReadBytes(uint16_t addr);
+void EEPROM_WriteNBytes(uint16_t addr,uint8_t *ram_addr,uint16_t numOfData);
+void EEPROM_ReadNBytes(uint16_t addr,uint8_t *ram_addr,uint16_t numOfData);
+void EEPROM_WriteString(uint16_t addr,char *ptr_Message);
+void EEPROM_ReadString(uint16_t addr,char *ptr_Message);
+void EEPROM_Erase(void);
+#endif
