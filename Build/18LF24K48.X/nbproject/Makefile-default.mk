@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../../Sources/18LF24K40/io.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=../../Sources/18LF24K40/io.c main.c ../../Sources/18LF24K40/oscillator.c ../../Sources/18LF24K40/timer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1641633261/io.p1 ${OBJECTDIR}/main.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1641633261/io.p1.d ${OBJECTDIR}/main.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1641633261/io.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/_ext/1641633261/oscillator.p1 ${OBJECTDIR}/_ext/1641633261/timer.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1641633261/io.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d ${OBJECTDIR}/_ext/1641633261/timer.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1641633261/io.p1 ${OBJECTDIR}/main.p1
+OBJECTFILES=${OBJECTDIR}/_ext/1641633261/io.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/_ext/1641633261/oscillator.p1 ${OBJECTDIR}/_ext/1641633261/timer.p1
 
 # Source Files
-SOURCEFILES=../../Sources/18LF24K40/io.c main.c
+SOURCEFILES=../../Sources/18LF24K40/io.c main.c ../../Sources/18LF24K40/oscillator.c ../../Sources/18LF24K40/timer.c
 
 
 
@@ -110,6 +110,22 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/_ext/1641633261/oscillator.p1: ../../Sources/18LF24K40/oscillator.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1641633261" 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/oscillator.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1641633261/oscillator.p1 ../../Sources/18LF24K40/oscillator.c 
+	@-${MV} ${OBJECTDIR}/_ext/1641633261/oscillator.d ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1641633261/timer.p1: ../../Sources/18LF24K40/timer.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1641633261" 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/timer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/timer.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1641633261/timer.p1 ../../Sources/18LF24K40/timer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1641633261/timer.d ${OBJECTDIR}/_ext/1641633261/timer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1641633261/timer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/_ext/1641633261/io.p1: ../../Sources/18LF24K40/io.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/_ext/1641633261" 
@@ -126,6 +142,22 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/main.p1 main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1641633261/oscillator.p1: ../../Sources/18LF24K40/oscillator.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1641633261" 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/oscillator.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1641633261/oscillator.p1 ../../Sources/18LF24K40/oscillator.c 
+	@-${MV} ${OBJECTDIR}/_ext/1641633261/oscillator.d ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1641633261/oscillator.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1641633261/timer.p1: ../../Sources/18LF24K40/timer.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/_ext/1641633261" 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/timer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1641633261/timer.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/_ext/1641633261/timer.p1 ../../Sources/18LF24K40/timer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1641633261/timer.d ${OBJECTDIR}/_ext/1641633261/timer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1641633261/timer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

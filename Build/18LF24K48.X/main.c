@@ -1,7 +1,7 @@
-// <editor-fold defaultstate="collapsed" desc="MCU Configs">
-#pragma config FEXTOSC = HS     // External Oscillator mode Selection bits (HS (crystal oscillator) above 8 MHz; PFM set to high power)
-#pragma config RSTOSC = EXTOSC  // Power-up default value for COSC bits (EXTOSC operating per FEXTOSC bits (device manufacturing default))
-#pragma config CLKOUTEN = OFF   // Clock Out Enable bit (CLKOUT function is disabled)
+// <editor-fold defaultstate="collapsed" desc="PIC18LF24K40 Config BITs">
+#pragma config FEXTOSC = HS    // External Oscillator mode Selection bits (Oscillator not enabled)
+//#pragma config RSTOSC = LFINTOSC
+#pragma config CLKOUTEN = OFF   // Clock Out Enable bit (CLKOUT function is enable)
 #pragma config CSWEN = ON       // Clock Switch Enable bit (Writing to NOSC and NDIV is allowed)
 #pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor enabled)
 #pragma config MCLRE = EXTMCLR  // Master Clear Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR )
@@ -33,16 +33,15 @@
 // </editor-fold>
 
 #include "../../Libraries/18LF24K40/macros.h"
+#include "../../Libraries/18LF24K40/oscillator.h"
 #include "../../Libraries/18LF24K40/io.h"
+#include "../../Libraries/18LF24K40/timer.h"
 
 void main(void){
-    pin_Direction(RA_0,OUTPUT);
-    pin_Direction(RA_1,INPUT);
-    pin_Direction(RA_2,INPUT);
-    pin_Direction(RA_3,INPUT);
-    pin_Direction(RA_4,OUTPUT);
-    pin_Direction(RA_5,INPUT);
-    pin_Direction(RA_6,INPUT);
-    pin_Direction(RA_7,INPUT);
+    TMR1CLK = 0x02;
+    T1CON = 0x03;
+    T1GCON = 0xFF;
+    ExternalClock_Init(false,false,1);
+
     return;
 }
