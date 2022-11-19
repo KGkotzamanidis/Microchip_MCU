@@ -27,9 +27,9 @@
 
 /*
  * void InternalClock_Init(const char* INTOSC,int freq,int divider)
- * @input param const char* -> L/H(LFINTOSC/HFINTOSC)
- * @input param int -> 1,2,4,8,12,16,32,48,64
- * @input param int -> 1,2,4,8,16,32,64,128,256,512
+ * @input param const char* : L/H(LFINTOSC/HFINTOSC)
+ * @input param int : 1,2,4,8,12,16,32,48,64
+ * @input param int : 1,2,4,8,16,32,64,128,256,512
  * For more info see @ page 47.
  */
 void InternalClock_Init(const char* INTOSC,int freq,int divider){
