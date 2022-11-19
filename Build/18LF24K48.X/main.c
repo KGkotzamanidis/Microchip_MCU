@@ -38,10 +38,5 @@
 #include "../../Libraries/18LF24K40/timer.h"
 
 void main(void){
-    TMR1CLK = 0x02;
-    T1CON = 0x03;
-    T1GCON = 0xFF;
-    ExternalClock_Init(false,false,1);
-
     return;
 }

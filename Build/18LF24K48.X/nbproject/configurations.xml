@@ -8,6 +8,7 @@
       <itemPath>../../Libraries/18LF24K40/macros.h</itemPath>
       <itemPath>../../Libraries/18LF24K40/oscillator.h</itemPath>
       <itemPath>../../Libraries/18LF24K40/timer.h</itemPath>
+      <itemPath>../../Libraries/18LF24K40/delay.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,6 +21,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>../../Sources/18LF24K40/oscillator.c</itemPath>
       <itemPath>../../Sources/18LF24K40/timer.c</itemPath>
+      <itemPath>../../Sources/18LF24K40/delay.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -40,7 +42,7 @@
         <targetDevice>PIC18LF24K40</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.40</languageToolchainVersion>
         <platform>3</platform>
