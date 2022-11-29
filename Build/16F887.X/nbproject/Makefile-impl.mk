@@ -31,7 +31,7 @@ DEFAULTCONF=PowerOFF
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default PowerOFF PowerON 
+ALLCONFS=default PowerOFF PowerON Simulator 
 
 
 # build
@@ -48,6 +48,7 @@ ALLCONFS=default PowerOFF PowerON
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=PowerOFF clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=PowerON clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Simulator clean
 
 
 
@@ -56,6 +57,7 @@ ALLCONFS=default PowerOFF PowerON
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=PowerOFF build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=PowerON build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=Simulator build
 
 
 

@@ -1,0 +1,1123 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"45 A:\Program_Files\Microchip\xc8\v2.40\pic\include\c90\string.h
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\c90\string.h: 45: extern int strcmp(const char *, const char *);
+[v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"460 A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 460: extern volatile unsigned char INTCON __attribute__((address(0x00B)));
+[v _INTCON `Vuc ~T0 @X0 0 e@11 ]
+"1347
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1347: extern volatile unsigned char OPTION_REG __attribute__((address(0x081)));
+[v _OPTION_REG `Vuc ~T0 @X0 0 e@129 ]
+"466
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 466:     struct {
+[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S16 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
+"476
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 476:     struct {
+[s S17 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S17 . . TMR0IF . TMR0IE ]
+"465
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 465: typedef union {
+[u S15 `S16 1 `S17 1 ]
+[n S15 . . . ]
+"483
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 483: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
+"1709
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1709:     struct {
+[s S63 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S63 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
+"1708
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1708: typedef union {
+[u S62 `S63 1 ]
+[n S62 . . ]
+"1719
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1719: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x08C)));
+[v _PIE1bits `VS62 ~T0 @X0 0 e@140 ]
+"672
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 672: extern volatile unsigned char T1CON __attribute__((address(0x010)));
+[v _T1CON `Vuc ~T0 @X0 0 e@16 ]
+"665
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 665: extern volatile unsigned char TMR1H __attribute__((address(0x00F)));
+[v _TMR1H `Vuc ~T0 @X0 0 e@15 ]
+"658
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 658: extern volatile unsigned char TMR1L __attribute__((address(0x00E)));
+[v _TMR1L `Vuc ~T0 @X0 0 e@14 ]
+"544
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 544:     struct {
+[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+"543
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 543: typedef union {
+[u S18 `S19 1 ]
+[n S18 . . ]
+"554
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 554: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
+[v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"773
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 773: extern volatile unsigned char T2CON __attribute__((address(0x012)));
+[v _T2CON `Vuc ~T0 @X0 0 e@18 ]
+"2042
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2042: extern volatile unsigned char PR2 __attribute__((address(0x092)));
+[v _PR2 `Vuc ~T0 @X0 0 e@146 ]
+"1703
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1703: extern volatile unsigned char PIE1 __attribute__((address(0x08C)));
+[v _PIE1 `Vuc ~T0 @X0 0 e@140 ]
+"55 A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 55: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"62
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 62: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"69
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 69: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"76
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 76: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"162
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 162: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"169
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 169: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"231
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 231: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"293
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 293: __asm("PORTC equ 07h");
+[; <" PORTC equ 07h ;# ">
+"355
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 355: __asm("PORTD equ 08h");
+[; <" PORTD equ 08h ;# ">
+"417
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 417: __asm("PORTE equ 09h");
+[; <" PORTE equ 09h ;# ">
+"455
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 455: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"462
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 462: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"540
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 540: __asm("PIR1 equ 0Ch");
+[; <" PIR1 equ 0Ch ;# ">
+"596
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 596: __asm("PIR2 equ 0Dh");
+[; <" PIR2 equ 0Dh ;# ">
+"653
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 653: __asm("TMR1 equ 0Eh");
+[; <" TMR1 equ 0Eh ;# ">
+"660
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 660: __asm("TMR1L equ 0Eh");
+[; <" TMR1L equ 0Eh ;# ">
+"667
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 667: __asm("TMR1H equ 0Fh");
+[; <" TMR1H equ 0Fh ;# ">
+"674
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 674: __asm("T1CON equ 010h");
+[; <" T1CON equ 010h ;# ">
+"768
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 768: __asm("TMR2 equ 011h");
+[; <" TMR2 equ 011h ;# ">
+"775
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 775: __asm("T2CON equ 012h");
+[; <" T2CON equ 012h ;# ">
+"846
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 846: __asm("SSPBUF equ 013h");
+[; <" SSPBUF equ 013h ;# ">
+"853
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 853: __asm("SSPCON equ 014h");
+[; <" SSPCON equ 014h ;# ">
+"923
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 923: __asm("CCPR1 equ 015h");
+[; <" CCPR1 equ 015h ;# ">
+"930
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 930: __asm("CCPR1L equ 015h");
+[; <" CCPR1L equ 015h ;# ">
+"937
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 937: __asm("CCPR1H equ 016h");
+[; <" CCPR1H equ 016h ;# ">
+"944
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 944: __asm("CCP1CON equ 017h");
+[; <" CCP1CON equ 017h ;# ">
+"1041
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1041: __asm("RCSTA equ 018h");
+[; <" RCSTA equ 018h ;# ">
+"1136
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1136: __asm("TXREG equ 019h");
+[; <" TXREG equ 019h ;# ">
+"1143
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1143: __asm("RCREG equ 01Ah");
+[; <" RCREG equ 01Ah ;# ">
+"1150
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1150: __asm("CCPR2 equ 01Bh");
+[; <" CCPR2 equ 01Bh ;# ">
+"1157
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1157: __asm("CCPR2L equ 01Bh");
+[; <" CCPR2L equ 01Bh ;# ">
+"1164
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1164: __asm("CCPR2H equ 01Ch");
+[; <" CCPR2H equ 01Ch ;# ">
+"1171
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1171: __asm("CCP2CON equ 01Dh");
+[; <" CCP2CON equ 01Dh ;# ">
+"1241
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1241: __asm("ADRESH equ 01Eh");
+[; <" ADRESH equ 01Eh ;# ">
+"1248
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1248: __asm("ADCON0 equ 01Fh");
+[; <" ADCON0 equ 01Fh ;# ">
+"1349
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1349: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"1419
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1419: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"1481
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1481: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"1543
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1543: __asm("TRISC equ 087h");
+[; <" TRISC equ 087h ;# ">
+"1605
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1605: __asm("TRISD equ 088h");
+[; <" TRISD equ 088h ;# ">
+"1667
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1667: __asm("TRISE equ 089h");
+[; <" TRISE equ 089h ;# ">
+"1705
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1705: __asm("PIE1 equ 08Ch");
+[; <" PIE1 equ 08Ch ;# ">
+"1761
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1761: __asm("PIE2 equ 08Dh");
+[; <" PIE2 equ 08Dh ;# ">
+"1818
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1818: __asm("PCON equ 08Eh");
+[; <" PCON equ 08Eh ;# ">
+"1865
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1865: __asm("OSCCON equ 08Fh");
+[; <" OSCCON equ 08Fh ;# ">
+"1930
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1930: __asm("OSCTUNE equ 090h");
+[; <" OSCTUNE equ 090h ;# ">
+"1982
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 1982: __asm("SSPCON2 equ 091h");
+[; <" SSPCON2 equ 091h ;# ">
+"2044
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2044: __asm("PR2 equ 092h");
+[; <" PR2 equ 092h ;# ">
+"2051
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2051: __asm("SSPADD equ 093h");
+[; <" SSPADD equ 093h ;# ">
+"2058
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2058: __asm("SSPMSK equ 093h");
+[; <" SSPMSK equ 093h ;# ">
+"2063
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2063: __asm("MSK equ 093h");
+[; <" MSK equ 093h ;# ">
+"2180
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2180: __asm("SSPSTAT equ 094h");
+[; <" SSPSTAT equ 094h ;# ">
+"2349
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2349: __asm("WPUB equ 095h");
+[; <" WPUB equ 095h ;# ">
+"2419
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2419: __asm("IOCB equ 096h");
+[; <" IOCB equ 096h ;# ">
+"2489
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2489: __asm("VRCON equ 097h");
+[; <" VRCON equ 097h ;# ">
+"2559
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2559: __asm("TXSTA equ 098h");
+[; <" TXSTA equ 098h ;# ">
+"2645
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2645: __asm("SPBRG equ 099h");
+[; <" SPBRG equ 099h ;# ">
+"2707
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2707: __asm("SPBRGH equ 09Ah");
+[; <" SPBRGH equ 09Ah ;# ">
+"2777
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2777: __asm("PWM1CON equ 09Bh");
+[; <" PWM1CON equ 09Bh ;# ">
+"2847
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2847: __asm("ECCPAS equ 09Ch");
+[; <" ECCPAS equ 09Ch ;# ">
+"2929
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2929: __asm("PSTRCON equ 09Dh");
+[; <" PSTRCON equ 09Dh ;# ">
+"2973
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2973: __asm("ADRESL equ 09Eh");
+[; <" ADRESL equ 09Eh ;# ">
+"2980
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 2980: __asm("ADCON1 equ 09Fh");
+[; <" ADCON1 equ 09Fh ;# ">
+"3014
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3014: __asm("WDTCON equ 0105h");
+[; <" WDTCON equ 0105h ;# ">
+"3067
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3067: __asm("CM1CON0 equ 0107h");
+[; <" CM1CON0 equ 0107h ;# ">
+"3132
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3132: __asm("CM2CON0 equ 0108h");
+[; <" CM2CON0 equ 0108h ;# ">
+"3197
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3197: __asm("CM2CON1 equ 0109h");
+[; <" CM2CON1 equ 0109h ;# ">
+"3248
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3248: __asm("EEDATA equ 010Ch");
+[; <" EEDATA equ 010Ch ;# ">
+"3253
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3253: __asm("EEDAT equ 010Ch");
+[; <" EEDAT equ 010Ch ;# ">
+"3260
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3260: __asm("EEADR equ 010Dh");
+[; <" EEADR equ 010Dh ;# ">
+"3267
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3267: __asm("EEDATH equ 010Eh");
+[; <" EEDATH equ 010Eh ;# ">
+"3274
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3274: __asm("EEADRH equ 010Fh");
+[; <" EEADRH equ 010Fh ;# ">
+"3281
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3281: __asm("SRCON equ 0185h");
+[; <" SRCON equ 0185h ;# ">
+"3338
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3338: __asm("BAUDCTL equ 0187h");
+[; <" BAUDCTL equ 0187h ;# ">
+"3390
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3390: __asm("ANSEL equ 0188h");
+[; <" ANSEL equ 0188h ;# ">
+"3452
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3452: __asm("ANSELH equ 0189h");
+[; <" ANSELH equ 0189h ;# ">
+"3502
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3502: __asm("EECON1 equ 018Ch");
+[; <" EECON1 equ 018Ch ;# ">
+"3547
+[; ;A:\Program_Files\Microchip\xc8\v2.40\pic\include\proc\pic16f887.h: 3547: __asm("EECON2 equ 018Dh");
+[; <" EECON2 equ 018Dh ;# ">
+"36 ../../Sources/16F887/timer.c
+[; ;../../Sources/16F887/timer.c: 36: void TMR0_enable(_Bool PSA,int Prescaler,char clk_src[],char edge_src[]){
+[v _TMR0_enable `(v ~T0 @X0 1 ef4`a`i`*uc`*uc ]
+{
+[e :U _TMR0_enable ]
+[v _PSA `a ~T0 @X0 1 r1 ]
+[v _Prescaler `i ~T0 @X0 1 r2 ]
+[v _clk_src `*uc ~T0 @X0 1 r3 ]
+[v _edge_src `*uc ~T0 @X0 1 r4 ]
+[f ]
+"37
+[; ;../../Sources/16F887/timer.c: 37:     bit x_PSA;
+[v _x_PSA `ui ~T0 @X0 1 a ]
+"38
+[; ;../../Sources/16F887/timer.c: 38:     bit x_clk_src;
+[v _x_clk_src `ui ~T0 @X0 1 a ]
+"39
+[; ;../../Sources/16F887/timer.c: 39:     bit x_edge_src;
+[v _x_edge_src `ui ~T0 @X0 1 a ]
+"40
+[; ;../../Sources/16F887/timer.c: 40:     uint8_t var_OPTIONS;
+[v _var_OPTIONS `uc ~T0 @X0 1 a ]
+"41
+[; ;../../Sources/16F887/timer.c: 41:     uint8_t var_Settings;
+[v _var_Settings `uc ~T0 @X0 1 a ]
+"42
+[; ;../../Sources/16F887/timer.c: 42:     uint8_t var_Prescaler;
+[v _var_Prescaler `uc ~T0 @X0 1 a ]
+"44
+[; ;../../Sources/16F887/timer.c: 44:     if(!strcmp(clk_src,"FOSC4")){
+[e $ ! ! != ( _strcmp (2 , -> _clk_src `*Cuc :s 2C -> 0 `i 142  ]
+{
+"45
+[; ;../../Sources/16F887/timer.c: 45:         x_clk_src = 0;
+[e = _x_clk_src -> -> 0 `i `ui ]
+"46
+[; ;../../Sources/16F887/timer.c: 46:     }else if(!strcmp(clk_src,"T0CKI")){
+}
+[e $U 143  ]
+[e :U 142 ]
+[e $ ! ! != ( _strcmp (2 , -> _clk_src `*Cuc :s 4C -> 0 `i 144  ]
+{
+"47
+[; ;../../Sources/16F887/timer.c: 47:         x_clk_src = 1;
+[e = _x_clk_src -> -> 1 `i `ui ]
+"48
+[; ;../../Sources/16F887/timer.c: 48:     }else if(!strcmp(edge_src,"HIGH")){
+}
+[e $U 145  ]
+[e :U 144 ]
+[e $ ! ! != ( _strcmp (2 , -> _edge_src `*Cuc :s 6C -> 0 `i 146  ]
+{
+"49
+[; ;../../Sources/16F887/timer.c: 49:         x_edge_src = 1;
+[e = _x_edge_src -> -> 1 `i `ui ]
+"50
+[; ;../../Sources/16F887/timer.c: 50:     }else if(!strcmp(edge_src,"LOW")){
+}
+[e $U 147  ]
+[e :U 146 ]
+[e $ ! ! != ( _strcmp (2 , -> _edge_src `*Cuc :s 8C -> 0 `i 148  ]
+{
+"51
+[; ;../../Sources/16F887/timer.c: 51:         x_edge_src = 0;
+[e = _x_edge_src -> -> 0 `i `ui ]
+"52
+[; ;../../Sources/16F887/timer.c: 52:     }
+}
+[e :U 148 ]
+[e :U 147 ]
+[e :U 145 ]
+[e :U 143 ]
+"54
+[; ;../../Sources/16F887/timer.c: 54:     if(PSA){
+[e $ ! != -> _PSA `i -> 0 `i 149  ]
+{
+"55
+[; ;../../Sources/16F887/timer.c: 55:         x_PSA = 1;
+[e = _x_PSA -> -> 1 `i `ui ]
+"56
+[; ;../../Sources/16F887/timer.c: 56:     }else{
+}
+[e $U 150  ]
+[e :U 149 ]
+{
+"57
+[; ;../../Sources/16F887/timer.c: 57:         x_PSA = 0;
+[e = _x_PSA -> -> 0 `i `ui ]
+"58
+[; ;../../Sources/16F887/timer.c: 58:     }
+}
+[e :U 150 ]
+"60
+[; ;../../Sources/16F887/timer.c: 60:     var_Settings = x_edge_src;
+[e = _var_Settings -> _x_edge_src `uc ]
+"61
+[; ;../../Sources/16F887/timer.c: 61:     var_Settings = (var_Settings << 1) | x_clk_src;
+[e = _var_Settings -> | -> << -> _var_Settings `i -> 1 `i `ui _x_clk_src `uc ]
+"63
+[; ;../../Sources/16F887/timer.c: 63:     switch(Prescaler){
+[e $U 152  ]
+{
+"64
+[; ;../../Sources/16F887/timer.c: 64:         case 2:
+[e :U 153 ]
+"65
+[; ;../../Sources/16F887/timer.c: 65:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"66
+[; ;../../Sources/16F887/timer.c: 66:             var_Prescaler = (var_Prescaler << 3) | 0x0;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 0 `i `uc ]
+"67
+[; ;../../Sources/16F887/timer.c: 67:             break;
+[e $U 151  ]
+"68
+[; ;../../Sources/16F887/timer.c: 68:         case 4:
+[e :U 154 ]
+"69
+[; ;../../Sources/16F887/timer.c: 69:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"70
+[; ;../../Sources/16F887/timer.c: 70:             var_Prescaler = (var_Prescaler << 3) | 0x1;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 1 `i `uc ]
+"71
+[; ;../../Sources/16F887/timer.c: 71:             break;
+[e $U 151  ]
+"72
+[; ;../../Sources/16F887/timer.c: 72:         case 8:
+[e :U 155 ]
+"73
+[; ;../../Sources/16F887/timer.c: 73:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"74
+[; ;../../Sources/16F887/timer.c: 74:             var_Prescaler = (var_Prescaler << 3) | 0x2;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 2 `i `uc ]
+"75
+[; ;../../Sources/16F887/timer.c: 75:             break;
+[e $U 151  ]
+"76
+[; ;../../Sources/16F887/timer.c: 76:         case 16:
+[e :U 156 ]
+"77
+[; ;../../Sources/16F887/timer.c: 77:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"78
+[; ;../../Sources/16F887/timer.c: 78:             var_Prescaler = (var_Prescaler << 3) | 0x3;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 3 `i `uc ]
+"79
+[; ;../../Sources/16F887/timer.c: 79:             break;
+[e $U 151  ]
+"80
+[; ;../../Sources/16F887/timer.c: 80:         case 32:
+[e :U 157 ]
+"81
+[; ;../../Sources/16F887/timer.c: 81:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"82
+[; ;../../Sources/16F887/timer.c: 82:             var_Prescaler = (var_Prescaler << 3) | 0x4;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 4 `i `uc ]
+"83
+[; ;../../Sources/16F887/timer.c: 83:             break;
+[e $U 151  ]
+"84
+[; ;../../Sources/16F887/timer.c: 84:         case 64:
+[e :U 158 ]
+"85
+[; ;../../Sources/16F887/timer.c: 85:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"86
+[; ;../../Sources/16F887/timer.c: 86:             var_Prescaler = (var_Prescaler << 3) | 0x5;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 5 `i `uc ]
+"87
+[; ;../../Sources/16F887/timer.c: 87:             break;
+[e $U 151  ]
+"88
+[; ;../../Sources/16F887/timer.c: 88:         case 128:
+[e :U 159 ]
+"89
+[; ;../../Sources/16F887/timer.c: 89:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"90
+[; ;../../Sources/16F887/timer.c: 90:             var_Prescaler = (var_Prescaler << 3) | 0x6;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 6 `i `uc ]
+"91
+[; ;../../Sources/16F887/timer.c: 91:             break;
+[e $U 151  ]
+"92
+[; ;../../Sources/16F887/timer.c: 92:         case 256:
+[e :U 160 ]
+"93
+[; ;../../Sources/16F887/timer.c: 93:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"94
+[; ;../../Sources/16F887/timer.c: 94:             var_Prescaler = (var_Prescaler << 3) | 0x7;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 7 `i `uc ]
+"95
+[; ;../../Sources/16F887/timer.c: 95:             break;
+[e $U 151  ]
+"96
+[; ;../../Sources/16F887/timer.c: 96:         default:
+[e :U 161 ]
+"97
+[; ;../../Sources/16F887/timer.c: 97:             var_Prescaler = x_PSA;
+[e = _var_Prescaler -> _x_PSA `uc ]
+"98
+[; ;../../Sources/16F887/timer.c: 98:             var_Prescaler = (var_Prescaler << 3) | 0x0;
+[e = _var_Prescaler -> | << -> _var_Prescaler `i -> 3 `i -> 0 `i `uc ]
+"99
+[; ;../../Sources/16F887/timer.c: 99:             break;
+[e $U 151  ]
+"100
+[; ;../../Sources/16F887/timer.c: 100:     }
+}
+[e $U 151  ]
+[e :U 152 ]
+[e [\ _Prescaler , $ -> 2 `i 153
+ , $ -> 4 `i 154
+ , $ -> 8 `i 155
+ , $ -> 16 `i 156
+ , $ -> 32 `i 157
+ , $ -> 64 `i 158
+ , $ -> 128 `i 159
+ , $ -> 256 `i 160
+ 161 ]
+[e :U 151 ]
+"102
+[; ;../../Sources/16F887/timer.c: 102:     var_OPTIONS = var_Settings;
+[e = _var_OPTIONS _var_Settings ]
+"103
+[; ;../../Sources/16F887/timer.c: 103:     var_OPTIONS = (var_OPTIONS << 4) | var_Prescaler;
+[e = _var_OPTIONS -> | << -> _var_OPTIONS `i -> 4 `i -> _var_Prescaler `i `uc ]
+"105
+[; ;../../Sources/16F887/timer.c: 105:     INTCON = 0xE0;
+[e = _INTCON -> -> 224 `i `uc ]
+"106
+[; ;../../Sources/16F887/timer.c: 106:     OPTION_REG = var_OPTIONS;
+[e = _OPTION_REG _var_OPTIONS ]
+"107
+[; ;../../Sources/16F887/timer.c: 107: }
+[e :UE 141 ]
+}
+"115
+[; ;../../Sources/16F887/timer.c: 115: _Bool TMR0_interrupt(){
+[v _TMR0_interrupt `(a ~T0 @X0 1 ef ]
+{
+[e :U _TMR0_interrupt ]
+[f ]
+"116
+[; ;../../Sources/16F887/timer.c: 116:     if(INTCONbits.T0IF == 1){
+[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 163  ]
+{
+"117
+[; ;../../Sources/16F887/timer.c: 117:         INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"118
+[; ;../../Sources/16F887/timer.c: 118:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 162  ]
+"119
+[; ;../../Sources/16F887/timer.c: 119:     }
+}
+[e :U 163 ]
+"120
+[; ;../../Sources/16F887/timer.c: 120:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 162  ]
+"121
+[; ;../../Sources/16F887/timer.c: 121: }
+[e :UE 162 ]
+}
+"131
+[; ;../../Sources/16F887/timer.c: 131: void TMR1_enable(char clk_src[],_Bool SYNC,_Bool LPSOC,int Prescaler){
+[v _TMR1_enable `(v ~T0 @X0 1 ef4`*uc`a`a`i ]
+{
+[e :U _TMR1_enable ]
+[v _clk_src `*uc ~T0 @X0 1 r1 ]
+[v _SYNC `a ~T0 @X0 1 r2 ]
+[v _LPSOC `a ~T0 @X0 1 r3 ]
+[v _Prescaler `i ~T0 @X0 1 r4 ]
+[f ]
+"132
+[; ;../../Sources/16F887/timer.c: 132:     uint8_t var_Settings;
+[v _var_Settings `uc ~T0 @X0 1 a ]
+"133
+[; ;../../Sources/16F887/timer.c: 133:     uint8_t var_Prescaler;
+[v _var_Prescaler `uc ~T0 @X0 1 a ]
+"134
+[; ;../../Sources/16F887/timer.c: 134:     uint8_t var_T1CON;
+[v _var_T1CON `uc ~T0 @X0 1 a ]
+"135
+[; ;../../Sources/16F887/timer.c: 135:     bit x_clk_src;
+[v _x_clk_src `ui ~T0 @X0 1 a ]
+"136
+[; ;../../Sources/16F887/timer.c: 136:     bit x_SYNC;
+[v _x_SYNC `ui ~T0 @X0 1 a ]
+"137
+[; ;../../Sources/16F887/timer.c: 137:     bit x_LPSOC;
+[v _x_LPSOC `ui ~T0 @X0 1 a ]
+"139
+[; ;../../Sources/16F887/timer.c: 139:     if(!strcmp(clk_src,"FOSC4")){
+[e $ ! ! != ( _strcmp (2 , -> _clk_src `*Cuc :s 10C -> 0 `i 165  ]
+{
+"140
+[; ;../../Sources/16F887/timer.c: 140:         x_clk_src = 0;
+[e = _x_clk_src -> -> 0 `i `ui ]
+"141
+[; ;../../Sources/16F887/timer.c: 141:     }else if(!strcmp(clk_src,"T1CKI")){
+}
+[e $U 166  ]
+[e :U 165 ]
+[e $ ! ! != ( _strcmp (2 , -> _clk_src `*Cuc :s 12C -> 0 `i 167  ]
+{
+"142
+[; ;../../Sources/16F887/timer.c: 142:         x_clk_src = 1;
+[e = _x_clk_src -> -> 1 `i `ui ]
+"143
+[; ;../../Sources/16F887/timer.c: 143:     }
+}
+[e :U 167 ]
+[e :U 166 ]
+"145
+[; ;../../Sources/16F887/timer.c: 145:     if(SYNC){
+[e $ ! != -> _SYNC `i -> 0 `i 168  ]
+{
+"146
+[; ;../../Sources/16F887/timer.c: 146:         x_SYNC = 0;
+[e = _x_SYNC -> -> 0 `i `ui ]
+"147
+[; ;../../Sources/16F887/timer.c: 147:     }else{
+}
+[e $U 169  ]
+[e :U 168 ]
+{
+"148
+[; ;../../Sources/16F887/timer.c: 148:         x_SYNC = 1;
+[e = _x_SYNC -> -> 1 `i `ui ]
+"149
+[; ;../../Sources/16F887/timer.c: 149:     }
+}
+[e :U 169 ]
+"151
+[; ;../../Sources/16F887/timer.c: 151:     if(LPSOC){
+[e $ ! != -> _LPSOC `i -> 0 `i 170  ]
+{
+"152
+[; ;../../Sources/16F887/timer.c: 152:         x_LPSOC = 1;
+[e = _x_LPSOC -> -> 1 `i `ui ]
+"153
+[; ;../../Sources/16F887/timer.c: 153:     }else{
+}
+[e $U 171  ]
+[e :U 170 ]
+{
+"154
+[; ;../../Sources/16F887/timer.c: 154:         x_LPSOC = 0;
+[e = _x_LPSOC -> -> 0 `i `ui ]
+"155
+[; ;../../Sources/16F887/timer.c: 155:     }
+}
+[e :U 171 ]
+"157
+[; ;../../Sources/16F887/timer.c: 157:     var_Settings = x_LPSOC;
+[e = _var_Settings -> _x_LPSOC `uc ]
+"158
+[; ;../../Sources/16F887/timer.c: 158:     var_Settings = (var_Settings << 1) | x_SYNC ;
+[e = _var_Settings -> | -> << -> _var_Settings `i -> 1 `i `ui _x_SYNC `uc ]
+"159
+[; ;../../Sources/16F887/timer.c: 159:     var_Settings = (var_Settings << 1) | x_clk_src;
+[e = _var_Settings -> | -> << -> _var_Settings `i -> 1 `i `ui _x_clk_src `uc ]
+"160
+[; ;../../Sources/16F887/timer.c: 160:     var_Settings = (var_Settings << 1) | 0x1;
+[e = _var_Settings -> | << -> _var_Settings `i -> 1 `i -> 1 `i `uc ]
+"162
+[; ;../../Sources/16F887/timer.c: 162:     switch(Prescaler){
+[e $U 173  ]
+{
+"163
+[; ;../../Sources/16F887/timer.c: 163:         case 1:
+[e :U 174 ]
+"164
+[; ;../../Sources/16F887/timer.c: 164:             var_Prescaler = 0x8;
+[e = _var_Prescaler -> -> 8 `i `uc ]
+"165
+[; ;../../Sources/16F887/timer.c: 165:             break;
+[e $U 172  ]
+"166
+[; ;../../Sources/16F887/timer.c: 166:         case 2:
+[e :U 175 ]
+"167
+[; ;../../Sources/16F887/timer.c: 167:             var_Prescaler = 0x9;
+[e = _var_Prescaler -> -> 9 `i `uc ]
+"168
+[; ;../../Sources/16F887/timer.c: 168:             break;
+[e $U 172  ]
+"169
+[; ;../../Sources/16F887/timer.c: 169:         case 4:
+[e :U 176 ]
+"170
+[; ;../../Sources/16F887/timer.c: 170:             var_Prescaler = 0xA;
+[e = _var_Prescaler -> -> 10 `i `uc ]
+"171
+[; ;../../Sources/16F887/timer.c: 171:             break;
+[e $U 172  ]
+"172
+[; ;../../Sources/16F887/timer.c: 172:         case 8:
+[e :U 177 ]
+"173
+[; ;../../Sources/16F887/timer.c: 173:             var_Prescaler = 0xB;
+[e = _var_Prescaler -> -> 11 `i `uc ]
+"174
+[; ;../../Sources/16F887/timer.c: 174:             break;
+[e $U 172  ]
+"175
+[; ;../../Sources/16F887/timer.c: 175:         default:
+[e :U 178 ]
+"176
+[; ;../../Sources/16F887/timer.c: 176:             var_Prescaler = 0x8;
+[e = _var_Prescaler -> -> 8 `i `uc ]
+"177
+[; ;../../Sources/16F887/timer.c: 177:             break;
+[e $U 172  ]
+"178
+[; ;../../Sources/16F887/timer.c: 178:     }
+}
+[e $U 172  ]
+[e :U 173 ]
+[e [\ _Prescaler , $ -> 1 `i 174
+ , $ -> 2 `i 175
+ , $ -> 4 `i 176
+ , $ -> 8 `i 177
+ 178 ]
+[e :U 172 ]
+"180
+[; ;../../Sources/16F887/timer.c: 180:     var_T1CON = var_Prescaler;
+[e = _var_T1CON _var_Prescaler ]
+"181
+[; ;../../Sources/16F887/timer.c: 181:     var_T1CON = (var_T1CON << 4) | var_Settings;
+[e = _var_T1CON -> | << -> _var_T1CON `i -> 4 `i -> _var_Settings `i `uc ]
+"183
+[; ;../../Sources/16F887/timer.c: 183:     INTCON = 0xC0;
+[e = _INTCON -> -> 192 `i `uc ]
+"184
+[; ;../../Sources/16F887/timer.c: 184:     PIE1bits.TMR1IE = 1;
+[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
+"185
+[; ;../../Sources/16F887/timer.c: 185:     T1CON = var_T1CON;
+[e = _T1CON _var_T1CON ]
+"186
+[; ;../../Sources/16F887/timer.c: 186: }
+[e :UE 164 ]
+}
+"193
+[; ;../../Sources/16F887/timer.c: 193: void TMR1_set_timer(uint16_t time){
+[v _TMR1_set_timer `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _TMR1_set_timer ]
+[v _time `ui ~T0 @X0 1 r1 ]
+[f ]
+"194
+[; ;../../Sources/16F887/timer.c: 194:     uint8_t bytes[2];
+[v _bytes `uc ~T0 @X0 -> 2 `i a ]
+"195
+[; ;../../Sources/16F887/timer.c: 195:     bytes[0] = time >> 8;
+[e = *U + &U _bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _bytes `ui `ux -> >> _time -> 8 `i `uc ]
+"196
+[; ;../../Sources/16F887/timer.c: 196:     bytes[1] = time & 0x00FF;
+[e = *U + &U _bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _bytes `ui `ux -> & _time -> -> 255 `i `ui `uc ]
+"198
+[; ;../../Sources/16F887/timer.c: 198:     TMR1H = bytes[0];
+[e = _TMR1H *U + &U _bytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _bytes `ui `ux ]
+"199
+[; ;../../Sources/16F887/timer.c: 199:     TMR1L = bytes[1];
+[e = _TMR1L *U + &U _bytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _bytes `ui `ux ]
+"200
+[; ;../../Sources/16F887/timer.c: 200: }
+[e :UE 179 ]
+}
+"206
+[; ;../../Sources/16F887/timer.c: 206: _Bool TMR1_interrupt(){
+[v _TMR1_interrupt `(a ~T0 @X0 1 ef ]
+{
+[e :U _TMR1_interrupt ]
+[f ]
+"207
+[; ;../../Sources/16F887/timer.c: 207:     if(PIR1bits.TMR1IF == 1){
+[e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 181  ]
+{
+"208
+[; ;../../Sources/16F887/timer.c: 208:         PIR1bits.TMR1IF = 0;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+"209
+[; ;../../Sources/16F887/timer.c: 209:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 180  ]
+"210
+[; ;../../Sources/16F887/timer.c: 210:     }
+}
+[e :U 181 ]
+"211
+[; ;../../Sources/16F887/timer.c: 211:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 180  ]
+"212
+[; ;../../Sources/16F887/timer.c: 212: }
+[e :UE 180 ]
+}
+"219
+[; ;../../Sources/16F887/timer.c: 219: void TMR2_enable(int Prescaler,int Postscaler){
+[v _TMR2_enable `(v ~T0 @X0 1 ef2`i`i ]
+{
+[e :U _TMR2_enable ]
+[v _Prescaler `i ~T0 @X0 1 r1 ]
+[v _Postscaler `i ~T0 @X0 1 r2 ]
+[f ]
+"220
+[; ;../../Sources/16F887/timer.c: 220:     uint8_t var_Prescaler;
+[v _var_Prescaler `uc ~T0 @X0 1 a ]
+"221
+[; ;../../Sources/16F887/timer.c: 221:     uint8_t var_Postscaler;
+[v _var_Postscaler `uc ~T0 @X0 1 a ]
+"222
+[; ;../../Sources/16F887/timer.c: 222:     uint8_t var_T2CON;
+[v _var_T2CON `uc ~T0 @X0 1 a ]
+"224
+[; ;../../Sources/16F887/timer.c: 224:     switch(Prescaler){
+[e $U 184  ]
+{
+"225
+[; ;../../Sources/16F887/timer.c: 225:         case 1:
+[e :U 185 ]
+"226
+[; ;../../Sources/16F887/timer.c: 226:             var_Prescaler = 0x4;
+[e = _var_Prescaler -> -> 4 `i `uc ]
+"227
+[; ;../../Sources/16F887/timer.c: 227:             break;
+[e $U 183  ]
+"228
+[; ;../../Sources/16F887/timer.c: 228:         case 4:
+[e :U 186 ]
+"229
+[; ;../../Sources/16F887/timer.c: 229:             var_Prescaler = 0x5;
+[e = _var_Prescaler -> -> 5 `i `uc ]
+"230
+[; ;../../Sources/16F887/timer.c: 230:             break;
+[e $U 183  ]
+"231
+[; ;../../Sources/16F887/timer.c: 231:         case 16:
+[e :U 187 ]
+"232
+[; ;../../Sources/16F887/timer.c: 232:             var_Prescaler = 0x6;
+[e = _var_Prescaler -> -> 6 `i `uc ]
+"233
+[; ;../../Sources/16F887/timer.c: 233:             break;
+[e $U 183  ]
+"234
+[; ;../../Sources/16F887/timer.c: 234:         default:
+[e :U 188 ]
+"235
+[; ;../../Sources/16F887/timer.c: 235:             var_Prescaler = 0x4;
+[e = _var_Prescaler -> -> 4 `i `uc ]
+"236
+[; ;../../Sources/16F887/timer.c: 236:             break;
+[e $U 183  ]
+"237
+[; ;../../Sources/16F887/timer.c: 237:     }
+}
+[e $U 183  ]
+[e :U 184 ]
+[e [\ _Prescaler , $ -> 1 `i 185
+ , $ -> 4 `i 186
+ , $ -> 16 `i 187
+ 188 ]
+[e :U 183 ]
+"239
+[; ;../../Sources/16F887/timer.c: 239:     switch(Postscaler){
+[e $U 190  ]
+{
+"240
+[; ;../../Sources/16F887/timer.c: 240:         case 1:
+[e :U 191 ]
+"241
+[; ;../../Sources/16F887/timer.c: 241:             var_Postscaler = 0x0;
+[e = _var_Postscaler -> -> 0 `i `uc ]
+"242
+[; ;../../Sources/16F887/timer.c: 242:             break;
+[e $U 189  ]
+"243
+[; ;../../Sources/16F887/timer.c: 243:         case 2:
+[e :U 192 ]
+"244
+[; ;../../Sources/16F887/timer.c: 244:             var_Postscaler = 0x1;
+[e = _var_Postscaler -> -> 1 `i `uc ]
+"245
+[; ;../../Sources/16F887/timer.c: 245:             break;
+[e $U 189  ]
+"246
+[; ;../../Sources/16F887/timer.c: 246:         case 3:
+[e :U 193 ]
+"247
+[; ;../../Sources/16F887/timer.c: 247:             var_Postscaler = 0x2;
+[e = _var_Postscaler -> -> 2 `i `uc ]
+"248
+[; ;../../Sources/16F887/timer.c: 248:             break;
+[e $U 189  ]
+"249
+[; ;../../Sources/16F887/timer.c: 249:         case 4:
+[e :U 194 ]
+"250
+[; ;../../Sources/16F887/timer.c: 250:             var_Postscaler = 0x3;
+[e = _var_Postscaler -> -> 3 `i `uc ]
+"251
+[; ;../../Sources/16F887/timer.c: 251:             break;
+[e $U 189  ]
+"252
+[; ;../../Sources/16F887/timer.c: 252:         case 5:
+[e :U 195 ]
+"253
+[; ;../../Sources/16F887/timer.c: 253:             var_Postscaler = 0x4;
+[e = _var_Postscaler -> -> 4 `i `uc ]
+"254
+[; ;../../Sources/16F887/timer.c: 254:             break;
+[e $U 189  ]
+"255
+[; ;../../Sources/16F887/timer.c: 255:         case 6:
+[e :U 196 ]
+"256
+[; ;../../Sources/16F887/timer.c: 256:             var_Postscaler = 0x5;
+[e = _var_Postscaler -> -> 5 `i `uc ]
+"257
+[; ;../../Sources/16F887/timer.c: 257:             break;
+[e $U 189  ]
+"258
+[; ;../../Sources/16F887/timer.c: 258:         case 7:
+[e :U 197 ]
+"259
+[; ;../../Sources/16F887/timer.c: 259:             var_Postscaler = 0x6;
+[e = _var_Postscaler -> -> 6 `i `uc ]
+"260
+[; ;../../Sources/16F887/timer.c: 260:             break;
+[e $U 189  ]
+"261
+[; ;../../Sources/16F887/timer.c: 261:         case 8:
+[e :U 198 ]
+"262
+[; ;../../Sources/16F887/timer.c: 262:             var_Postscaler = 0x7;
+[e = _var_Postscaler -> -> 7 `i `uc ]
+"263
+[; ;../../Sources/16F887/timer.c: 263:             break;
+[e $U 189  ]
+"264
+[; ;../../Sources/16F887/timer.c: 264:         case 9:
+[e :U 199 ]
+"265
+[; ;../../Sources/16F887/timer.c: 265:             var_Postscaler = 0x8;
+[e = _var_Postscaler -> -> 8 `i `uc ]
+"266
+[; ;../../Sources/16F887/timer.c: 266:             break;
+[e $U 189  ]
+"267
+[; ;../../Sources/16F887/timer.c: 267:         case 10:
+[e :U 200 ]
+"268
+[; ;../../Sources/16F887/timer.c: 268:             var_Postscaler = 0x9;
+[e = _var_Postscaler -> -> 9 `i `uc ]
+"269
+[; ;../../Sources/16F887/timer.c: 269:             break;
+[e $U 189  ]
+"270
+[; ;../../Sources/16F887/timer.c: 270:         case 11:
+[e :U 201 ]
+"271
+[; ;../../Sources/16F887/timer.c: 271:             var_Postscaler = 0xA;
+[e = _var_Postscaler -> -> 10 `i `uc ]
+"272
+[; ;../../Sources/16F887/timer.c: 272:             break;
+[e $U 189  ]
+"273
+[; ;../../Sources/16F887/timer.c: 273:         case 12:
+[e :U 202 ]
+"274
+[; ;../../Sources/16F887/timer.c: 274:             var_Postscaler = 0xB;
+[e = _var_Postscaler -> -> 11 `i `uc ]
+"275
+[; ;../../Sources/16F887/timer.c: 275:             break;
+[e $U 189  ]
+"276
+[; ;../../Sources/16F887/timer.c: 276:         case 13:
+[e :U 203 ]
+"277
+[; ;../../Sources/16F887/timer.c: 277:             var_Postscaler = 0xC;
+[e = _var_Postscaler -> -> 12 `i `uc ]
+"278
+[; ;../../Sources/16F887/timer.c: 278:             break;
+[e $U 189  ]
+"279
+[; ;../../Sources/16F887/timer.c: 279:         case 14:
+[e :U 204 ]
+"280
+[; ;../../Sources/16F887/timer.c: 280:             var_Postscaler = 0xD;
+[e = _var_Postscaler -> -> 13 `i `uc ]
+"281
+[; ;../../Sources/16F887/timer.c: 281:             break;
+[e $U 189  ]
+"282
+[; ;../../Sources/16F887/timer.c: 282:         case 15:
+[e :U 205 ]
+"283
+[; ;../../Sources/16F887/timer.c: 283:             var_Postscaler = 0xE;
+[e = _var_Postscaler -> -> 14 `i `uc ]
+"284
+[; ;../../Sources/16F887/timer.c: 284:             break;
+[e $U 189  ]
+"285
+[; ;../../Sources/16F887/timer.c: 285:         case 16:
+[e :U 206 ]
+"286
+[; ;../../Sources/16F887/timer.c: 286:             var_Postscaler = 0xF;
+[e = _var_Postscaler -> -> 15 `i `uc ]
+"287
+[; ;../../Sources/16F887/timer.c: 287:             break;
+[e $U 189  ]
+"288
+[; ;../../Sources/16F887/timer.c: 288:         default:
+[e :U 207 ]
+"289
+[; ;../../Sources/16F887/timer.c: 289:             var_Postscaler = 0x0;
+[e = _var_Postscaler -> -> 0 `i `uc ]
+"290
+[; ;../../Sources/16F887/timer.c: 290:             break;
+[e $U 189  ]
+"291
+[; ;../../Sources/16F887/timer.c: 291:     }
+}
+[e $U 189  ]
+[e :U 190 ]
+[e [\ _Postscaler , $ -> 1 `i 191
+ , $ -> 2 `i 192
+ , $ -> 3 `i 193
+ , $ -> 4 `i 194
+ , $ -> 5 `i 195
+ , $ -> 6 `i 196
+ , $ -> 7 `i 197
+ , $ -> 8 `i 198
+ , $ -> 9 `i 199
+ , $ -> 10 `i 200
+ , $ -> 11 `i 201
+ , $ -> 12 `i 202
+ , $ -> 13 `i 203
+ , $ -> 14 `i 204
+ , $ -> 15 `i 205
+ , $ -> 16 `i 206
+ 207 ]
+[e :U 189 ]
+"293
+[; ;../../Sources/16F887/timer.c: 293:     var_T2CON = var_Postscaler;
+[e = _var_T2CON _var_Postscaler ]
+"294
+[; ;../../Sources/16F887/timer.c: 294:     var_T2CON = (var_T2CON << 3) | var_Prescaler;
+[e = _var_T2CON -> | << -> _var_T2CON `i -> 3 `i -> _var_Prescaler `i `uc ]
+"295
+[; ;../../Sources/16F887/timer.c: 295:     T2CON = var_T2CON;
+[e = _T2CON _var_T2CON ]
+"296
+[; ;../../Sources/16F887/timer.c: 296: }
+[e :UE 182 ]
+}
+"303
+[; ;../../Sources/16F887/timer.c: 303: void TMR2_set_timer(uint8_t timer){
+[v _TMR2_set_timer `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _TMR2_set_timer ]
+[v _timer `uc ~T0 @X0 1 r1 ]
+[f ]
+"304
+[; ;../../Sources/16F887/timer.c: 304:     PR2 = timer;
+[e = _PR2 _timer ]
+"305
+[; ;../../Sources/16F887/timer.c: 305: }
+[e :UE 208 ]
+}
+"312
+[; ;../../Sources/16F887/timer.c: 312: _Bool TMR2_interrupt(){
+[v _TMR2_interrupt `(a ~T0 @X0 1 ef ]
+{
+[e :U _TMR2_interrupt ]
+[f ]
+"313
+[; ;../../Sources/16F887/timer.c: 313:     PIE1 = 0x02;
+[e = _PIE1 -> -> 2 `i `uc ]
+"314
+[; ;../../Sources/16F887/timer.c: 314:     if(PIR1bits.TMR2IF == 1){
+[e $ ! == -> . . _PIR1bits 0 1 `i -> 1 `i 210  ]
+{
+"315
+[; ;../../Sources/16F887/timer.c: 315:         PIR1bits.TMR2IF = 0;
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+"316
+[; ;../../Sources/16F887/timer.c: 316:         return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 209  ]
+"317
+[; ;../../Sources/16F887/timer.c: 317:     }
+}
+[e :U 210 ]
+"318
+[; ;../../Sources/16F887/timer.c: 318:     return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 209  ]
+"319
+[; ;../../Sources/16F887/timer.c: 319: }
+[e :UE 209 ]
+}
+[a 7C 76 79 87 0 ]
+[a 8C 76 79 87 0 ]
+[a 11C 84 49 67 75 73 0 ]
+[a 12C 84 49 67 75 73 0 ]
+[a 3C 84 48 67 75 73 0 ]
+[a 4C 84 48 67 75 73 0 ]
+[a 5C 72 73 71 72 0 ]
+[a 6C 72 73 71 72 0 ]
+[a 1C 70 79 83 67 52 0 ]
+[a 2C 70 79 83 67 52 0 ]
+[a 9C 70 79 83 67 52 0 ]
+[a 10C 70 79 83 67 52 0 ]

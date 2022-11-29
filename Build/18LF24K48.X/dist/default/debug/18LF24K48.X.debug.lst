@@ -1,0 +1,925 @@
+
+
+Microchip MPLAB XC8 Assembler V2.40 build 20220703182018 
+                                                                                               Sat Nov 19 15:18:33 2022
+
+Microchip MPLAB XC8 C Compiler v2.40 (Free license) build 20220703182018 Og1 
+     1                           	processor	18LF24K40
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    12                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    13                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    14                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    15   000000                     
+    16                           ; Version 2.20
+    17                           ; Generated 05/05/2020 GMT
+    18                           ; 
+    19                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    20                           ; All rights reserved.
+    21                           ; 
+    22                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    23                           ; 
+    24                           ; Redistribution and use in source and binary forms, with or without modification, are
+    25                           ; permitted provided that the following conditions are met:
+    26                           ; 
+    27                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    28                           ;        conditions and the following disclaimer.
+    29                           ; 
+    30                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    31                           ;        of conditions and the following disclaimer in the documentation and/or other
+    32                           ;        materials provided with the distribution.
+    33                           ; 
+    34                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    35                           ;        software without specific prior written permission.
+    36                           ; 
+    37                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    38                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    39                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    40                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    41                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    42                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    43                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    44                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    45                           ; 
+    46                           ; 
+    47                           ; Code-generator required, PIC18LF24K40 Definitions
+    48                           ; 
+    49                           ; SFR Addresses
+    50   000000                     _OSCCON1	set	3800
+    51   000000                     _OSCEN	set	3804
+    52   000000                     _ANSELAbits	set	3857
+    53   000000                     _TRISA	set	3976
+    54   000000                     _PORTA	set	3981
+    55   000000                     _TRISC	set	3978
+    56   000000                     _TRISB	set	3977
+    57   000000                     _ANSELBbits	set	3865
+    58   000000                     _ANSELCbits	set	3873
+    59   000000                     _PORTE	set	3985
+    60   000000                     _PORTC	set	3983
+    61   000000                     _PORTB	set	3982
+    62   000000                     _T6PR	set	4016
+    63   000000                     _T4PR	set	4022
+    64   000000                     _T2PR	set	4028
+    65   000000                     _TMR1L	set	4045
+    66   000000                     _TMR1CLK	set	4050
+    67   000000                     _TMR0L	set	4051
+    68   000000                     _OSCFRQ	set	3806
+    69   000000                     _OSCTUNE	set	3805
+    70   000000                     _T0CON1	set	4054
+    71   000000                     _T0CON0	set	4053
+    72   000000                     _TMR0H	set	4052
+    73   000000                     _T1CON	set	4047
+    74   000000                     _TMR1H	set	4046
+    75   000000                     _TMR5L	set	4033
+    76   000000                     _TMR3L	set	4039
+    77   000000                     _TMR3H	set	4040
+    78   000000                     _TMR5H	set	4034
+    79                           
+    80                           	psect	smallconst
+    81   000400                     __psmallconst:
+    82                           	callstack 0
+    83   000400  00                 	db	0
+    84   000401                     STR_5:
+    85   000401  46                 	db	70	;'F'
+    86   000402  4F                 	db	79	;'O'
+    87   000403  53                 	db	83	;'S'
+    88   000404  43                 	db	67	;'C'
+    89   000405  34                 	db	52	;'4'
+    90   000406  00                 	db	0
+    91   000407                     STR_4:
+    92   000407  46                 	db	70	;'F'
+    93   000408  4F                 	db	79	;'O'
+    94   000409  53                 	db	83	;'S'
+    95   00040A  43                 	db	67	;'C'
+    96   00040B  00                 	db	0
+    97   00040C                     STR_3:
+    98   00040C  4C                 	db	76	;'L'
+    99   00040D  46                 	db	70	;'F'
+   100   00040E  00                 	db	0
+   101   00040F                     STR_1:
+   102   00040F  48                 	db	72	;'H'
+   103   000410  4C                 	db	76	;'L'
+   104   000411  00                 	db	0
+   105   000412  00                 	db	0	; dummy byte at the end
+   106   000000                     
+   107                           ; #config settings
+   108                           
+   109                           	psect	cinit
+   110   0005DE                     __pcinit:
+   111                           	callstack 0
+   112   0005DE                     start_initialization:
+   113                           	callstack 0
+   114   0005DE                     __initialization:
+   115                           	callstack 0
+   116                           
+   117                           ; Clear objects allocated to COMRAM (2 bytes)
+   118   0005DE  6A0F               	clrf	(__pbssCOMRAM+1)& (0+255),c
+   119   0005E0  6A0E               	clrf	__pbssCOMRAM& (0+255),c
+   120   0005E2                     end_of_initialization:
+   121                           	callstack 0
+   122   0005E2                     __end_of__initialization:
+   123                           	callstack 0
+   124   0005E2  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   125   0005E4  6EF8               	movwf	tblptru,c
+   126   0005E6  0100               	movlb	0
+   127   0005E8  EFDB  F002         	goto	_main	;jump to C main() function
+   128                           
+   129                           	psect	bssCOMRAM
+   130   00000E                     __pbssCOMRAM:
+   131                           	callstack 0
+   132   00000E                     _bytes:
+   133                           	callstack 0
+   134   00000E                     	ds	2
+   135                           
+   136                           	psect	cstackCOMRAM
+   137   000001                     __pcstackCOMRAM:
+   138                           	callstack 0
+   139   000001                     TMR1_Start@timer:
+   140                           	callstack 0
+   141                           
+   142                           ; 2 bytes @ 0x0
+   143   000001                     	ds	2
+   144   000003                     TMR1_Start@clk_select:
+   145                           	callstack 0
+   146                           
+   147                           ; 2 bytes @ 0x2
+   148   000003                     	ds	2
+   149   000005                     TMR1_Start@clk_Prescale:
+   150                           	callstack 0
+   151                           
+   152                           ; 2 bytes @ 0x4
+   153   000005                     	ds	2
+   154   000007                     TMR1_Start@_16bit_Operation:
+   155                           	callstack 0
+   156                           
+   157                           ; 1 bytes @ 0x6
+   158   000007                     	ds	1
+   159   000008                     TMR1_Start@SYNC:
+   160                           	callstack 0
+   161                           
+   162                           ; 1 bytes @ 0x7
+   163   000008                     	ds	1
+   164   000009                     ??_TMR1_Start:
+   165                           
+   166                           ; 1 bytes @ 0x8
+   167   000009                     	ds	2
+   168   00000B                     TMR1_Start@var_Settings:
+   169                           	callstack 0
+   170                           
+   171                           ; 1 bytes @ 0xA
+   172   00000B                     	ds	1
+   173   00000C                     TMR1_Start@var_Prescale:
+   174                           	callstack 0
+   175                           
+   176                           ; 1 bytes @ 0xB
+   177   00000C                     	ds	1
+   178   00000D                     TMR1_Start@x:
+   179                           	callstack 0
+   180                           
+   181                           ; 1 bytes @ 0xC
+   182   00000D                     	ds	1
+   183   00000E                     
+   184                           ; 1 bytes @ 0xD
+   185 ;;
+   186 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   187 ;;
+   188 ;; *************** function _main *****************
+   189 ;; Defined at:
+   190 ;;		line 40 in file "main.c"
+   191 ;; Parameters:    Size  Location     Type
+   192 ;;		None
+   193 ;; Auto vars:     Size  Location     Type
+   194 ;;		None
+   195 ;; Return value:  Size  Location     Type
+   196 ;;                  1    wreg      void 
+   197 ;; Registers used:
+   198 ;;		wreg, status,2, status,0, cstack
+   199 ;; Tracked objects:
+   200 ;;		On entry : 0/0
+   201 ;;		On exit  : 0/0
+   202 ;;		Unchanged: 0/0
+   203 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3
+   204 ;;      Params:         0       0       0       0       0
+   205 ;;      Locals:         0       0       0       0       0
+   206 ;;      Temps:          0       0       0       0       0
+   207 ;;      Totals:         0       0       0       0       0
+   208 ;;Total ram usage:        0 bytes
+   209 ;; Hardware stack levels required when called: 1
+   210 ;; This function calls:
+   211 ;;		_TMR1_Start
+   212 ;; This function is called by:
+   213 ;;		Startup code after reset
+   214 ;; This function uses a non-reentrant model
+   215 ;;
+   216                           
+   217                           	psect	text0
+   218   0005B6                     __ptext0:
+   219                           	callstack 0
+   220   0005B6                     _main:
+   221                           	callstack 30
+   222   0005B6                     
+   223                           ;main.c: 41:     TMR1_Start(512,"HL",1,0,1);
+   224   0005B6  0E02               	movlw	2
+   225   0005B8  6E02               	movwf	(TMR1_Start@timer+1)^0,c
+   226   0005BA  0E00               	movlw	0
+   227   0005BC  6E01               	movwf	TMR1_Start@timer^0,c
+   228   0005BE  0E0F               	movlw	low STR_1
+   229   0005C0  6E03               	movwf	TMR1_Start@clk_select^0,c
+   230   0005C2  0E04               	movlw	high STR_1
+   231   0005C4  6E04               	movwf	(TMR1_Start@clk_select+1)^0,c
+   232   0005C6  0E00               	movlw	0
+   233   0005C8  6E06               	movwf	(TMR1_Start@clk_Prescale+1)^0,c
+   234   0005CA  0E01               	movlw	1
+   235   0005CC  6E05               	movwf	TMR1_Start@clk_Prescale^0,c
+   236   0005CE  0E00               	movlw	0
+   237   0005D0  6E07               	movwf	TMR1_Start@_16bit_Operation^0,c
+   238   0005D2  0E01               	movlw	1
+   239   0005D4  6E08               	movwf	TMR1_Start@SYNC^0,c
+   240   0005D6  EC0A  F002         	call	_TMR1_Start	;wreg free
+   241   0005DA  EF00  F000         	goto	start
+   242   0005DE                     __end_of_main:
+   243                           	callstack 0
+   244                           
+   245 ;; *************** function _TMR1_Start *****************
+   246 ;; Defined at:
+   247 ;;		line 186 in file "../../Sources/18LF24K40/timer.c"
+   248 ;; Parameters:    Size  Location     Type
+   249 ;;  timer           2    0[COMRAM] unsigned int 
+   250 ;;  clk_select      2    2[COMRAM] PTR const unsigned char 
+   251 ;;		 -> STR_1(3), 
+   252 ;;  clk_Prescale    2    4[COMRAM] int 
+   253 ;;  _16bit_Opera    1    6[COMRAM] _Bool 
+   254 ;;  SYNC            1    7[COMRAM] _Bool 
+   255 ;; Auto vars:     Size  Location     Type
+   256 ;;  x               1   12[COMRAM] unsigned char 
+   257 ;;  var_Prescale    1   11[COMRAM] unsigned char 
+   258 ;;  var_Settings    1   10[COMRAM] unsigned char 
+   259 ;; Return value:  Size  Location     Type
+   260 ;;                  1    wreg      void 
+   261 ;; Registers used:
+   262 ;;		wreg, status,2, status,0
+   263 ;; Tracked objects:
+   264 ;;		On entry : 0/0
+   265 ;;		On exit  : 0/0
+   266 ;;		Unchanged: 0/0
+   267 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3
+   268 ;;      Params:         8       0       0       0       0
+   269 ;;      Locals:         3       0       0       0       0
+   270 ;;      Temps:          2       0       0       0       0
+   271 ;;      Totals:        13       0       0       0       0
+   272 ;;Total ram usage:       13 bytes
+   273 ;; Hardware stack levels used: 1
+   274 ;; This function calls:
+   275 ;;		Nothing
+   276 ;; This function is called by:
+   277 ;;		_main
+   278 ;; This function uses a non-reentrant model
+   279 ;;
+   280                           
+   281                           	psect	text1
+   282   000414                     __ptext1:
+   283                           	callstack 0
+   284   000414                     _TMR1_Start:
+   285                           	callstack 30
+   286   000414                     
+   287                           ;../../Sources/18LF24K40/timer.c: 187:     uint8_t var_Settings;;../../Sources/18LF24K40
+      +                          /timer.c: 188:     uint8_t var_Prescale;;../../Sources/18LF24K40/timer.c: 189:     uint8
+      +                          _t x;;../../Sources/18LF24K40/timer.c: 191:     if(_16bit_Operation && SYNC){
+   288   000414  5007               	movf	TMR1_Start@_16bit_Operation^0,w,c
+   289   000416  B4D8               	btfsc	status,2,c
+   290   000418  EF10  F002         	goto	u851
+   291   00041C  EF12  F002         	goto	u850
+   292   000420                     u851:
+   293   000420  EF1E  F002         	goto	l1847
+   294   000424                     u850:
+   295   000424  5008               	movf	TMR1_Start@SYNC^0,w,c
+   296   000426  B4D8               	btfsc	status,2,c
+   297   000428  EF18  F002         	goto	u861
+   298   00042C  EF1A  F002         	goto	u860
+   299   000430                     u861:
+   300   000430  EF1E  F002         	goto	l1847
+   301   000434                     u860:
+   302   000434                     
+   303                           ;../../Sources/18LF24K40/timer.c: 192:         var_Settings = 0x7;
+   304   000434  0E07               	movlw	7
+   305   000436  6E0B               	movwf	TMR1_Start@var_Settings^0,c
+   306                           
+   307                           ;../../Sources/18LF24K40/timer.c: 193:     }else if(_16bit_Operation && !SYNC){
+   308   000438  EF5A  F002         	goto	l1865
+   309   00043C                     l1847:
+   310   00043C  5007               	movf	TMR1_Start@_16bit_Operation^0,w,c
+   311   00043E  B4D8               	btfsc	status,2,c
+   312   000440  EF24  F002         	goto	u871
+   313   000444  EF26  F002         	goto	u870
+   314   000448                     u871:
+   315   000448  EF32  F002         	goto	l1853
+   316   00044C                     u870:
+   317   00044C  5008               	movf	TMR1_Start@SYNC^0,w,c
+   318   00044E  A4D8               	btfss	status,2,c
+   319   000450  EF2C  F002         	goto	u881
+   320   000454  EF2E  F002         	goto	u880
+   321   000458                     u881:
+   322   000458  EF32  F002         	goto	l1853
+   323   00045C                     u880:
+   324   00045C                     
+   325                           ;../../Sources/18LF24K40/timer.c: 194:         var_Settings = 0x3;
+   326   00045C  0E03               	movlw	3
+   327   00045E  6E0B               	movwf	TMR1_Start@var_Settings^0,c
+   328                           
+   329                           ;../../Sources/18LF24K40/timer.c: 195:     }else if(!_16bit_Operation && SYNC){
+   330   000460  EF5A  F002         	goto	l1865
+   331   000464                     l1853:
+   332   000464  5007               	movf	TMR1_Start@_16bit_Operation^0,w,c
+   333   000466  A4D8               	btfss	status,2,c
+   334   000468  EF38  F002         	goto	u891
+   335   00046C  EF3A  F002         	goto	u890
+   336   000470                     u891:
+   337   000470  EF46  F002         	goto	l1859
+   338   000474                     u890:
+   339   000474  5008               	movf	TMR1_Start@SYNC^0,w,c
+   340   000476  B4D8               	btfsc	status,2,c
+   341   000478  EF40  F002         	goto	u901
+   342   00047C  EF42  F002         	goto	u900
+   343   000480                     u901:
+   344   000480  EF46  F002         	goto	l1859
+   345   000484                     u900:
+   346   000484                     
+   347                           ;../../Sources/18LF24K40/timer.c: 196:         var_Settings = 0x5;
+   348   000484  0E05               	movlw	5
+   349   000486  6E0B               	movwf	TMR1_Start@var_Settings^0,c
+   350                           
+   351                           ;../../Sources/18LF24K40/timer.c: 197:     }else if(!_16bit_Operation && !SYNC){
+   352   000488  EF5A  F002         	goto	l1865
+   353   00048C                     l1859:
+   354   00048C  5007               	movf	TMR1_Start@_16bit_Operation^0,w,c
+   355   00048E  A4D8               	btfss	status,2,c
+   356   000490  EF4C  F002         	goto	u911
+   357   000494  EF4E  F002         	goto	u910
+   358   000498                     u911:
+   359   000498  EF5A  F002         	goto	l355
+   360   00049C                     u910:
+   361   00049C  5008               	movf	TMR1_Start@SYNC^0,w,c
+   362   00049E  A4D8               	btfss	status,2,c
+   363   0004A0  EF54  F002         	goto	u921
+   364   0004A4  EF56  F002         	goto	u920
+   365   0004A8                     u921:
+   366   0004A8  EF5A  F002         	goto	l355
+   367   0004AC                     u920:
+   368   0004AC                     
+   369                           ;../../Sources/18LF24K40/timer.c: 198:         var_Settings = 0x1;
+   370   0004AC  0E01               	movlw	1
+   371   0004AE  6E0B               	movwf	TMR1_Start@var_Settings^0,c
+   372   0004B0  EF5A  F002         	goto	l1865
+   373   0004B4                     l355:
+   374   0004B4                     l1865:
+   375                           
+   376                           ;../../Sources/18LF24K40/timer.c: 201:     if(clk_select == "HL"){
+   377   0004B4  0E0F               	movlw	low STR_1
+   378   0004B6  1803               	xorwf	TMR1_Start@clk_select^0,w,c
+   379   0004B8  E107               	bnz	u931
+   380   0004BA  0E04               	movlw	high STR_1
+   381   0004BC  1804               	xorwf	(TMR1_Start@clk_select+1)^0,w,c
+   382   0004BE  A4D8               	btfss	status,2,c
+   383   0004C0  EF64  F002         	goto	u931
+   384   0004C4  EF66  F002         	goto	u930
+   385   0004C8                     u931:
+   386   0004C8  EF6A  F002         	goto	l1869
+   387   0004CC                     u930:
+   388   0004CC                     
+   389                           ;../../Sources/18LF24K40/timer.c: 202:         TMR1CLK = 0x3;
+   390   0004CC  0E03               	movlw	3
+   391   0004CE  6ED2               	movwf	210,c	;volatile
+   392                           
+   393                           ;../../Sources/18LF24K40/timer.c: 203:     }else if(clk_select == "LF"){
+   394   0004D0  EFAC  F002         	goto	l1893
+   395   0004D4                     l1869:
+   396   0004D4  0E0C               	movlw	low STR_3
+   397   0004D6  1803               	xorwf	TMR1_Start@clk_select^0,w,c
+   398   0004D8  E107               	bnz	u941
+   399   0004DA  0E04               	movlw	high STR_3
+   400   0004DC  1804               	xorwf	(TMR1_Start@clk_select+1)^0,w,c
+   401   0004DE  A4D8               	btfss	status,2,c
+   402   0004E0  EF74  F002         	goto	u941
+   403   0004E4  EF76  F002         	goto	u940
+   404   0004E8                     u941:
+   405   0004E8  EF7A  F002         	goto	l1873
+   406   0004EC                     u940:
+   407   0004EC                     
+   408                           ;../../Sources/18LF24K40/timer.c: 204:         TMR1CLK = 0x4;
+   409   0004EC  0E04               	movlw	4
+   410   0004EE  6ED2               	movwf	210,c	;volatile
+   411                           
+   412                           ;../../Sources/18LF24K40/timer.c: 205:     }else if(clk_select == "FOSC"){
+   413   0004F0  EFAC  F002         	goto	l1893
+   414   0004F4                     l1873:
+   415   0004F4  0E07               	movlw	low STR_4
+   416   0004F6  1803               	xorwf	TMR1_Start@clk_select^0,w,c
+   417   0004F8  E107               	bnz	u951
+   418   0004FA  0E04               	movlw	high STR_4
+   419   0004FC  1804               	xorwf	(TMR1_Start@clk_select+1)^0,w,c
+   420   0004FE  A4D8               	btfss	status,2,c
+   421   000500  EF84  F002         	goto	u951
+   422   000504  EF86  F002         	goto	u950
+   423   000508                     u951:
+   424   000508  EF8A  F002         	goto	l1877
+   425   00050C                     u950:
+   426   00050C                     
+   427                           ;../../Sources/18LF24K40/timer.c: 206:         TMR1CLK = 0x2;
+   428   00050C  0E02               	movlw	2
+   429   00050E  6ED2               	movwf	210,c	;volatile
+   430                           
+   431                           ;../../Sources/18LF24K40/timer.c: 207:     }else if(clk_select == "FOSC4"){
+   432   000510  EFAC  F002         	goto	l1893
+   433   000514                     l1877:
+   434   000514  0E01               	movlw	low STR_5
+   435   000516  1803               	xorwf	TMR1_Start@clk_select^0,w,c
+   436   000518  E107               	bnz	u961
+   437   00051A  0E04               	movlw	high STR_5
+   438   00051C  1804               	xorwf	(TMR1_Start@clk_select+1)^0,w,c
+   439   00051E  A4D8               	btfss	status,2,c
+   440   000520  EF94  F002         	goto	u961
+   441   000524  EF96  F002         	goto	u960
+   442   000528                     u961:
+   443   000528  EF9A  F002         	goto	l360
+   444   00052C                     u960:
+   445   00052C                     
+   446                           ;../../Sources/18LF24K40/timer.c: 208:         TMR1CLK = 0x1;
+   447   00052C  0E01               	movlw	1
+   448   00052E  6ED2               	movwf	210,c	;volatile
+   449   000530  EFAC  F002         	goto	l1893
+   450   000534                     l360:
+   451                           
+   452                           ;../../Sources/18LF24K40/timer.c: 211:     switch(clk_Prescale){
+   453   000534  EFAC  F002         	goto	l1893
+   454   000538                     l1881:
+   455                           
+   456                           ;../../Sources/18LF24K40/timer.c: 213:             var_Prescale = 0x0;
+   457   000538  0E00               	movlw	0
+   458   00053A  6E0C               	movwf	TMR1_Start@var_Prescale^0,c
+   459                           
+   460                           ;../../Sources/18LF24K40/timer.c: 214:             break;
+   461   00053C  EFCA  F002         	goto	l1895
+   462   000540                     l1883:
+   463                           
+   464                           ;../../Sources/18LF24K40/timer.c: 216:             var_Prescale = 0x1;
+   465   000540  0E01               	movlw	1
+   466   000542  6E0C               	movwf	TMR1_Start@var_Prescale^0,c
+   467                           
+   468                           ;../../Sources/18LF24K40/timer.c: 217:             break;
+   469   000544  EFCA  F002         	goto	l1895
+   470   000548                     l1885:
+   471                           
+   472                           ;../../Sources/18LF24K40/timer.c: 219:             var_Prescale = 0x2;
+   473   000548  0E02               	movlw	2
+   474   00054A  6E0C               	movwf	TMR1_Start@var_Prescale^0,c
+   475                           
+   476                           ;../../Sources/18LF24K40/timer.c: 220:             break;
+   477   00054C  EFCA  F002         	goto	l1895
+   478   000550                     l1887:
+   479                           
+   480                           ;../../Sources/18LF24K40/timer.c: 222:             var_Prescale = 0x3;
+   481   000550  0E03               	movlw	3
+   482   000552  6E0C               	movwf	TMR1_Start@var_Prescale^0,c
+   483                           
+   484                           ;../../Sources/18LF24K40/timer.c: 223:             break;
+   485   000554  EFCA  F002         	goto	l1895
+   486   000558                     l1893:
+   487   000558  C005  F009         	movff	TMR1_Start@clk_Prescale,??_TMR1_Start
+   488   00055C  C006  F00A         	movff	TMR1_Start@clk_Prescale+1,??_TMR1_Start+1
+   489                           
+   490                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   491                           ; Switch size 1, requested type "simple"
+   492                           ; Number of cases is 1, Range of values is 0 to 0
+   493                           ; switch strategies available:
+   494                           ; Name         Instructions Cycles
+   495                           ; simple_byte            4     3 (average)
+   496                           ;	Chosen strategy is simple_byte
+   497   000560  500A               	movf	(??_TMR1_Start+1)^0,w,c
+   498   000562  0A00               	xorlw	0	; case 0
+   499   000564  B4D8               	btfsc	status,2,c
+   500   000566  EFB7  F002         	goto	l1921
+   501   00056A  EF9C  F002         	goto	l1881
+   502   00056E                     l1921:
+   503                           
+   504                           ; Switch size 1, requested type "simple"
+   505                           ; Number of cases is 4, Range of values is 1 to 8
+   506                           ; switch strategies available:
+   507                           ; Name         Instructions Cycles
+   508                           ; simple_byte           13     7 (average)
+   509                           ;	Chosen strategy is simple_byte
+   510   00056E  5009               	movf	??_TMR1_Start^0,w,c
+   511   000570  0A01               	xorlw	1	; case 1
+   512   000572  B4D8               	btfsc	status,2,c
+   513   000574  EF9C  F002         	goto	l1881
+   514   000578  0A03               	xorlw	3	; case 2
+   515   00057A  B4D8               	btfsc	status,2,c
+   516   00057C  EFA0  F002         	goto	l1883
+   517   000580  0A06               	xorlw	6	; case 4
+   518   000582  B4D8               	btfsc	status,2,c
+   519   000584  EFA4  F002         	goto	l1885
+   520   000588  0A0C               	xorlw	12	; case 8
+   521   00058A  B4D8               	btfsc	status,2,c
+   522   00058C  EFA8  F002         	goto	l1887
+   523   000590  EF9C  F002         	goto	l1881
+   524   000594                     l1895:
+   525                           
+   526                           ;../../Sources/18LF24K40/timer.c: 229:     bytes[0] = timer >> 8;
+   527   000594  5002               	movf	(TMR1_Start@timer+1)^0,w,c
+   528   000596  6E0E               	movwf	_bytes^0,c
+   529   000598                     
+   530                           ;../../Sources/18LF24K40/timer.c: 230:     bytes[1] = timer & 0x00FF;
+   531   000598  C001  F00F         	movff	TMR1_Start@timer,_bytes+1
+   532   00059C                     
+   533                           ;../../Sources/18LF24K40/timer.c: 231:     TMR1L = bytes[0];
+   534   00059C  C00E  FFCD         	movff	_bytes,4045	;volatile
+   535   0005A0                     
+   536                           ;../../Sources/18LF24K40/timer.c: 232:     TMR1H = bytes[1];
+   537   0005A0  C00F  FFCE         	movff	_bytes+1,4046	;volatile
+   538   0005A4                     
+   539                           ;../../Sources/18LF24K40/timer.c: 234:     x = var_Prescale;
+   540   0005A4  C00C  F00D         	movff	TMR1_Start@var_Prescale,TMR1_Start@x
+   541   0005A8                     
+   542                           ;../../Sources/18LF24K40/timer.c: 235:     x = (x << 4) | var_Settings;
+   543   0005A8  380D               	swapf	TMR1_Start@x^0,w,c
+   544   0005AA  0BF0               	andlw	240
+   545   0005AC  100B               	iorwf	TMR1_Start@var_Settings^0,w,c
+   546   0005AE  6E0D               	movwf	TMR1_Start@x^0,c
+   547   0005B0                     
+   548                           ;../../Sources/18LF24K40/timer.c: 236:     T1CON = x;
+   549   0005B0  C00D  FFCF         	movff	TMR1_Start@x,4047	;volatile
+   550   0005B4  0012               	return		;funcret
+   551   0005B6                     __end_of_TMR1_Start:
+   552                           	callstack 0
+   553                           
+   554                           	psect	rparam
+   555   000000                     
+   556                           	psect	idloc
+   557                           
+   558                           ;Config register IDLOC0 @ 0x200000
+   559                           ;	unspecified, using default values
+   560   200000                     	org	2097152
+   561   200000  0FFF               	dw	4095
+   562                           
+   563                           ;Config register IDLOC1 @ 0x200002
+   564                           ;	unspecified, using default values
+   565   200002                     	org	2097154
+   566   200002  0FFF               	dw	4095
+   567                           
+   568                           ;Config register IDLOC2 @ 0x200004
+   569                           ;	unspecified, using default values
+   570   200004                     	org	2097156
+   571   200004  0FFF               	dw	4095
+   572                           
+   573                           ;Config register IDLOC3 @ 0x200006
+   574                           ;	unspecified, using default values
+   575   200006                     	org	2097158
+   576   200006  0FFF               	dw	4095
+   577                           
+   578                           ;Config register IDLOC4 @ 0x200008
+   579                           ;	unspecified, using default values
+   580   200008                     	org	2097160
+   581   200008  0FFF               	dw	4095
+   582                           
+   583                           ;Config register IDLOC5 @ 0x20000A
+   584                           ;	unspecified, using default values
+   585   20000A                     	org	2097162
+   586   20000A  0FFF               	dw	4095
+   587                           
+   588                           ;Config register IDLOC6 @ 0x20000C
+   589                           ;	unspecified, using default values
+   590   20000C                     	org	2097164
+   591   20000C  0FFF               	dw	4095
+   592                           
+   593                           ;Config register IDLOC7 @ 0x20000E
+   594                           ;	unspecified, using default values
+   595   20000E                     	org	2097166
+   596   20000E  0FFF               	dw	4095
+   597                           
+   598                           	psect	config
+   599                           
+   600                           ;Config register CONFIG1L @ 0x300000
+   601                           ;	External Oscillator mode Selection bits
+   602                           ;	FEXTOSC = HS, HS (crystal oscillator) above 8 MHz; PFM set to high power
+   603                           ;	Power-up default value for COSC bits
+   604                           ;	RSTOSC = 0x7, unprogrammed default
+   605   300000                     	org	3145728
+   606   300000  FA                 	db	250
+   607                           
+   608                           ;Config register CONFIG1H @ 0x300001
+   609                           ;	Clock Out Enable bit
+   610                           ;	CLKOUTEN = OFF, CLKOUT function is disabled
+   611                           ;	Clock Switch Enable bit
+   612                           ;	CSWEN = ON, Writing to NOSC and NDIV is allowed
+   613                           ;	Fail-Safe Clock Monitor Enable bit
+   614                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
+   615   300001                     	org	3145729
+   616   300001  FF                 	db	255
+   617                           
+   618                           ;Config register CONFIG2L @ 0x300002
+   619                           ;	Master Clear Enable bit
+   620                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR
+   621                           ;	Power-up Timer Enable bit
+   622                           ;	PWRTE = OFF, Power up timer disabled
+   623                           ;	Low-power BOR enable bit
+   624                           ;	LPBOREN = OFF, ULPBOR disabled
+   625                           ;	Brown-out Reset Enable bits
+   626                           ;	BOREN = SBORDIS, Brown-out Reset enabled , SBOREN bit is ignored
+   627   300002                     	org	3145730
+   628   300002  FF                 	db	255
+   629                           
+   630                           ;Config register CONFIG2H @ 0x300003
+   631                           ;	Brown Out Reset Voltage selection bits
+   632                           ;	BORV = VBOR_190, Brown-out Reset Voltage (VBOR) set to 1.90V
+   633                           ;	ZCD Disable bit
+   634                           ;	ZCD = OFF, ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
+   635                           ;	PPSLOCK bit One-Way Set Enable bit
+   636                           ;	PPS1WAY = ON, PPSLOCK bit can be cleared and set only once; PPS registers remain locke
+      +                          d after one clear/set cycle
+   637                           ;	Stack Full/Underflow Reset Enable bit
+   638                           ;	STVREN = ON, Stack full/underflow will cause Reset
+   639                           ;	Debugger Enable bit
+   640                           ;	DEBUG = OFF, Background debugger disabled
+   641                           ;	Extended Instruction Set Enable bit
+   642                           ;	XINST = OFF, Extended Instruction Set and Indexed Addressing Mode disabled
+   643   300003                     	org	3145731
+   644   300003  FF                 	db	255
+   645                           
+   646                           ;Config register CONFIG3L @ 0x300004
+   647                           ;	WDT Period Select bits
+   648                           ;	WDTCPS = WDTCPS_31, Divider ratio 1:65536; software control of WDTPS
+   649                           ;	WDT operating mode
+   650                           ;	WDTE = ON, WDT enabled regardless of sleep
+   651   300004                     	org	3145732
+   652   300004  FF                 	db	255
+   653                           
+   654                           ;Config register CONFIG3H @ 0x300005
+   655                           ;	WDT Window Select bits
+   656                           ;	WDTCWS = WDTCWS_7, window always open (100%); software control; keyed access not requi
+      +                          red
+   657                           ;	WDT input clock selector
+   658                           ;	WDTCCS = SC, Software Control
+   659   300005                     	org	3145733
+   660   300005  FF                 	db	255
+   661                           
+   662                           ;Config register CONFIG4L @ 0x300006
+   663                           ;	Write Protection Block 0
+   664                           ;	WRT0 = OFF, Block 0 (000800-001FFFh) not write-protected
+   665                           ;	Write Protection Block 1
+   666                           ;	WRT1 = OFF, Block 1 (002000-003FFFh) not write-protected
+   667   300006                     	org	3145734
+   668   300006  FF                 	db	255
+   669                           
+   670                           ;Config register CONFIG4H @ 0x300007
+   671                           ;	Configuration Register Write Protection bit
+   672                           ;	WRTC = OFF, Configuration registers (300000-30000Bh) not write-protected
+   673                           ;	Boot Block Write Protection bit
+   674                           ;	WRTB = OFF, Boot Block (000000-0007FFh) not write-protected
+   675                           ;	Data EEPROM Write Protection bit
+   676                           ;	WRTD = OFF, Data EEPROM not write-protected
+   677                           ;	Scanner Enable bit
+   678                           ;	SCANE = ON, Scanner module is available for use, SCANMD bit can control the module
+   679                           ;	Low Voltage Programming Enable bit
+   680                           ;	LVP = ON, Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE config
+      +                          uration bit is ignored
+   681   300007                     	org	3145735
+   682   300007  FF                 	db	255
+   683                           
+   684                           ;Config register CONFIG5L @ 0x300008
+   685                           ;	UserNVM Program Memory Code Protection bit
+   686                           ;	CP = OFF, UserNVM code protection disabled
+   687                           ;	DataNVM Memory Code Protection bit
+   688                           ;	CPD = OFF, DataNVM code protection disabled
+   689   300008                     	org	3145736
+   690   300008  FF                 	db	255
+   691                           
+   692                           ;Config register CONFIG5H @ 0x300009
+   693                           ;	unspecified, using default values
+   694   300009                     	org	3145737
+   695   300009  FF                 	db	255
+   696                           
+   697                           ;Config register CONFIG6L @ 0x30000A
+   698                           ;	Table Read Protection Block 0
+   699                           ;	EBTR0 = OFF, Block 0 (000800-001FFFh) not protected from table reads executed in other
+      +                           blocks
+   700                           ;	Table Read Protection Block 1
+   701                           ;	EBTR1 = OFF, Block 1 (002000-003FFFh) not protected from table reads executed in other
+      +                           blocks
+   702   30000A                     	org	3145738
+   703   30000A  FF                 	db	255
+   704                           
+   705                           ;Config register CONFIG6H @ 0x30000B
+   706                           ;	Boot Block Table Read Protection bit
+   707                           ;	EBTRB = OFF, Boot Block (000000-0007FFh) not protected from table reads executed in ot
+      +                          her blocks
+   708   30000B                     	org	3145739
+   709   30000B  FF                 	db	255
+   710                           tosu	equ	0xFFF
+   711                           tosh	equ	0xFFE
+   712                           tosl	equ	0xFFD
+   713                           stkptr	equ	0xFFC
+   714                           pclatu	equ	0xFFB
+   715                           pclath	equ	0xFFA
+   716                           pcl	equ	0xFF9
+   717                           tblptru	equ	0xFF8
+   718                           tblptrh	equ	0xFF7
+   719                           tblptrl	equ	0xFF6
+   720                           tablat	equ	0xFF5
+   721                           prodh	equ	0xFF4
+   722                           prodl	equ	0xFF3
+   723                           indf0	equ	0xFEF
+   724                           postinc0	equ	0xFEE
+   725                           postdec0	equ	0xFED
+   726                           preinc0	equ	0xFEC
+   727                           plusw0	equ	0xFEB
+   728                           fsr0h	equ	0xFEA
+   729                           fsr0l	equ	0xFE9
+   730                           wreg	equ	0xFE8
+   731                           indf1	equ	0xFE7
+   732                           postinc1	equ	0xFE6
+   733                           postdec1	equ	0xFE5
+   734                           preinc1	equ	0xFE4
+   735                           plusw1	equ	0xFE3
+   736                           fsr1h	equ	0xFE2
+   737                           fsr1l	equ	0xFE1
+   738                           bsr	equ	0xFE0
+   739                           indf2	equ	0xFDF
+   740                           postinc2	equ	0xFDE
+   741                           postdec2	equ	0xFDD
+   742                           preinc2	equ	0xFDC
+   743                           plusw2	equ	0xFDB
+   744                           fsr2h	equ	0xFDA
+   745                           fsr2l	equ	0xFD9
+   746                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     17
+    Constant    0
+    Data        0
+    BSS         2
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     13      15
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+
+Pointer List with Targets:
+
+    TMR1_Start@clk_select	PTR const unsigned char  size(2) Largest target is 3
+		 -> STR_1(CODE[3]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_TMR1_Start
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     809
+                         _TMR1_Start
+ ---------------------------------------------------------------------------------
+ (1) _TMR1_Start                                          13     5      8     809
+                                              0 COMRAM    13     5      8
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _TMR1_Start
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3FF      0       0      29        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBIGSFRlhhh       66      0       0      22        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      D       F       1       15.8%
+BITBIGSFRllll       38      0       0      27        0.0%
+BITBIGSFRllh        32      0       0      25        0.0%
+BITBIGSFRhhhh       29      0       0      12        0.0%
+BITBIGSFRhhhlll     1E      0       0      19        0.0%
+BITBIGSFRlhhl        7      0       0      23        0.0%
+BITBIGSFRlhl         7      0       0      24        0.0%
+BITBIGSFRhhhlll      5      0       0      18        0.0%
+BITBIGSFRhhhlll      5      0       0      17        0.0%
+BITBIGSFRhhhllh      4      0       0      15        0.0%
+BITBIGSFRhhhllh      4      0       0      14        0.0%
+BITBIGSFRhhhllh      4      0       0      16        0.0%
+BITBIGSFRlllh        3      0       0      26        0.0%
+BITBIGSFRhhhlh       2      0       0      13        0.0%
+BITBIGSFRhl          2      0       0      21        0.0%
+BITBIGSFRhhl         1      0       0      20        0.0%
+BIGSFR               0      0       0     200        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0       F      28        0.0%
+DATA                 0      0       F       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.40 build 20220703182018 
+Symbol Table                                                                                   Sat Nov 19 15:18:33 2022
+
+                       l175 05DA                         l360 0534                         l355 04B4  
+                       l373 05B4                         u900 0484                         u901 0480  
+                       u910 049C                         u911 0498                         u920 04AC  
+                       u921 04A8                         u930 04CC                         u850 0424  
+                       u931 04C8                         u851 0420                         u940 04EC  
+                       u860 0434                         u941 04E8                         u861 0430  
+                       u950 050C                         u870 044C                         u951 0508  
+                       u871 0448                         u960 052C                         u880 045C  
+                       u961 0528                         u881 0458                         u890 0474  
+                       u891 0470                        l1901 05A0                        l1903 05A4  
+                      l1905 05A8                        l1921 056E                        l1841 0414  
+                      l1913 05B6                        l1907 05B0                        l1851 045C  
+                      l1843 0424                        l1861 049C                        l1853 0464  
+                      l1845 0434                        l1871 04EC                        l1863 04AC  
+                      l1855 0474                        l1847 043C                        l1881 0538  
+                      l1873 04F4                        l1857 0484                        l1849 044C  
+                      l1865 04B4                        l1883 0540                        l1875 050C  
+                      l1867 04CC                        l1859 048C                        l1885 0548  
+                      l1877 0514                        l1893 0558                        l1869 04D4  
+                      l1887 0550                        l1895 0594                        l1879 052C  
+                      l1897 0598                        l1899 059C                        STR_1 040F  
+                      STR_2 040F                        STR_3 040C                        STR_4 0407  
+                      STR_5 0401                        _T2PR 000FBC                        _T4PR 000FB6  
+                      _T6PR 000FB0                        _main 05B6                        start 0000  
+              ___param_bank 000000                       ?_main 0001                       _T1CON 000FCF  
+                     _OSCEN 000EDC                       _TMR0H 000FD4                       _TMR1H 000FCE  
+                     _TMR0L 000FD3                       _TMR3H 000FC8                       _TMR1L 000FCD  
+                     _TMR5H 000FC2                       _TMR3L 000FC7                       _TMR5L 000FC1  
+                     _PORTA 000F8D                       _PORTB 000F8E                       _PORTC 000F8F  
+                     _PORTE 000F91                       _TRISA 000F88                       _TRISB 000F89  
+                     _TRISC 000F8A                 ?_TMR1_Start 0001                       _bytes 000E  
+                     status 000FD8             __initialization 05DE                __end_of_main 05DE  
+                    ??_main 000E               __activetblptr 000002      TMR1_Start@clk_Prescale 0005  
+                    _T0CON0 000FD5                      _T0CON1 000FD6                      _OSCFRQ 000EDE  
+                    isa$std 000001                __mediumconst 0000                      tblptru 000FF8  
+           TMR1_Start@timer 0001                  __accesstop 0060     __end_of__initialization 05E2  
+             ___rparam_used 000001              __pcstackCOMRAM 0001                     _OSCCON1 000ED8  
+                   _OSCTUNE 000EDD                     _TMR1CLK 000FD2                ??_TMR1_Start 0009  
+                   __Hparam 0000                     __Lparam 0000                __psmallconst 0400  
+        __end_of_TMR1_Start 05B6                     __pcinit 05DE                     __ramtop 0400  
+                   __ptext0 05B6                     __ptext1 0414        end_of_initialization 05E2  
+             __Lmediumconst 0000                 TMR1_Start@x 000D  TMR1_Start@_16bit_Operation 0007  
+       start_initialization 05DE              TMR1_Start@SYNC 0008                 __pbssCOMRAM 000E  
+    TMR1_Start@var_Prescale 000C                 __smallconst 0400      TMR1_Start@var_Settings 000B  
+                  __Hrparam 0000                    __Lrparam 0000        TMR1_Start@clk_select 0003  
+                _ANSELAbits 000F11                  _ANSELBbits 000F19                  _ANSELCbits 000F21  
+                  isa$xinst 000000                  _TMR1_Start 0414  

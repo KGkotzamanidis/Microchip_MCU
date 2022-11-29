@@ -11,7 +11,6 @@
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-            <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>
                 <sourceRootElem>../../Sources/16F887</sourceRootElem>
@@ -30,10 +29,15 @@
                     <name>PowerON</name>
                     <type>2</type>
                 </confElem>
+                <confElem>
+                    <name>Simulator</name>
+                    <type>2</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>
             </formatting>
+            <make-dep-projects/>
         </data>
     </configuration>
 </project>
