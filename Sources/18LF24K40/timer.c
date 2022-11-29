@@ -176,12 +176,65 @@ void TMR0_Start(uint16_t timer,int clk_Prescale,int Postscaler,bool _16bit_Opera
 
 /*
  * void TMR1_Start(uint16_t timer,int clk_Prescale,bool _16bit_Operation)
+ * @input param uint16_t timer : 0 ~ 65535
+ * @input param const char* clk_select : HL/LF/FOSC/FOSC4
+ * @input param int clk_Prescale : 1/2/4/8
+ * @input param bool _16bit_Operation : false / true
+ * @input param bool SYNC : false / true
+ * for more info see @ 303
  */
-void TMR1_Start(uint16_t timer,int clk_Prescale,bool _16bit_Operation){
+void TMR1_Start(uint16_t timer,const char* clk_select,int clk_Prescale,bool _16bit_Operation,bool SYNC){
+    uint8_t var_Settings;
+    uint8_t var_Prescale;
+    uint8_t var_T1CON;
+    
+    bit x16,xsync;
+    if(_16bit_Operation){
+        x16 = 1;
+    }else{
+        x16 = 0;
+    }
+    
+    if(SYNC){
+        xsync = 1;
+    }else{
+        xsync = 0;
+    }
+    
+    if(clk_select == "HL"){
+        TMR1CLK = 0x3;
+    }else if(clk_select == "LF"){
+        TMR1CLK = 0x4;
+    }else if(clk_select == "FOSC"){
+        TMR1CLK = 0x2;
+    }else if(clk_select == "FOSC4"){
+        TMR1CLK = 0x1;
+    }
+    
+    switch(clk_Prescale){
+        case 1:
+            var_Prescale = 0x0;
+            break;
+        case 2:
+            var_Prescale = 0x1;
+            break;
+        case 4:
+            var_Prescale = 0x2;
+            break;
+        case 8:
+            var_Prescale = 0x3;
+            break;
+        default:
+            var_Prescale = 0x0;
+            break;
+    }
+    
     bytes[0] = timer >> 8;
     bytes[1] = timer & 0x00FF;
     TMR1L = bytes[0];
     TMR1H = bytes[1];
+    
+    var_T1CON =  var_Prescale;
 }
 
 /*

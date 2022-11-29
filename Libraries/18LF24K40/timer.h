@@ -31,7 +31,7 @@
 uint8_t bytes[2];
 
 void TMR0_Start(uint16_t timer,int clk_Prescale,int Postscaler,bool _16bit_Operation,bool ASYNC);
-void TMR1_Start(uint16_t timer,int clk_Prescale,bool _16bit_Operation);
+void TMR1_Start(uint16_t timer,const char* clk_select,int clk_Prescale,bool _16bit_Operation,bool SYNC);
 void TMR2_Start(uint8_t timer,int clk_Prescale,int Postscaler);
 void TMR3_Start(uint16_t timer,int clk_Prescale,bool _16bit_Operation);
 void TMR4_Start(uint8_t timer,int clk_Prescale,int Postscaler);
