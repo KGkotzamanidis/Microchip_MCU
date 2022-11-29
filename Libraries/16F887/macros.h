@@ -28,6 +28,8 @@
 #define _MACROS_H
 
 #include <xc.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 #define x_PinOutput 0x00
