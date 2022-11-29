@@ -27,16 +27,18 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include <stdbool.h>
 #include "macros.h"
+void TMR0_enable(bool PSA,int Prescaler,char clk_src[],char edge_src[]);
+void TMR0_reset();
+bool TMR0_interrupt();
 
-void enable_TMR0(bool enable,char select_edge,char select_clock,bool enable_Prescaler,int set_Prescaler);
-void set_TMR0(uint8_t timer);
-uint8_t get_TMR0();
-void enable_TMR1(bool enable,char select_clock,int set_Prescaler,bool enable_sychronize);
-void set_TMR1(uint16_t time);
-uint16_t get_TMR1();
-void enable_TMR2(bool enable,int set_Prescaler,int set_Postscaler);
-void set_TMR2(uint8_t time);
-uint8_t get_TMR2();
+void TMR1_enable(char clk_src[],bool SYNC,bool LPSOC,int Prescaler);
+void TMR1_set_timer(uint16_t time);
+void TMR1_reset();
+bool TMR1_interrupt();
+
+void TMR2_enable(int Prescaler,int Postscaler);
+void TMR2_set_timer(uint8_t timer);
+void TMR2_reset();
+bool TMR2_interrupt();
 #endif
