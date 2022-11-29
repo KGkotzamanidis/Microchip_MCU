@@ -38,5 +38,6 @@
 #include "../../Libraries/18LF24K40/timer.h"
 
 void main(void){
+    TMR1_Start(512,"HL",1,false,true);
     return;
 }
