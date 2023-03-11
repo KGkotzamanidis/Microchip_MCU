@@ -11,28 +11,25 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+#include "../../Libraries/16F887/analog.h"
+#include "../../Libraries/16F887/lcd.h"
 #include "../../Libraries/16F887/macros.h"
 #include "../../Libraries/16F887/oscillator.h"
 #include "../../Libraries/16F887/io.h"
 #include "../../Libraries/16F887/timer.h"
 
-void __interrupt() test(void){
-    while(TMR2_interrupt()){
-        write_Digital(RD_1,LOW);
-        TMR2_reset();
-    }
+void __interrupt() IRS(void){
     return;
 }
-
 void main(void){
-    pin_Direction(RD_1,OUTPUT);
-    TMR2_enable(1,1);
-    TMR2_set_timer(125);
     ExternalClock_Init();
-    write_Digital(RD_1,HIGH);
+    LCD_Setup(RD_0,R_NULL,RD_1,R_NULL,R_NULL,R_NULL,R_NULL,RC_4,RC_5,RC_6,RC_7);
+    LCD_Init(2,16);
+    LCD_Clear();
+    LCD_GoToLine(0);
     
     while(1){
-        
+        LCD_Printf("TEST\nLine2");
     }
     return;
 }
