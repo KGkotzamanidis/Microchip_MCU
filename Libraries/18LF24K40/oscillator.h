@@ -26,8 +26,8 @@
 #ifndef _OSCILLATOR_H
 #define _OSCILLATOR_H
 
-#include "macros.h"
+#include "./../../Libraries/18LF24K40/macros.h"
 
-void InternalClock_Init(const char* INTOSC,int freq,int divider);
+void InternalClock_Init(char INTOSC[],int freq,int divider);
 void ExternalClock_Init(bool PLL,bool SOSC,int divider);
 #endif

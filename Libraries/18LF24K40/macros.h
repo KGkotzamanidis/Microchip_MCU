@@ -28,6 +28,8 @@
 #define _MACROS_H
 
 #include <xc.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 #define x_PinOutput 0x00
@@ -92,8 +94,13 @@ typedef signed int sint16_t;
 typedef signed long int sint32_t;
 /*Unsigned char*/
 typedef unsigned char uint8_t;
-/*Unsigned int*/
-typedef unsigned int uint16_t;
+
+/**
+ * Unsigned int
+ * typedef unsigned int uint16_t;
+ * Error when Compile because there exist in alltypes.h from xc8
+ */
+
 /*Unsigned long*/
 typedef unsigned long int uint32_t;
 /*bit*/

@@ -32,8 +32,8 @@
  * @input param int : 1,2,4,8,16,32,64,128,256,512
  * For more info see @ page 47.
  */
-void InternalClock_Init(const char* INTOSC,int freq,int divider){
-    if(INTOSC == 'L'){
+void InternalClock_Init(char INTOSC[],int freq,int divider){
+    if(!strcmp(INTOSC,"L")){
         OSCEN = 0x10;
         OSCTUNE = 0x00;
         
@@ -73,7 +73,7 @@ void InternalClock_Init(const char* INTOSC,int freq,int divider){
             break;
         }
     }
-    else if(INTOSC == 'H'){
+    else if(!strcmp(INTOSC,'H')){
         OSCTUNE = 0x40;
         OSCEN = 0x00;
         
