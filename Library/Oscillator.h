@@ -14,6 +14,8 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-#ifndef _UTILS_H
-#define _UTILS_H
-#endif
+#pragma warning disable 520 
+#include <xc.h>
+
+void External_Oscillator();
+void Internal_Oscillator(int clock_speed);
