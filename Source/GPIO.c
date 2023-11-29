@@ -1,4 +1,4 @@
-#include "GPIO.h"
+#include "./../Library/GPIO.h"
 
 void pinMode(GPIO pin, uint8_t mode){
     uint8_t portNumber;

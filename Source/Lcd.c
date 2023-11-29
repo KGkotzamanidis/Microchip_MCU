@@ -1,4 +1,4 @@
-#include "Lcd.h"
+#include "./../Library/Lcd.h"
 
 LCD_Configs lcd;
 uint8_t TruckLineNum, TruckCursorPos;
