@@ -14,6 +14,11 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+#ifndef _DELAY_H
+#define _DELAY_H
+
 #define _XTAL_FREQ 8000000
 #define __delay_us(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000000.0)))
 #define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
+
+#endif

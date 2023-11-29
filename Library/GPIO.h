@@ -14,6 +14,9 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+#ifndef _GPIO_H
+#define _GPIO_H
+
 #include <stdint.h>
 #include <xc.h>
 
@@ -59,3 +62,4 @@ uint16_t readAnalog(CHANNEL channel);
 char readBit(GPIO pin);
 char readByte(GPIO pin);
 void writeByte(GPIO pin, uint8_t byte);
+#endif

@@ -14,6 +14,9 @@
 *	You should have received a copy of the GNU General Public License
 *	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+#ifndef _LCD_H
+#define _LCD_H
+
 #include <stdint.h>
 #include "GPIO.h"
 
@@ -58,3 +61,5 @@ void LCD_GoToNextLine(void);
 void LCD_SetCursor(uint8_t line, uint8_t pos);
 void LCD_DisplayChar(uint8_t dataFrame);
 void LCD_DisplayString(const char *ptr);
+
+#endif
