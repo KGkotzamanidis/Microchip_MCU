@@ -74,7 +74,7 @@ void writeDigital(GPIO pin, uint8_t type){
     }
 }
 
-uint16_t readAnalog(CHANNEL channel){
+uint16_t readAnalog(ANALOG_GPIO channel){
     if(channel >> 13){
         return 0;
     }
