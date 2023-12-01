@@ -17,24 +17,7 @@
 #ifndef _GPIO_H
 #define _GPIO_H
 
-#include <stdint.h>
-#include <xc.h>
-
-#include "Delay.h"
-
-#define GetBitMask(bit)         (1<<(bit))
-#define BitSet(x,bit)           ((x) |=  GetBitMask(bit))
-#define BitClear(x,bit)         ((x) &= ~GetBitMask(bit))
-#define BitToggle(x,bit)        ((x) ^=  GetBitMask(bit))
-#define UpdateBit(x,bit,val)    ((val)? BitSet(x,bit): BitClear(x,bit))
-#define GetBitStatus(x,bit)     (((x)&(GetBitMask(bit)))!=0)
-#define isBitSet(x,bit)         (((x)&(GetBitMask(bit)))!=0)
-
-uint8_t OUTPUT = 0x00;
-uint8_t INPUT = 0x01;
-
-uint8_t LOW = 0x00;
-uint8_t HIGH = 0x01;
+#include "Utils.h"
 
 typedef enum{
     RA_0,RA_1,RA_2,RA_3,RA_4,RA_5,RA_6,RA_7,
@@ -50,14 +33,19 @@ typedef enum {
     AN_0,AN_1,AN_2,AN_3,AN_4,AN_5,
     AN_6,AN_7,AN_8,AN_9,AN_10,AN_11,
     AN_12,AN_13
-}CHANNEL;
+}ANALOG_GPIO;
+
+/* PWM Channels */
+typedef enum{
+    P1A,P1B,P1C,P1D
+}PWM_GPIO;
 
 void pinMode(GPIO pin,uint8_t mode);
 
 uint8_t readDigital(GPIO pin);
 void writeDigital(GPIO pin, uint8_t type);
 
-uint16_t readAnalog(CHANNEL channel);
+uint16_t readAnalog(ANALOG_GPIO channel);
 
 char readBit(GPIO pin);
 char readByte(GPIO pin);

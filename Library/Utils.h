@@ -17,4 +17,23 @@
 #ifndef _UTILS_H
 #define _UTILS_H
 
+#pragma warning disable 520 
+
+#include <stdint.h>
+#include <xc.h>
+
+#define _XTAL_FREQ 8000000
+#define GetBitMask(bit)         (1<<(bit))
+#define BitSet(x,bit)           ((x) |=  GetBitMask(bit))
+#define BitClear(x,bit)         ((x) &= ~GetBitMask(bit))
+#define BitToggle(x,bit)        ((x) ^=  GetBitMask(bit))
+#define UpdateBit(x,bit,val)    ((val)? BitSet(x,bit): BitClear(x,bit))
+#define GetBitStatus(x,bit)     (((x)&(GetBitMask(bit)))!=0)
+#define isBitSet(x,bit)         (((x)&(GetBitMask(bit)))!=0)
+
+uint8_t OUTPUT = 0x00;
+uint8_t INPUT = 0x01;
+
+uint8_t LOW = 0x00;
+uint8_t HIGH = 0x01;
 #endif

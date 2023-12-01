@@ -17,7 +17,8 @@
 #ifndef _DELAY_H
 #define _DELAY_H
 
-#define _XTAL_FREQ 8000000
+#include "Utils.h"
+
 #define __delay_us(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000000.0)))
 #define __delay_ms(x) _delay((unsigned long)((x)*(_XTAL_FREQ/4000.0)))
 

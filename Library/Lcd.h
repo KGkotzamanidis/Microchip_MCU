@@ -17,7 +17,7 @@
 #ifndef _LCD_H
 #define _LCD_H
 
-#include <stdint.h>
+#include "Utils.h"
 #include "GPIO.h"
 
 #define LineZero    0x00
