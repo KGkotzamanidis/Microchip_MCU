@@ -32,13 +32,20 @@ typedef enum{
 typedef enum {
     AN_0,AN_1,AN_2,AN_3,AN_4,AN_5,
     AN_6,AN_7,AN_8,AN_9,AN_10,AN_11,
-    AN_12,AN_13
+    AN_12,AN_13,AN_NULL = 0xFF
 }ANALOG_GPIO;
 
 /* PWM Channels */
 typedef enum{
     P1A,P1B,P1C,P1D
 }PWM_GPIO;
+
+/* Interrupt Port B*/
+typedef enum{
+    IOCB_0,IOCB_1,IOCB_2,IOCB_3,
+    IOCB_4,IOCB_5,IOCB_6,IOCB_7,
+    IOCB_NULL = 0xFF
+}INTERRUPT_GPIO;
 
 void pinMode(GPIO pin,uint8_t mode);
 
