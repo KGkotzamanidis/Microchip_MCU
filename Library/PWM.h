@@ -19,7 +19,24 @@
 
 #include "GPIO.h"
 
+/*
+ * void PWM_Init(PWM_GPIO channel, int Postscaler , int Prescaler)
+ * Use this function to create a PWM signal into a PWM pin of MCU.
+ * @input param PWM_GPIO: P1A~P1D.
+ * @input param int Postscaler: 1,4,16
+ * @input param int Prescaler: 1~16
+ */
 void PWM_Init(PWM_GPIO channel, int Postscaler , int Prescaler);
+/*
+ * void PWM_Stop(PWM_GPIO channel)
+ * Use this function to stop the PWM signal.
+ */
 void PWM_Stop(PWM_GPIO channel);
+/*
+ * void PWM_DutyCycle(PWM_GPIO channel, unsigned int DutyCycle)
+ * Use this function to create DutyCycle of PWM signal.
+ * @input param PWM_GPIO channel: P1A~P1D
+ * @input param unsigned int DutyCycle: 0~1023
+ */
 void PWM_DutyCycle(PWM_GPIO channel, unsigned int DutyCycle);
 #endif

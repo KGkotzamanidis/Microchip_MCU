@@ -19,7 +19,19 @@
 
 #include "Utils.h"
 
+/*
+ * void External_Oscillator()
+ * Use this function to Start MCU With External Oscilator
+ * First you need to change the Configuration Bits FOSC = HS.
+ * For more info read @ page:63~75
+ */
 void External_Oscillator();
+/*
+ * void Internal_Oscillator(int clock_speed);
+ * Use this function to Start MCU With Internal Oscilator
+ * First you need to change the Configuration Bits FOSC = INTRC_CLKOUT.
+ * @input param int clock_speed:1-2-4-8
+ * For more info read @ page:63~75
+ */
 void Internal_Oscillator(int clock_speed);
-
 #endif

@@ -20,6 +20,19 @@
 #include "GPIO.h"
 #include "Utils.h"
 
+/*
+ * void Interrupt_enable(bool Peripheral,bool Timer0, bool INT, bool INT_RB, INTERRUPT_GPIO channel)
+ * Use this function to enable the Interrupt Service in below boolean ports!
+ * @input param bool Peripheral: true/false
+ * @input param bool Timer0: true/false
+ * @input param bool INT: true/false
+ * @input param bool INT_RB: true/false
+ * @input param INTERRUPT_GPIO channel: IOCB_0~IOCB_7
+ */
 void Interrupt_enable(bool Peripheral,bool Timer0, bool INT, bool INT_RB, INTERRUPT_GPIO channel);
+/*
+ * void Interrupt_disable(void)
+ * Use this function to disable the Interrupt Service!
+ */
 void Interrupt_disable(void);
 #endif

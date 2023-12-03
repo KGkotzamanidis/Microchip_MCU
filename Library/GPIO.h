@@ -47,14 +47,52 @@ typedef enum{
     IOCB_NULL = 0xFF
 }INTERRUPT_GPIO;
 
+/*
+ * void pinMode(GPIO pin,uint8_t mode)
+ * Use this function to set INPUT/OUTPUT any pin of MCU.
+ * @input param GPIO pin: RA_0~RE_7
+ * @input param uint8_t mode: INPUT/OUTPUT
+ */
 void pinMode(GPIO pin,uint8_t mode);
-
+/*
+ * uint8_t readDigital(GPIO pin)
+ * Use this function to read byte from any pin of MCU.
+ * @input param GPOIO pin: RA_0~RE_7
+ * @output param uint8_t
+ */
 uint8_t readDigital(GPIO pin);
+/*
+ * void writeDigital(GPIO pin, uint8_t type)
+ * Use this function to set HIGH/LOW any pin of MCU.
+ * @input param GPIO pin: RA_0~RE_7
+ * @input param uint8_t type: HIGH/LOW
+ */
 void writeDigital(GPIO pin, uint8_t type);
-
+/*
+ * uint16_t readAnalog(ANALOG_GPIO channel)
+ * Use this function to read raw values from analog pin of MCU.
+ * @input param ANALOG_GPIO chanel: AN0~AN13
+ * @output param uint16_t raw value.
+ */
 uint16_t readAnalog(ANALOG_GPIO channel);
-
+/*
+ * char readBit(GPIO pin)
+ * Use this function to read bit from any pin of MCU.
+ * @input param GPIO pin: RA_0~RE_7
+ * @output param char.
+ */
 char readBit(GPIO pin);
+/*
+ * char readByte(GPIO pin)
+ * Use this function to read byte from any pin of MCU.
+ * @input param GPIO pin: RA_0~RE_7
+ */
 char readByte(GPIO pin);
+/*
+ * void writeByte(GPIO pin, uint8_t byte);
+ * Use this function to write byte to any pin of MCU.
+ * @input param GPIO pin: RA_0~RE_7.
+ * @input param uint8_t byte: byte
+ */
 void writeByte(GPIO pin, uint8_t byte);
 #endif
