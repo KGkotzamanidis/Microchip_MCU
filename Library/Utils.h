@@ -20,6 +20,7 @@
 #pragma warning disable 520 
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <xc.h>
 
 #define _XTAL_FREQ 8000000
