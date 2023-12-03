@@ -17,5 +17,56 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-void TMR0_start
+#include "Utils.h"
+
+/*
+ * void TMR0_start(char clk_select[], bool PSA_select, int Prescaler)
+ * Use this function to start the TIMER0.
+ * @input param char clk_select[]: Internal/External
+ * @input param bool PSA_select: true/false
+ * @input param int Prescaler: 2,4,8,16,32,64,128,256
+ * Check this when the PSA is true then Prescaler is /2
+ */
+void TMR0_start(char clk_select[], bool PSA_select, int Prescaler);
+/*
+ * void TMRO_set(uint8_t value)
+ * Use this function to set TIMER0 start value
+ * @input param uint8_t valse: value
+ */
+void TMRO_set(uint8_t value);
+/*
+ * bool TMR0_Interrupt()
+ * Use this function to take an interrupt when the TIMER0 have overflow!
+ * @return param true on overflow
+ */
+bool TMR0_Interrupt();
+/*
+ * void TMR0_stop();
+ * Use this function to stop the TIMER0
+ */
+void TMR0_stop();
+/*
+ * void TMR2_start(int Prescaler, int Postscaler)
+ * Use this function to start TIMER2
+ * @input param int Prescaler: 1,4,16
+ * @input param int Postscaler: 1~16
+ */
+void TMR2_start(int Prescaler, int Postscaler);
+/*
+ * void TMR2_set(uint8_t value)
+ * Use this function to set TIMER2 start value
+ * @input param uint8_t valse: value
+ */
+void TMR2_set(uint8_t value);
+/*
+ * bool TMR2_Interrupt()
+ * Use this function to take an interrupt when the TIMER2 have overflow!
+ * @return param true on overflow
+ */
+bool TMR2_Interrupt();
+/*
+ * void TMR2_stop();
+ * Use this function to stop the TIMER2
+ */
+void TMR2_stop();
 #endif
