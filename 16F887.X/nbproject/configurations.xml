@@ -11,6 +11,7 @@
       <itemPath>../Library/Utils.h</itemPath>
       <itemPath>../Library/PWM.h</itemPath>
       <itemPath>../Library/Interrupt.h</itemPath>
+      <itemPath>../Library/Timer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,6 +27,7 @@
       <itemPath>../Source/Utils.c</itemPath>
       <itemPath>../Source/PWM.c</itemPath>
       <itemPath>../Source/Interrupt.c</itemPath>
+      <itemPath>../Source/Timer.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -34,8 +36,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../Library</Elem>
-    <Elem>../Source</Elem>
+    <Elem>..</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

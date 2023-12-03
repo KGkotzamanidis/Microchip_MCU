@@ -9,8 +9,7 @@
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../Library</sourceRootElem>
-                <sourceRootElem>../Source</sourceRootElem>
+                <sourceRootElem>..</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

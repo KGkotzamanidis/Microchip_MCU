@@ -11,12 +11,15 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-#include "../Library/Utils.h"
 #include "../Library/GPIO.h"
-#include "../Library/Interrupt.h"
 #include "../Library/Oscillator.h"
+#include "../Library/Timer.h"
+#include "../Library/Utils.h"
 
 void __interrupt() ISR(void){
+    if(TMR2_Interrupt()){
+        writeDigital(RD_0,LOW);
+    }
     return;
 }
 
@@ -24,7 +27,8 @@ int main(){
     Internal_Oscillator(8);
     pinMode(RD_0,OUTPUT);
     
-    Interrupt_enable(false,false,true,false,IOCB_NULL);
+    TMR2_start(16,16);
+    TMR2_set(255);
     
     while(1){
         writeDigital(RD_0,HIGH);
