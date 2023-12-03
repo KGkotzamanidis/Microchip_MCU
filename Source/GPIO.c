@@ -72,6 +72,7 @@ void writeDigital(GPIO pin, uint8_t type){
             UpdateBit(PORTE,pin,type);
             break;
     }
+    return;
 }
 
 uint16_t readAnalog(ANALOG_GPIO channel){
