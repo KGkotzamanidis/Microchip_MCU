@@ -48,12 +48,46 @@ typedef enum{
 }INTERRUPT_GPIO;
 
 /*
+ * MODE
+ * Configure the direction of PORT
+ * @param as OUTPUT or INPUT
+ */
+typedef enum{
+    /*
+     * OUTPUT
+     * Set the PORT as OUTPUT 0x00
+     */
+    OUTPUT = 0x00,
+    /*
+     * INPUT
+     * Set the PORT as INPUT 0x01
+     */
+    INPUT = 0x01
+}MODE;
+/*
+ * SIGNAL
+ * Configure the voltage of PORT
+ * @param as LOW or HIGH
+ */
+typedef enum{
+    /*
+     * LOW
+     * Set the voltage as LOW 0x00
+     */
+    LOW = 0x00,
+    /*
+     * HIGH
+     * Set the voltage as HIGH 0x01
+     */
+    HIGH = 0x01
+}SIGNAL;
+/*
  * void pinMode(GPIO pin,uint8_t mode)
  * Use this function to set INPUT/OUTPUT any pin of MCU.
  * @input param GPIO pin: RA_0~RE_7
  * @input param uint8_t mode: INPUT/OUTPUT
  */
-void pinMode(GPIO pin,uint8_t mode);
+void pinMode(GPIO pin,MODE mode);
 /*
  * uint8_t readDigital(GPIO pin)
  * Use this function to read byte from any pin of MCU.
@@ -67,7 +101,7 @@ uint8_t readDigital(GPIO pin);
  * @input param GPIO pin: RA_0~RE_7
  * @input param uint8_t type: HIGH/LOW
  */
-void writeDigital(GPIO pin, uint8_t type);
+void writeDigital(GPIO pin, SIGNAL type);
 /*
  * uint16_t readAnalog(ANALOG_GPIO channel)
  * Use this function to read raw values from analog pin of MCU.
