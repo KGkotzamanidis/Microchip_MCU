@@ -64,6 +64,7 @@ void LCD_SetDisplay(uint8_t maxLines, uint8_t maxCharacters){
         LCD_Reset();
         LCD_WriteCmd(cmd4BitMode);
     }
+    LCD_WriteCmd(cmdIncrementMode);
     LCD_WriteCmd(cmdCursorOFF);
     LCD_Clear();
 }
@@ -111,7 +112,7 @@ void LCD_GoToLine(uint8_t line){
 
 void LCD_Clear(void){
     LCD_WriteCmd(cmdClear);
-    LCD_GoToLine(LineZero);
+    LCD_GoToLine(cmdReturnHome);
 }
 
 void LCD_WriteCmd(uint8_t dataFrame){
@@ -125,6 +126,15 @@ void LCD_WriteCmd(uint8_t dataFrame){
     }
     LCD_SendHigherData(dataFrame);
     LCD_SendCmdSignal();
+}
+
+void LCD_CreateCustomChar(uint8_t char_location, uint8_t *CustomChar_array){
+    char_location &= 0x7;
+    LCD_WriteCmd(0x40 | char_location << 3);
+    
+    for(int i=0;i<8;i++){
+        LCD_WriteData(CustomChar_array[i]);
+    }
 }
 
 static void LCD_WriteData(uint8_t dataFrame){
