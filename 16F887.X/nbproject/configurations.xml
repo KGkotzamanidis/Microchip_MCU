@@ -12,6 +12,7 @@
       <itemPath>../Library/PWM.h</itemPath>
       <itemPath>../Library/Interrupt.h</itemPath>
       <itemPath>../Library/Timer.h</itemPath>
+      <itemPath>../Library/Custom_Characters.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

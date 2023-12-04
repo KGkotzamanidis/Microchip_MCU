@@ -11,27 +11,30 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+#include "../Library/Lcd.h"
 #include "../Library/GPIO.h"
 #include "../Library/Oscillator.h"
 #include "../Library/Timer.h"
 #include "../Library/Utils.h"
 
 void __interrupt() ISR(void){
-    if(TMR2_Interrupt()){
-        writeDigital(RD_0,LOW);
-    }
     return;
 }
 
 int main(){
     Internal_Oscillator(8);
-    pinMode(RD_0,OUTPUT);
+    LCD_Setup(RD_2,R_NULL,RD_3,R_NULL,R_NULL,R_NULL,R_NULL,RD_4,RD_5,RD_6,RD_7);
+    LCD_SetDisplay(2,16);
     
-    TMR2_start(16,16);
-    TMR2_set(255);
+    char msg[32];
+    sprintf(msg,"It's Antena\nThis is line 1\n");
     
     while(1){
-        writeDigital(RD_0,HIGH);
+        LCD_CreateCustomChar(0,antena);
+        LCD_GoToLine(0);
+        LCD_SetCursor(0,0);
+        LCD_DisplayChar(0);
+        LCD_SetCursor(0,2);
+        LCD_DisplayString(msg);
     }
-    return 0;
 }
