@@ -1,6 +1,6 @@
 #include "./../Library/GPIO.h"
 
-void pinMode(GPIO pin, uint8_t mode){
+void pinMode(GPIO pin, MODE mode){
     uint8_t portNumber;
     portNumber = (pin >> 3);
     pin = pin & 0x07;
@@ -50,7 +50,7 @@ uint8_t readDigital(GPIO pin){
     return value;
 }
 
-void writeDigital(GPIO pin, uint8_t type){
+void writeDigital(GPIO pin, SIGNAL type){
     uint8_t portNumber;
     portNumber = (pin >> 3);
     pin = pin & 0x07;
