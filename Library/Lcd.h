@@ -17,6 +17,7 @@
 #ifndef _LCD_H
 #define _LCD_H
 
+#include "Custom_Characters.h"
 #include "Utils.h"
 #include "GPIO.h"
 
@@ -26,14 +27,15 @@
 #define LineThree   0x03
 #define LineMaximum 0x04
 
-#define cmdClear 0x01
-#define cmdReturnHome 0x02
-#define cmdOFF 0x08
-#define cmdCursorOFF 0x0C
-#define cmdCursorON 0x0E
-#define cmdCursorBLINK 0x0F
-#define cmd4BitMode 0x28
-#define cmd8BitMode 0x38
+#define cmdClear            0x01
+#define cmdReturnHome       0x02
+#define cmdIncrementMode    0x06
+#define cmdOFF              0x08
+#define cmdCursorOFF        0x0C
+#define cmdCursorON         0x0E
+#define cmdCursorBLIN       0x0F
+#define cmd4BitMode         0x28
+#define cmd8BitMode         0x38
 
 typedef struct{
     uint8_t MaxSupportedLines;
@@ -116,4 +118,11 @@ void LCD_DisplayChar(uint8_t dataFrame);
  * @input param const char *ptr
  */
 void LCD_DisplayString(const char *ptr);
+/*
+ * void LCD_CreateCustomChar(uint8_t char_location, uint8_t *CustomChar)
+ * Use this function to create an custom character inside the LCD ROM
+ * @input param uint8_t char_location: 0x0~0xF
+ * @input param uint8_t *CustomChar_array:
+ */
+void LCD_CreateCustomChar(uint8_t char_location, uint8_t *CustomChar_array);
 #endif
