@@ -34,9 +34,4 @@
 #define GetBitStatus(x,bit)     (((x)&(GetBitMask(bit)))!=0)
 #define isBitSet(x,bit)         (((x)&(GetBitMask(bit)))!=0)
 
-uint8_t OUTPUT = 0x00;
-uint8_t INPUT = 0x01;
-
-uint8_t LOW = 0x00;
-uint8_t HIGH = 0x01;
 #endif
