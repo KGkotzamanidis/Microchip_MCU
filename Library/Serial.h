@@ -23,10 +23,42 @@
 #define maxBaudRate 115200
 #define getBuadReate(baudrate) (uint32_t)((_XTAL_FREQ/(64*(uint32_t)baudrate))-1)
 
+/*
+ * void UART_Init(uint32_t baudrate)
+ * Use this function to Initiallize the UART
+ * @input param uint32_t baudrate
+ */
 void UART_Init(uint32_t baudrate);
+/*
+ * void UART_SetBaudRate(uint32_t baudrate)
+ * Use this function to set the BuadRate
+ * @input param uint32_t baudrate
+ */
 void UART_SetBaudRate(uint32_t baudrate);
+/*
+ * char UART_RxChar()
+ * Use this function to read an Character
+ * @return character
+ */
 char UART_RxChar();
-void UART_TxChar(char uartData);
-void UART_TxString(const char *ptr_string);
+/*
+ * uint8_t UART_RxString(char *ptr_string)
+ * Use this function to read an String
+ * @input param char *ptr_string
+ * @return param uint8_t len
+ */
 uint8_t UART_RxString(char *ptr_string);
+/*
+ * void UART_TxChar(char uartData)
+ * Use this function to send an Character
+ * @input param char uardData
+ */
+void UART_TxChar(char uartData);
+/*
+ * void UART_TxString(const char *ptr_string)
+ * Use this function to send an String
+ * @input param const char *ptr_string
+ */
+void UART_TxString(const char *ptr_string);
+
 #endif

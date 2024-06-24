@@ -22,7 +22,25 @@ void __interrupt() ISR(void){
 int main(){
     Internal_Oscillator(8);
     UART_Init(9600);
-    UART_TxString("hello\n World\n");
     
+    UART_TxString("PIC16F887 UART Telecom Initiallize\n");
+    UART_TxString("By KGkotzamanidis\n");
+    char buf[50];
+    int len = 0;
+    
+    while(1){
+        len = UART_RxString(buf);
+        
+        while(len > 0){
+            if(strcmp(buf,"help")==0){
+                UART_TxString("You send the command 'help'\n");
+                break;
+            }else{
+                UART_TxString("command not found!\n");
+                break;
+            }
+        }
+        UART
+    }
     return 0;
 }
