@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=16F887.X
 
 # Active Configuration
-DEFAULTCONF=default
+DEFAULTCONF=xc8_Simulator
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default 
+ALLCONFS=default pic_asm xc8_Simulator 
 
 
 # build
@@ -46,12 +46,16 @@ ALLCONFS=default
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=pic_asm clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=xc8_Simulator clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=pic_asm build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=xc8_Simulator build
 
 
 
